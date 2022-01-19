@@ -4,8 +4,7 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     email: {
         type: String,
@@ -23,10 +22,6 @@ const userSchema = new Schema({
         enum: ['Administrator', 'User'],
         default: 'User'
     },
-    createAt: {
-        type: Date,
-        default: Date.now
-    },
     information: {
         name: String,
         address: String,
@@ -41,7 +36,18 @@ const userSchema = new Schema({
         enum: [true, false],
         default: false
     },
-    token: String
+    blocked: {
+        type: Boolean,
+        enum: [true, false],
+        default: false
+    },
+    token: {
+        type: String
+    },
+    createAt: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 module.exports = mongoose.model('users', userSchema);

@@ -31,14 +31,14 @@ class UserController {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
                         newUser.password = hash;
                         newUser.save()
-                            .then(data => {
+                            .then(() => {
                                 return res.status(200).json({ message: 'User was registered successfully!' });
+                            })
+                            .catch(err => {
+                                return res.status(500).json({ message: err });
                             });
                     });
                 });
-            })
-            .catch(err => {
-                return res.status(500).json({ message: err });
             });
     }
 
@@ -79,7 +79,27 @@ class UserController {
             });
     }
 
+    /**
+     * @route [PUT] /api/user/:blockMethod/:id
+     * @desc Block/Unblock an user (blockMethod is in ['block', 'unblock'])
+     * @access private
+     */
+    blockOrUnblockUser(req, res, next) {
+        // Check the method of block/unblock
+        if (!['block', 'unblock'].includes(req.params.blockMethod)) {
+            return res.status(404).json({ message: 'Block/Unblock method required' });
+        }
 
+        // Update database
+        const blockValue = req.params.blockMethod == 'block' ? true : false;
+        UserModel.findOneAndUpdate({ _id: req.params.id }, { blocked: blockValue })
+            .then(data => {
+                return res.status(200).json({ message: 'Block/Unblock successfully' });
+            })
+            .catch(err => {
+                return res.status(404).json({ message: 'Could not find user by id' });
+            });
+    }
 
 };
 
