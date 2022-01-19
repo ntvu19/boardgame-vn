@@ -20,29 +20,28 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['Administrator', 'User']
+        enum: ['Administrator', 'User'],
+        default: 'User'
     },
     createAt: {
         type: Date,
         default: Date.now
     },
     information: {
-        name: {
-            type: String,
-            required: true
-        },
-        address: {
-            type: String,
-        },
-        phone: {
-            type: String,
-            require: true
-        }
+        name: String,
+        address: String,
+        phone: String
     },
     orders: [{
         type: Schema.Types.ObjectId,
         ref: 'orders'
-    }]
+    }],
+    active: {
+        type: Boolean,
+        enum: [true, false],
+        default: false
+    },
+    token: String
 });
 
 module.exports = mongoose.model('users', userSchema);

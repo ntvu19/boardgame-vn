@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const UserController = require('../controllers/user.controller');
+const AuthMiddleware = require('../middlewares/auth.middlewares');
 
-const User = require('../models/user.model');
 
-router.get('/', (req, res) => {
-    return res.json({ id: '34', name: 'Thanh Vu', age: 20 });
-});
+router.post('/register', UserController.register);
+router.post('/login', AuthMiddleware.verifyToken, UserController.login);
 
 module.exports = router;

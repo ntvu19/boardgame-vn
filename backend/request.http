@@ -1,1 +1,22 @@
 GET http://localhost:5000/api/user
+
+###
+POST http://localhost:5000/api/user/register
+Content-Type: application/json
+
+{
+    "username": "thanhvu",
+    "password": 123,
+    "email": "thanhvvu34@gmail.com",
+    "role": "Administrator"
+}
+
+###
+POST http://localhost:5000/api/user/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoYW5odnUiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImlhdCI6MTY0MjU3OTEzMiwiZXhwIjoxNjQyNjY1NTMyfQ.TyV8_8lZ6-BiqyX9OIZYHX_1Z5ff--8qr3R4qQoGNzU
+
+{
+    "username": "thanhvu",
+    "password": "123"
+}
