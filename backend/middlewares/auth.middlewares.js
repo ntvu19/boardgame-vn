@@ -3,8 +3,7 @@ const UserModel = require('../models/user.model');
 
 function verifyToken(req, res, next) {
     // Check role
-    const authHeader = req.header('Authorization');
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = req.header('Authorization').replace('Bearer ', '');
 
     if (!token) {
         return res.status(401).json({ message: 'Access token not found' });
