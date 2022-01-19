@@ -23,7 +23,7 @@ class UserController {
         UserModel.findOne({ username: req.body.username })
             .then(data => {
                 if (data) {
-                    return res.status(400).json({ message: 'Username is already taken' });
+                    return res.status(404).json({ message: 'Username is already taken' });
                 }
 
                 // Store hash in the database
@@ -32,7 +32,7 @@ class UserController {
                         newUser.password = hash;
                         newUser.save()
                             .then(data => {
-                                return res.status(200).json({ message: 'User is created!' });
+                                return res.status(200).json({ message: 'User was registered successfully!' });
                             });
                     });
                 });
@@ -51,10 +51,10 @@ class UserController {
         UserModel.findOne({
                 username: req.body.username,
                 role: req.body.role
-            })
+            }) // Missing populate orders--------------------------------------Note-------------------------------------------
             .then(data => {
                 if (!data) {
-                    return res.status(400).json({ message: 'Incorrectly username or password!' });
+                    return res.status(404).json({ message: 'Incorrectly username or password!' });
                 }
 
                 // Exist
@@ -62,7 +62,7 @@ class UserController {
                 bcrypt.compare(req.body.password, hashedPassword)
                     .then(result => {
                         if (result === false) {
-                            return res.status(400).json({ message: 'Incorrectly username or password!' });
+                            return res.status(404).json({ message: 'Incorrectly username or password!' });
                         }
                         return res.status(200).json({
                             username: req.body.username,
