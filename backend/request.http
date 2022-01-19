@@ -12,11 +12,30 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:5000/api/user/register
+Content-Type: application/json
+
+{
+    "username": "thanhvu",
+    "password": "123",
+    "email": "thanhvvu34@gmail.com",
+    "information": "{\"name\": \"Nguyen Thanh Vu\", \"address\":\"My Thang, Phu My, Binh Dinh\",\"phone\":\"0335805834\"}",
+    "avatar": ""
+}
+
+###
 POST http://localhost:5000/api/user/login
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoYW5odnUiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImlhdCI6MTY0MjU3OTEzMiwiZXhwIjoxNjQyNjY1NTMyfQ.TyV8_8lZ6-BiqyX9OIZYHX_1Z5ff--8qr3R4qQoGNzU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoYW5odnUiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImlhdCI6MTY0MjYwNjIzOSwiZXhwIjoxNjQyNjkyNjM5fQ.FQIcsPCJ4yEQBuIL721Paq20AcUmQVz7gka4nBor0WM
 
 {
     "username": "thanhvu",
     "password": "123"
 }
+
+###
+PUT http://localhost:5000/api/user/unblock/61e82fa2eed05e0532f9eb6d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoYW5odnUiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImlhdCI6MTY0MjYwNjIzOSwiZXhwIjoxNjQyNjkyNjM5fQ.FQIcsPCJ4yEQBuIL721Paq20AcUmQVz7gka4nBor0WM
+
+
+###
