@@ -1,8 +1,6 @@
 // Import packages
 require('dotenv').config();
-const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
@@ -13,15 +11,14 @@ const route = require('./routes');
 // Connect to MongoDB
 db.connectToDatabase();
 
-// Static file
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Cors
 app.use(cors());
 
-// Body-parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({ extended: true }));
 
 // Route
 route(app);
