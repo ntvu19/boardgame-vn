@@ -5,6 +5,51 @@ const UserModel = require('../models/user.model');
 class UserController {
 
     /**
+     * @route [GET] /api/user/view
+     * @desc View all user's information
+     * @access private
+     */
+    view(req, res, next) {
+        UserModel.find({})
+            .then(data => {
+                return res.status(200).json(data);
+            })
+            .catch(err => {
+                return res.status(500).json({ message: err });
+            });
+    }
+
+    /**
+     * @route [GET] /api/user/view/:id
+     * @desc View detail information of an user
+     * @access private
+     */
+    viewDetails(req, res, next) {
+        const userId = req.params.id;
+        const token = req.header('Authorization').replace('Bearer ', '');
+
+        UserModel.findById({ _id: userId })
+            .then(data => {
+                // Users is only view themselves information
+                if (req.body.role !== 'Administrator') {
+                    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+                    if (data.username !== decoded.username) {
+                        return res.status(403).json({ message: 'Required Administrator role' });
+                    }
+                }
+
+                if (!data) {
+                    return res.status(404).json({ message: 'Incorrectly user id' });
+                } else {
+                    return res.status(200).json(data);
+                }
+            })
+            .catch(err => {
+                return res.status(500).json({ message: err });
+            });
+    }
+
+    /**
      * @route [POST] /api/user/register 
      * @desc Register user 
      * @access public 
@@ -49,8 +94,7 @@ class UserController {
      */
     login(req, res, next) {
         UserModel.findOne({
-                username: req.body.username,
-                role: req.body.role
+                username: req.body.username
             }) // Missing populate orders--------------------------------------Note-------------------------------------------
             .then(data => {
                 if (!data) {
@@ -66,12 +110,12 @@ class UserController {
                         }
                         return res.status(200).json({
                             username: req.body.username,
-                            role: req.body.role,
+                            role: data.role,
                             token: data.token
                         });
                     })
                     .catch(err => {
-                        return res.status(500).json({ message: err });
+                        return res.status(400).json({ message: err });
                     });
             })
             .catch(err => {

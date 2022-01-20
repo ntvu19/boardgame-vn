@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const UserModel = require('../models/user.model');
 
 function verifyToken(req, res, next) {
     const token = req.header('Authorization').replace('Bearer ', '');
@@ -26,9 +25,11 @@ function isAdmin(req, res, next) {
         if (decoded.role === 'Administrator') {
             req.body.role = decoded.role;
             next();
+        } else {
+            return res.status(401).json({ message: 'Required Administrator role' });
         }
     } catch (err) {
-        return res.status(403).json({ message: 'Required Aministrator role' });
+        return res.status(500).json({ message: err });
     }
 }
 
