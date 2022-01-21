@@ -6,22 +6,18 @@ const AuthMiddleware = require('../middlewares/auth.middleware');
 // Users & Administrators
 router.get('/view', AuthMiddleware.isAdmin, UserController.view);
 router.get('/view/:id', AuthMiddleware.verifyToken, UserController.viewDetails);
+router.put('/edit/:id', AuthMiddleware.verifyToken, UserController.edit);
 router.post('/register', UserController.register);
 router.post('/login', UserController.login);
-router.put('/:blockMethod/:id', AuthMiddleware.isAdmin, UserController.blockOrUnblockUser);
+router.put('/block/:id', AuthMiddleware.isAdmin, UserController.blockOrUnblockUser);
+
 
 /**
- * 1. Change themselves information
- * 2. Manage all categories, products (pagination*)
- * 3. Check product binding
- * 4. Manage all orders (and state)
- * 5. Statistic and Analysis (Sales and products)
+ * 1. Manage all categories, products (pagination*)
+ * 2. Check product binding
+ * 3. Manage all orders (and state)
+ * 4. Statistic and Analysis (Sales and products)
+ * 5. Active by email
  */
-
-// Product
-
-
-
-
 
 module.exports = router;

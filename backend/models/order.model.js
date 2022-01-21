@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose.Schema;
+const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
     user: {
@@ -18,7 +18,7 @@ const OrderSchema = new Schema({
     },
     address: {
         type: String,
-        require: true
+        required: true
     },
     create: {
         type: Date,
