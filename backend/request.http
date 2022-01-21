@@ -34,7 +34,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoY
 }
 
 ###
-PUT http://localhost:5000/api/user/unblock/61e82fa2eed05e0532f9eb6d
+PUT http://localhost:5000/api/user/block/61e82fa2eed05e0532f9eb6d?blocked=true
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoYW5odnUiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImlhdCI6MTY0MjYwNjIzOSwiZXhwIjoxNjQyNjkyNjM5fQ.FQIcsPCJ4yEQBuIL721Paq20AcUmQVz7gka4nBor0WM
 
 

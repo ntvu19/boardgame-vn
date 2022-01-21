@@ -30,17 +30,16 @@ class UserController {
 
         UserModel.findById({ _id: userId })
             .then(data => {
-                // Users is only view themselves information
-                if (req.body.role !== 'Administrator') {
-                    const decoded = jwt.verify(token, process.env.SECRET_KEY);
-                    if (data.username !== decoded.username) {
-                        return res.status(403).json({ message: 'Required Administrator role' });
-                    }
-                }
-
                 if (!data) {
-                    return res.status(404).json({ message: 'Incorrectly user id' });
+                    return res.status(404).json({ message: 'User does not exist' });
                 } else {
+                    // Users is only view themselves information
+                    if (req.body.role !== 'Administrator') {
+                        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+                        if (data.username !== decoded.username) {
+                            return res.status(403).json({ message: 'Required Administrator role' });
+                        }
+                    }
                     return res.status(200).json(data);
                 }
             })
@@ -59,7 +58,7 @@ class UserController {
         const token = jwt.sign({
             username: req.body.username,
             role: req.body.role || 'User'
-        }, process.env.SECRET_KEY, { expiresIn: 86400 });
+        }, process.env.SECRET_KEY);
         req.body.token = token;
         req.body.information = JSON.parse(req.body.information);
         const newUser = new UserModel(req.body);
@@ -124,24 +123,51 @@ class UserController {
     }
 
     /**
-     * @route [PUT] /api/user/:blockMethod/:id
-     * @desc Block/Unblock an user (blockMethod is in ['block', 'unblock'])
+     * @route [PUT] /api/user/block/:id?blocked=${[true, false]}
+     * @desc Block/Unblock an user, if blocked is not true, it is set to false
      * @access private
      */
     blockOrUnblockUser(req, res, next) {
-        // Check the method of block/unblock
-        if (!['block', 'unblock'].includes(req.params.blockMethod)) {
-            return res.status(404).json({ message: 'Block/Unblock method required' });
-        }
-
-        // Update database
-        const blockValue = req.params.blockMethod == 'block' ? true : false;
+        const blockValue = (!['true', 'false'].includes(req.query.blocked)) ? true : req.query.blocked === 'true';
         UserModel.findOneAndUpdate({ _id: req.params.id }, { blocked: blockValue })
             .then(data => {
                 return res.status(200).json({ message: 'Block/Unblock successfully' });
             })
             .catch(err => {
                 return res.status(404).json({ message: 'Could not find user by id' });
+            });
+    }
+
+    /**
+     * @route [PUT] /api/user/edit/:id
+     * @desc The users/administrators can change themselves information
+     * @access private
+     */
+    edit(req, res, next) {
+        const userId = req.params.id;
+        const token = req.header('Authorization').replace('Bearer ', '');
+
+        UserModel.findById({ _id: userId })
+            .then(data => {
+                if (!data) {
+                    return res.status(404).json({ message: 'User does not exist' });
+                } else {
+                    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+                    if (data.username !== decoded.username) {
+                        console.log(data.username);
+                        console.log(decoded.username);
+                        return res.status(403).json({ message: 'Token is not accepted' });
+                    }
+                    UserModel.updateOne({ _id: userId }, req.body)
+                        .then(() => {
+                            return res.status(200).json({ message: 'Update successfully' });
+                        })
+                        .catch(err => {
+                            return res.status(500).json({ message: err });
+                        })
+                }
+            }).catch(err => {
+                return res.status(500).json({ message: err });
             });
     }
 
