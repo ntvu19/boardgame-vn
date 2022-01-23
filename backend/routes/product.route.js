@@ -13,6 +13,7 @@ const AuthMiddleware = require('../middlewares/auth.middleware');
  * 4. Add a product
  * 5. Remove a product
  * 6. Buy a product
+ * 7. View all comment
  */
 
 module.exports = router;
