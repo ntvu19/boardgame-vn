@@ -2,31 +2,32 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
-    user: {
+    username: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'products'
-    },
-    quantity: {
-        type: String
-    },
-    price: {
-        type: String
-    },
+    products: [{
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'products'
+        },
+        quantity: String
+    }],
     address: {
         type: String,
         required: true
     },
-    create: {
+    createAt: {
         type: Date,
         default: Date.now
     },
     state: {
         type: String,
-        enum: ['Thanh toán', 'Đang chờ', 'Đang giao', 'Đã giao', 'Đánh giá']
+        enum: ['Chờ thanh toán', 'Chờ nhận hàng', 'Đang giao', 'Đã giao', 'Đánh giá'],
+        default: 'Chờ thanh toán'
+    },
+    estimate: {
+        type: Date
     }
 });
 

@@ -28,8 +28,12 @@ const ProductSchema = new Schema({
         ref: 'products'
     }],
     comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'comments'
+        name: String,
+        content: String,
+        createAt: {
+            type: Date,
+            default: Date.now
+        }
     }]
 });
 

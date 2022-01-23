@@ -18,6 +18,7 @@ router.put('/block/:id', AuthMiddleware.isAdmin, UserController.blockOrUnblockUs
  * 3. Manage all orders (and state)
  * 4. Statistic and Analysis (Sales and products)
  * 5. Active by email
+ * 6. View all order of a user
  */
 
 module.exports = router;

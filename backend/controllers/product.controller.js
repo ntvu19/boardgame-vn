@@ -1,6 +1,5 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const ProductModel = require('../models/product.model');
+const CategoryModel = require('../models/category.model');
 
 class ProductController {
 
