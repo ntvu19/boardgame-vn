@@ -124,7 +124,7 @@ class CategoryController {
                 return res.status(200).json({ message: 'Successfully' });
             })
             .catch(err => {
-                return res.status(404).json({ message: 'Successfully' });
+                return res.status(404).json({ message: err });
             });
     }
 
