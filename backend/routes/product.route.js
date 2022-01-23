@@ -14,6 +14,9 @@ const AuthMiddleware = require('../middlewares/auth.middleware');
  * 5. Remove a product
  * 6. Buy a product
  * 7. View all comment
+ * 8. Manage all categories and products (pagination*)
+ * 9. Check product binding
+ * 10. Statistic and Analysis (Sales and products)
  */
 
 module.exports = router;

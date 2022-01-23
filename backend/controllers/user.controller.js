@@ -1,11 +1,12 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/user.model');
+const OrderModel = require('../models/order.model');
 
 class UserController {
 
     /**
-     * @route [GET] /api/user/view
+     * @route [GET] /api/user/view-info
      * @desc View all user's information
      * @access private
      */
@@ -20,7 +21,7 @@ class UserController {
     }
 
     /**
-     * @route [GET] /api/user/view/:id
+     * @route [GET] /api/user/view-info/:id
      * @desc View detail information of an user
      * @access private
      */
@@ -38,6 +39,8 @@ class UserController {
                         const decoded = jwt.verify(token, process.env.SECRET_KEY);
                         if (data.username !== decoded.username) {
                             return res.status(403).json({ message: 'Required Administrator role' });
+                        } else {
+                            return res.status(200).json(data);
                         }
                     }
                     return res.status(200).json(data);
@@ -54,20 +57,20 @@ class UserController {
      * @access public 
      */
     register(req, res, next) {
-        // Access token
+        req.body.information = JSON.parse(req.body.information);
+        const newUser = new UserModel(req.body);
         const token = jwt.sign({
+            userId: newUser._id.toString(),
             username: req.body.username,
             role: req.body.role || 'User'
         }, process.env.SECRET_KEY);
-        req.body.token = token;
-        req.body.information = JSON.parse(req.body.information);
-        const newUser = new UserModel(req.body);
+        newUser.token = token;
 
         // Check exist
         UserModel.findOne({ username: req.body.username })
             .then(data => {
                 if (data) {
-                    return res.status(404).json({ message: 'Username is already taken' });
+                    return res.status(403).json({ message: 'Username has already taken' });
                 }
 
                 // Store hash in the database
@@ -83,6 +86,9 @@ class UserController {
                             });
                     });
                 });
+            })
+            .catch(err => {
+                return res.status(500).json({ message: err });
             });
     }
 
@@ -94,27 +100,28 @@ class UserController {
     login(req, res, next) {
         UserModel.findOne({
                 username: req.body.username
-            }) // Missing populate orders--------------------------------------Note-------------------------------------------
+            })
+            .populate('orders')
             .then(data => {
                 if (!data) {
                     return res.status(404).json({ message: 'Incorrectly username or password!' });
                 }
 
                 // Exist
-                const hashedPassword = data.password;
-                bcrypt.compare(req.body.password, hashedPassword)
+                bcrypt.compare(req.body.password, data.password)
                     .then(result => {
                         if (result === false) {
                             return res.status(404).json({ message: 'Incorrectly username or password!' });
                         }
                         return res.status(200).json({
+                            userId: data._id,
                             username: req.body.username,
                             role: data.role,
                             token: data.token
                         });
                     })
                     .catch(err => {
-                        return res.status(400).json({ message: err });
+                        return res.status(500).json({ message: err });
                     });
             })
             .catch(err => {
@@ -130,11 +137,11 @@ class UserController {
     blockOrUnblockUser(req, res, next) {
         const blockValue = (!['true', 'false'].includes(req.query.blocked)) ? true : req.query.blocked === 'true';
         UserModel.findOneAndUpdate({ _id: req.params.id }, { blocked: blockValue })
-            .then(data => {
+            .then(() => {
                 return res.status(200).json({ message: 'Block/Unblock successfully' });
             })
             .catch(err => {
-                return res.status(404).json({ message: 'Could not find user by id' });
+                return res.status(404).json({ message: 'Could not find the user by id' });
             });
     }
 
@@ -154,9 +161,7 @@ class UserController {
                 } else {
                     const decoded = jwt.verify(token, process.env.SECRET_KEY);
                     if (data.username !== decoded.username) {
-                        console.log(data.username);
-                        console.log(decoded.username);
-                        return res.status(403).json({ message: 'Token is not accepted' });
+                        return res.status(401).json({ message: 'The token was not accepted' });
                     }
                     UserModel.updateOne({ _id: userId }, req.body)
                         .then(() => {
@@ -170,6 +175,8 @@ class UserController {
                 return res.status(500).json({ message: err });
             });
     }
+
+
 
 };
 

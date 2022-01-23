@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
-    username: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },
@@ -27,7 +27,8 @@ const OrderSchema = new Schema({
         default: 'Chờ thanh toán'
     },
     estimate: {
-        type: Date
+        type: Date,
+        // Default
     }
 });
 

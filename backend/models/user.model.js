@@ -13,10 +13,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    avatar: {
-        type: String,
-        // url || enum
-    },
     role: {
         type: String,
         enum: ['Administrator', 'User'],
@@ -25,7 +21,8 @@ const userSchema = new Schema({
     information: {
         name: String,
         address: String,
-        phone: String
+        phone: String,
+        avatar: String
     },
     orders: [{
         type: Schema.Types.ObjectId,
