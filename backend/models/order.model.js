@@ -2,34 +2,22 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'users'
+    owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'users' },
+    deliveryAddress: {
+        name: { type: String, required: true, trim: true },
+        phone: { type: String, required: true, trim: true, maxlength: 10 },
+        address: { type: String, required: true }
     },
-    products: [{
-        product: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'products'
-        },
-        quantity: String
-    }],
-    address: {
+    orderProducts: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'products' },
+    numOfProducts: { type: Number, required: true, default: 1 },
+    orderStatus: {
         type: String,
-        required: true
-    },
-    createAt: {
-        type: Date,
-        default: Date.now
-    },
-    state: {
-        type: String,
-        enum: ['Chờ thanh toán', 'Chờ nhận hàng', 'Đang giao', 'Đã giao', 'Đánh giá'],
+        enum: ['Chờ thanh toán', 'Đang lấy hàng', 'Đang giao hàng', 'Giao hàng thành công'],
+        required: true,
         default: 'Chờ thanh toán'
     },
-    estimate: {
-        type: Date,
-        // Default
-    }
+    transportFee: { type: Number, required: true, default: 0 },
+    note: { type: String, trim: true, maxlength: 50 }
 });
 
 module.exports = mongoose.model('orders', OrderSchema);

@@ -1,27 +1,26 @@
-// Import packages
+// Environment variables
 require('dotenv').config();
+
+// Third-party library
 const express = require('express');
 const cors = require('cors');
-const app = express();
 
-// Import modules
-const db = require('./config/db.config');
+// Local files
 const route = require('./routes');
+const db = require('./configs/db.config');
 
-// Connect to MongoDB
+// PORT
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Database
 db.connectToDatabase();
 
-// Cors
-app.use(cors());
-
-// Parse JSON bodies (as sent by API clients)
+// Config
 app.use(express.json());
-
-// Parse URL-encoded bodies (as sent by HTML forms)
-app.use(express.urlencoded({ extended: true }));
-
-// Route
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 route(app);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Listening
+app.listen(PORT);

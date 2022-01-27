@@ -10,6 +10,6 @@ async function connectToDatabase() {
         console.log(error.message);
         process.exit(1);
     }
-};
+}
 
 module.exports = { connectToDatabase };
