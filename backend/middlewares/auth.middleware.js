@@ -1,15 +1,14 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-    const token = req.header('Authorization').replace('Bearer ', '');
-    if (!token) {
-        return res.status(401).json({
-            message: 'Unauthorized',
-        });
-    }
     try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        if (['admin', 'user'].includes(decoded.role)) {
+        const token = req.header('Authorization').replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).json({
+                message: 'Unauthorized',
+            });
+        }
+        if (['admin', 'user'].includes(jwt.verify(token, process.env.SECRET_KEY).role)) {
             next();
         } else {
             return res.status(401).json({
@@ -24,13 +23,13 @@ const verifyToken = (req, res, next) => {
 }
 
 function isAdmin(req, res, next) {
-    const token = req.header('Authorization').replace('Bearer ', '');
-    if (!token) {
-        return res.status(401).json({
-            message: 'Unauthorized',
-        });
-    }
     try {
+        const token = req.header('Authorization').replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).json({
+                message: 'Unauthorized',
+            });
+        }
         if (jwt.verify(token, process.env.SECRET_KEY).role === 'admin') {
             next();
         } else {

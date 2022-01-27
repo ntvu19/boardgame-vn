@@ -1,7 +1,11 @@
+const AdminController = require('../controllers/admin.controller');
+const UserController = require('../controllers/user.controller');
+const OrderController = require('../controllers/order.controller');
+const Auth = require('../middlewares/auth.middleware');
 const express = require('express');
 const router = express.Router();
 
-
+router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser);
 
 /**
  * 1. Xem danh sách sản phẩm

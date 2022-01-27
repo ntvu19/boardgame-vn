@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const AdministratorSchema = new Schema({
-    username: { type: String, unique: true, require: true, trim: true },
+    username: { type: String, unique: true, required: true, trim: true },
     password: { type: String, required: true, trim: true },
     email: { type: String, trim: true },
     fullName: { type: String, required: true, trim: true },
