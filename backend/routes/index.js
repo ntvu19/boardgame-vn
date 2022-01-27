@@ -12,7 +12,6 @@ function route(app) {
     app.use('/api/order', orderRouter);
     app.use('/api/product', productRouter);
     app.use('/api/comment', commentRouter);
-
 }
 
 module.exports = route;

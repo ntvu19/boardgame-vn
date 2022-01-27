@@ -1,4 +1,5 @@
 const UserModel = require('../models/user.model');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 class LoginController {
@@ -12,13 +13,13 @@ class LoginController {
         UserModel.findOne({
                 username: req.body.username
             })
-            .then(data => {
-                if (!data) {
+            .then(user => {
+                if (!user) {
                     return res.status(401).json({
                         message: 'Incorrectly username or password',
                     });
                 }
-                bcrypt.compare(req.body.password, data.password)
+                bcrypt.compare(req.body.password, user.password)
                     .then(success => {
                         if (success === false) {
                             return res.status(401).json({
@@ -26,10 +27,10 @@ class LoginController {
                             });
                         }
                         return res.status(200).json({
-                            userId: data._id,
-                            username: data.username,
+                            userId: user._id,
+                            username: user.username,
                             role: 'user',
-                            token: data.token
+                            token: user.token
                         });
                     })
                     .catch(err => {
@@ -37,6 +38,58 @@ class LoginController {
                             message: err,
                         });
                     });
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: err,
+                });
+            });
+    }
+
+    /**
+     * @route [POST] /api/register
+     * @desc Register
+     * @access public
+     */
+    register(req, res, next) {
+        UserModel.findOne({
+                username: req.body.username,
+            })
+            .then(user => {
+                if (user) {
+                    return res.status(400).json({
+                        message: 'The User Has Already Exist',
+                    });
+                }
+                const newUser = new UserModel(req.body);
+
+                // Generate the token
+                const token = jwt.sign({
+                    userId: newUser._id,
+                    username: newUser.username,
+                    role: 'user',
+                }, process.env.SECRET_KEY);
+                newUser.token = token;
+
+                // Hashing password
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hashedPassword) => {
+                        newUser.password = hashedPassword;
+                        // Save the new user to database
+                        newUser.save()
+                            .then(() => {
+                                return res.status(200).json({
+                                    message: 'Successfully',
+                                });
+                            })
+                            .catch(err => {
+                                return res.status(500).json({
+                                    message: err,
+                                });
+                            });
+                    });
+                });
+
             })
             .catch(err => {
                 return res.status(500).json({
