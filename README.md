@@ -1,0 +1,1 @@
+đọc model --> route --> controller
