@@ -10,6 +10,7 @@ const AdministratorSchema = new Schema({
     phone: String,
     address: String,
     avatar: String,
+    active: { type: Boolean, default: false },
     gender: { type: Boolean, default: true },
     createAt: { type: Date, default: Date.now },
     token: String
