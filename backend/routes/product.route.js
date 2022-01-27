@@ -1,11 +1,8 @@
+const ProductController = require('../controllers/product.controller');
 const express = require('express');
 const router = express.Router();
 
-
-
-/**
- * 1. Xem chi tiết sản phẩm
- * 2. Lấy danh sách sản phẩm liên quan
- */
+router.get('/view-detail/:id', ProductController.viewDetail);
+router.get('/view-related/:id', ProductController.viewRelated);
 
 module.exports = router;

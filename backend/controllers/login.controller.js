@@ -21,7 +21,7 @@ class LoginController {
                 }
                 bcrypt.compare(req.body.password, user.password)
                     .then(success => {
-                        if (success === false) {
+                        if (!success) {
                             return res.status(401).json({
                                 message: 'Incorrectly username or password',
                             });
@@ -30,6 +30,7 @@ class LoginController {
                             userId: user._id,
                             username: user.username,
                             role: 'user',
+                            active: user.active,
                             token: user.token
                         });
                     })
@@ -58,16 +59,17 @@ class LoginController {
             .then(user => {
                 if (user) {
                     return res.status(400).json({
-                        message: 'The User Has Already Exist',
+                        message: 'The User Has Already Existed',
                     });
                 }
                 const newUser = new UserModel(req.body);
 
-                // Generate the token
+                // Generating a token
                 const token = jwt.sign({
                     userId: newUser._id,
                     username: newUser.username,
                     role: 'user',
+                    active: newUser.active,
                 }, process.env.SECRET_KEY);
                 newUser.token = token;
 
@@ -79,7 +81,7 @@ class LoginController {
                         newUser.save()
                             .then(() => {
                                 return res.status(200).json({
-                                    message: 'Successfully',
+                                    message: 'Sign Up Successfully',
                                 });
                             })
                             .catch(err => {
