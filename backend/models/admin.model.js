@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
-    username: { type: String, unique: true, required: true, trim: true },
+const AdministratorSchema = new Schema({
+    username: { type: String, unique: true, require: true, trim: true },
     password: { type: String, required: true, trim: true },
     email: { type: String, trim: true },
     fullName: { type: String, required: true, trim: true },
@@ -11,10 +11,8 @@ const UserSchema = new Schema({
     address: String,
     avatar: String,
     gender: { type: Boolean, default: true },
-    blocked: { type: Boolean, default: false },
-    active: { type: Boolean, default: false },
     createAt: { type: Date, default: Date.now },
     token: String
 });
 
-module.exports = mongoose.model('users', UserSchema);
+module.exports = mongoose.model('administrators', AdministratorSchema);

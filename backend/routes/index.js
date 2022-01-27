@@ -1,13 +1,14 @@
-const userRouter = require('./user.route');
-const productRouter = require('./product.route');
-const categoryRouter = require('./category.route');
-const orderRouter = require('./order.route');
+const loginRouter = require('../routes/login.route');
+const adminRouter = require('../routes/admin.route');
+const userRouter = require('../routes/user.route');
 
 function route(app) {
+    app.use('/api', loginRouter);
+    app.use('/api/admin', adminRouter);
     app.use('/api/user', userRouter);
-    app.use('/api/product', productRouter);
-    app.use('/api/category', categoryRouter);
-    app.use('/api/order', orderRouter);
+
+
+
 }
 
 module.exports = route;
