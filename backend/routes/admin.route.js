@@ -1,8 +1,4 @@
 const AdminController = require('../controllers/admin.controller');
-const UserController = require('../controllers/user.controller');
-const OrderController = require('../controllers/order.controller');
-const CommentController = require('../controllers/comment.controller');
-const ProductController = require('../controllers/product.controller');
 const Auth = require('../middlewares/auth.middleware');
 const express = require('express');
 const router = express.Router();
@@ -10,17 +6,15 @@ const router = express.Router();
 router.post('/login', AdminController.loginAsAdmin);
 router.post('/register', AdminController.registerAdminAccount);
 router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser);
+router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser);
+router.post('/add-product', Auth.isAdmin, AdminController.addProduct);
 
 
 /**
- * 1. Xem danh sách sản phẩm
- * 2. Thêm sản phẩm
- * 3. Cập nhật sản phẩm
- * 4. Xoá sản phẩm
- * 6. Lấy danh sách người dùng
- * 7. Block người dùng
- * 8. Lấy đơn hàng
- * 9. Cập nhật trạng thái đơn hàng
+ * 1. Cập nhật sản phẩm
+ * 2. Xoá sản phẩm
+ * 3. Lấy đơn hàng
+ * 4. Cập nhật trạng thái đơn hàng
  */
 
 module.exports = router;

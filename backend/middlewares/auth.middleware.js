@@ -1,17 +1,40 @@
+const AdminModel = require('../models/admin.model');
+const UserModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        console.log(decoded)
         if (!token) {
             return res.status(401).json({
                 message: 'Unauthorized',
             });
         }
-        if (['admin', 'user'].includes(decoded.role) && decoded.active) {
-            next();
+        if (decoded.role === 'admin') {
+            AdminModel.findById(decoded.userId)
+                .then(admin => {
+                    if (admin && admin.active) {
+                        next();
+                    }
+                })
+                .catch(err => {
+                    return res.status(500).json({
+                        message: err,
+                    });
+                });
+        } else if (decoded.role === 'user') {
+            UserModel.findById(decoded.userId)
+                .then(user => {
+                    if (user && user.active && !user.blocked) {
+                        next();
+                    }
+                })
+                .catch(err => {
+                    return res.status(500).json({
+                        message: err,
+                    });
+                });
         } else {
             return res.status(401).json({
                 message: 'Unauthorized',
@@ -33,8 +56,18 @@ function isAdmin(req, res, next) {
                 message: 'Unauthorized',
             });
         }
-        if (decoded.role === 'admin' && decoded.active) {
-            next();
+        if (decoded.role === 'admin') {
+            AdminModel.findById(decoded.userId)
+                .then(admin => {
+                    if (admin && admin.active) {
+                        next();
+                    }
+                })
+                .catch(err => {
+                    return res.status(500).json({
+                        message: err,
+                    });
+                });
         } else {
             return res.status(403).json({
                 message: 'Required administrator role',
