@@ -30,7 +30,6 @@ class LoginController {
                             userId: user._id,
                             username: user.username,
                             role: 'user',
-                            active: user.active,
                             token: user.token
                         });
                     })
@@ -69,7 +68,6 @@ class LoginController {
                     userId: newUser._id,
                     username: newUser.username,
                     role: 'user',
-                    active: newUser.active,
                 }, process.env.SECRET_KEY);
                 newUser.token = token;
 

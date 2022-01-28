@@ -33,7 +33,6 @@ class AdminController {
                             userId: admin._id,
                             username: admin.username,
                             role: 'admin',
-                            active: admin.active,
                             token: admin.token,
                         });
                     })
@@ -67,7 +66,6 @@ class AdminController {
                     userId: newAdmin._id,
                     username: newAdmin.username,
                     role: 'admin',
-                    active: newAdmin.active,
                 }, process.env.SECRET_KEY);
                 newAdmin.token = token;
 
@@ -131,6 +129,66 @@ class AdminController {
                 })
             });
     }
+
+    /**
+     * @route [PUT] /api/admin/block-user/:id?block={true, false}
+     * @desc Blocking or Unblocking an user
+     * @access private
+     */
+    blockOrUnblockUser(req, res, next) {
+        const userId = req.params.id;
+        const blockQuery = req.query.block;
+        if (['true', 'false'].includes(blockQuery)) {
+            UserModel.findByIdAndUpdate(userId, { blocked: blockQuery })
+                .then(() => {
+                    return res.status(200).json({
+                        message: 'Blocking / Unblocking Successfully',
+                    });
+                })
+                .catch(err => {
+                    return res.status(500).json({
+                        message: err,
+                    });
+                });
+        } else {
+            return res.status(400).json({
+                message: 'Wrong Query',
+            });
+        }
+    }
+
+    /**
+     * @route [POST] /api/admin/add-product
+     * @desc Create a product to database
+     * @access private
+     */
+    addProduct(req, res, next) {
+        const newProduct = new ProductModel(req.body);
+        newProduct.save()
+            .then(() => {
+                return res.status(200).json({
+                    message: 'Add product successfully',
+                });
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: err,
+                });
+            });
+    }
+
+    /**
+     * @route
+     * @desc
+     * @access
+     */
+
+
+    /**
+     * @route
+     * @desc
+     * @access
+     */
 
 }
 

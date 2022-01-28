@@ -27,9 +27,8 @@ const ProductSchema = new Schema({
         default: []
     },
     details: {
-        type: Array,
-        key: { type: String, trim: true },
-        value: { type: String, trim: true }
+        keys: { type: Array, key: String, trim: true },
+        values: { type: Array, value: String, trim: true }
     },
     description: String,
     rules: String
