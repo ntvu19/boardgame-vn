@@ -178,18 +178,70 @@ class AdminController {
     }
 
     /**
-     * @route
-     * @desc
-     * @access
+    * @route [PUT] /api/admin/update-product/:id
+    * @desc Update product to database
+    * @access private
+    */
+    updateProduct(req, res, next) {
+        //const productId = req.params.id;
+        ProductModel.findByIdAndUpdate(req.params.id, req.body  )
+        .then(() => {
+            return res.status(200).json({
+                message: 'Updating product Successfully',
+            });
+        })
+        .catch(err => {
+            return res.status(500).json({
+                message: err,
+            });
+        });
+    }
+    /**
+     * @route [DELETE] /api/admin/delete-product/:id
+     * @desc Delete product to database
+     * @access private
      */
-
+    deleteProduct(req, res, next) {
+        const productId = req.params.id;
+        ProductModel.findByIdAndDelete(productId)
+            .then(() => {
+                return res.status(200).json({
+                    message: 'Deleting product Successfully',
+                });
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: err,
+                });
+            });
+    }
 
     /**
-     * @route
-     * @desc
-     * @access
+     * @route [GET] /api/admin/get-product/:id?block={true, false}
+     * @desc Get product to database
+     * @access private
      */
-
+    getProduct(req, res, next) {
+        const productId = req.params.id;
+        const blockQuery = req.query.block;
+        if (['true', 'false'].includes(blockQuery)) {
+            ProductModel.findByIdAndUpdate(productId, { blocked: blockQuery })
+                .then(() => {
+                    return res.status(200).json({
+                        message: 'Deleting product Successfully',
+                    });
+                })
+                .catch(err => {
+                    return res.status(500).json({
+                        message: err,
+                    });
+                });
+        } else {
+            return res.status(400).json({
+                message: 'Wrong Query',
+            });
+        }
+    }
 }
 
 module.exports = new AdminController();
