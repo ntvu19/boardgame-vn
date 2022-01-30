@@ -33,7 +33,6 @@ class OrderController {
      * @access private
      */
     viewDetailOrder(req, res, next){
-        console.log(req.params.id)
         OrderModel.findById(req.params.id)
             .then(() => {               
                 return res.status(200).json({
@@ -49,7 +48,25 @@ class OrderController {
             })
     }
 
-
+    /** TS
+     * @route [POST] /api/order/create-order/:id
+     * @desc Create new order
+     * @access private
+     */
+    createOrder(req, res, next){
+        const newOrder = new OrderModel(req.body);
+        newOrder.save()
+            .then(() => {
+                return res.status(200).json({
+                    message: 'Add Order successfully',
+                });
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: err,
+                });
+            });
+    }
 
 }
 
