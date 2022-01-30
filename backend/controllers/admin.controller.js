@@ -178,23 +178,22 @@ class AdminController {
     }
 
     /**
-    * @route [PUT] /api/admin/update-product/:id
+    * @route [PUT] /api/admin/update-product/:id 61f6011248f4a07fc1832db6
     * @desc Update product to database
     * @access private
     */
     updateProduct(req, res, next) {
-        //const productId = req.params.id;
-        ProductModel.findByIdAndUpdate(req.params.id, req.body  )
-        .then(() => {
-            return res.status(200).json({
-                message: 'Updating product Successfully',
+        ProductModel.findByIdAndUpdate(req.params.id, req.body)
+            .then(() => {
+                return res.status(200).json({
+                    message: 'Updating Product Successfully',
+                });
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: err,
+                });
             });
-        })
-        .catch(err => {
-            return res.status(500).json({
-                message: err,
-            });
-        });
     }
     /**
      * @route [DELETE] /api/admin/delete-product/:id
@@ -202,11 +201,10 @@ class AdminController {
      * @access private
      */
     deleteProduct(req, res, next) {
-        const productId = req.params.id;
-        ProductModel.findByIdAndDelete(productId)
+        ProductModel.findByIdAndDelete(req.params.id)
             .then(() => {
                 return res.status(200).json({
-                    message: 'Deleting product Successfully',
+                    message: 'Deleting Product Successfully',
                 });
             })
             .catch(err => {
@@ -216,31 +214,24 @@ class AdminController {
             });
     }
 
-    /**
-     * @route [GET] /api/admin/get-product/:id?block={true, false}
-     * @desc Get product to database
+    /** 
+     * @route [PUT] /api/admin/update-status-order/:id
+     * @desc Update status order to database
      * @access private
      */
-    getProduct(req, res, next) {
-        const productId = req.params.id;
-        const blockQuery = req.query.block;
-        if (['true', 'false'].includes(blockQuery)) {
-            ProductModel.findByIdAndUpdate(productId, { blocked: blockQuery })
-                .then(() => {
-                    return res.status(200).json({
-                        message: 'Deleting product Successfully',
-                    });
-                })
-                .catch(err => {
-                    return res.status(500).json({
-                        message: err,
-                    });
+
+    updateOrder(req, res, next) {
+        OrderModel.findByIdAndUpdate(req.params.id, req.body)
+            .then(() => {
+                return res.status(200).json({
+                    message: 'Updating Order Successfully',
                 });
-        } else {
-            return res.status(400).json({
-                message: 'Wrong Query',
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: err,
+                });
             });
-        }
     }
 }
 

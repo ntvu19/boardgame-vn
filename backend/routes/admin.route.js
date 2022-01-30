@@ -10,14 +10,15 @@ router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser);
 router.post('/add-product', Auth.isAdmin, AdminController.addProduct);
 router.put('/update-product/:id', Auth.isAdmin, AdminController.updateProduct);
 router.delete('/delete-product/:id', Auth.isAdmin, AdminController.deleteProduct);
+router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder);
 
 
 
 /**
  * 1. Cập nhật sản phẩm #
  * 2. Xoá sản phẩm  #
- * 3. Lấy đơn hàng
- * 4. Cập nhật trạng thái đơn hàng
+ * 3. Lấy đơn hàng ???????? #bên order
+ * 4. Cập nhật trạng thái đơn hàng #
  * 5. 
  */
 
