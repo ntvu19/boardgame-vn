@@ -32,7 +32,7 @@
     <!-- HEADER -->
     <header>
         <div class="container-fluid">
-            <nav class="myNavbar navbar navbar-expand-xl">
+            <nav class="myNavbar navbar navbar-expand-xl" id="myNavbarScroll">
                 <div class="myNavbar__left col-8">
                     <a href="./index.html" class="navbar-brand">
                         <img src="./img/logo.png" alt="">
@@ -68,12 +68,14 @@
                             <button class="button">Sign Up</button>
                         </li>
                     </ul>
+                    <!-- <div class="collapse navbar-collapse" id="myNavbar">
+                    </div> -->
                 </div>
             </nav>
         </div>
     </header>
     <!-- Menu -->
-    <section class="menu">
+    <!-- <section class="menu">
         <div class="container">
             <ul class="nav nav-pills">
                 <li class="nav-item dropdown">
@@ -83,7 +85,7 @@
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Flash Sale US 2022</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Game hot giá sốc</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game gia đình</a>
-                        <a class="dropdown-item" href="./category.html"><i class="fa fa-angle-right"></i>Board game trẻ em</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game trẻ em</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game Việt Nam</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game Nhập Mỹ</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>BG Giải trí/Nhóm</a>
@@ -91,7 +93,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./category.html#bg-child">Game US có sẵn</a>
+                    <a class="nav-link" href="#">Game US có sẵn</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Board Game</a>
@@ -101,29 +103,30 @@
                 </li>
             </ul>
         </div>
-    </section>
-    <!-- CAROUSEL -->
-    <section class="carousel">
+    </section> -->
+    <!-- CATEGORY -->
+    <section class="category section">
         <div class="container">
-            <div class="owl-carousel owl-theme myCarousel">
-                <div class="item"><img src="./img/c_1.jpg" alt=""></div>
-                <div class="item"><img src="./img/c_2.jpg" alt=""></div>
-                <div class="item"><img src="./img/c_3.jpg" alt=""></div>
-                <div class="item"><img src="./img/c_4.jpg" alt=""></div>
-            </div>
-        </div>
-    </section>
-    <!-- HOME PRODUCT -->
-    <section class="homeProduct section">
-        <div class="container">
-            <div class="homeProduct__content section">
-                <div class="homeProduct__title">
-                    <h3><a href="#">Board game trẻ em</a></h3>
+            <div class="row">
+                <div class="col-2 category__left">
+                    <h4><i class="fa fa-list"></i>DANH MỤC</h4>
+                    <ul>
+                        <li><a href="" id="bg-child">Board game gia đình</a></li>
+                        <li><a href="">Board game trẻ em</a></li>
+                    </ul>
                 </div>
-                <div class="homeProduct__items">
-                    <div class="owl-carousel owl-theme myProduct">
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
+                <div class="col-10 category__right">
+                    <div class="category__right-top">
+                        <p>Sắp xếp</p>
+                        <select name="" id="">
+                            <option value="">Phổ biến</option>
+                            <option value="">Giá cao đến thấp</option>
+                            <option value="">Giá thấp đến cao</option>
+                        </select>
+                    </div>
+                    <div class="row category__right-content">
+                        <div class="col-3 card-item">
+                            <div class="card">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Lớp học mật ngữ</h5>
@@ -141,8 +144,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
+                        <div class="col-3 card-item">
+                            <div class="card">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Lớp học mật ngữ</h5>
@@ -160,8 +163,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
+                        <div class="col-3 card-item">
+                            <div class="card">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Lớp học mật ngữ</h5>
@@ -179,8 +182,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
+                        <div class="col-3 card-item">
+                            <div class="card">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Lớp học mật ngữ</h5>
@@ -198,8 +201,65 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
+                        <div class="col-3 card-item">
+                            <div class="card">
+                                <img src="./img/product1.png" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
+                                        hoàng đạo lớp học mật ngữ</p>
+                                    <p class="card-price">440.000 VND</p>
+                                </div>
+                                <div class="card__overlay">
+                                    <a href="#" class="card__overlay-detail">
+                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                    </a>
+                                    <button class="card__overlay-cart">
+                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 card-item">
+                            <div class="card">
+                                <img src="./img/product1.png" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
+                                        hoàng đạo lớp học mật ngữ</p>
+                                    <p class="card-price">440.000 VND</p>
+                                </div>
+                                <div class="card__overlay">
+                                    <a href="#" class="card__overlay-detail">
+                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                    </a>
+                                    <button class="card__overlay-cart">
+                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 card-item">
+                            <div class="card">
+                                <img src="./img/product1.png" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
+                                        hoàng đạo lớp học mật ngữ</p>
+                                    <p class="card-price">440.000 VND</p>
+                                </div>
+                                <div class="card__overlay">
+                                    <a href="#" class="card__overlay-detail">
+                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                    </a>
+                                    <button class="card__overlay-cart">
+                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 card-item">
+                            <div class="card">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Lớp học mật ngữ</h5>
@@ -218,109 +278,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="homeProduct__content">
-                <div class="homeProduct__title">
-                    <h3><a href="#">Board game trẻ em</a></h3>
-                </div>
-                <div class="homeProduct__items">
-                    <div class="owl-carousel owl-theme myProduct">
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
-                                <img src="./img/product1.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
-                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                        hoàng đạo lớp học mật ngữ</p>
-                                    <p class="card-price">440.000 VND</p>
-                                </div>
-                                <div class="card__overlay">
-                                    <a href="#" class="card__overlay-detail">
-                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                    </a>
-                                    <button class="card__overlay-cart">
-                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
-                                <img src="./img/product1.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
-                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                        hoàng đạo lớp học mật ngữ</p>
-                                    <p class="card-price">440.000 VND</p>
-                                </div>
-                                <div class="card__overlay">
-                                    <a href="#" class="card__overlay-detail">
-                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                    </a>
-                                    <button class="card__overlay-cart">
-                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
-                                <img src="./img/product1.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
-                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                        hoàng đạo lớp học mật ngữ</p>
-                                    <p class="card-price">440.000 VND</p>
-                                </div>
-                                <div class="card__overlay">
-                                    <a href="#" class="card__overlay-detail">
-                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                    </a>
-                                    <button class="card__overlay-cart">
-                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
-                                <img src="./img/product1.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
-                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                        hoàng đạo lớp học mật ngữ</p>
-                                    <p class="card-price">440.000 VND</p>
-                                </div>
-                                <div class="card__overlay">
-                                    <a href="#" class="card__overlay-detail">
-                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                    </a>
-                                    <button class="card__overlay-cart">
-                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item card-item">
-                            <div class="card" style="width: 16rem;">
-                                <img src="./img/product1.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
-                                    <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                        hoàng đạo lớp học mật ngữ</p>
-                                    <p class="card-price">440.000 VND</p>
-                                </div>
-                                <div class="card__overlay">
-                                    <a href="#" class="card__overlay-detail">
-                                        <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                    </a>
-                                    <button class="card__overlay-cart">
-                                        <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="category__right-bottom">
+                        <p><span>&#171;</span> 1 2 3 <span>&#187;</span></p>
                     </div>
                 </div>
             </div>

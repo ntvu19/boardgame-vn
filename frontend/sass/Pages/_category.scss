@@ -1,0 +1,66 @@
+.category{
+    background-color: $color-3;
+    .category__left{
+        h4{
+            i{
+                padding-right: 10px;
+            }
+            font-size: 20px;
+            color: $color-4;
+            font-weight: 700;
+            padding-bottom: 20px;
+            border-bottom: 1px solid $color-2;
+        }
+        li{
+            list-style: none;
+            a{
+                color: $color-4;
+                text-decoration: none;
+                &:hover{
+                    color: $color-5;
+                }
+            }
+
+        }
+    }
+    .category__right{
+        .category__right-top{
+            p{
+                display: inline;
+                font-size: $fs-4;
+                color: $color-4;
+                padding-right: 20px;
+            }
+            padding-bottom: 18px;
+            border-bottom: 1px solid $color-2;
+        }
+        .category__right-content{
+            .card-item{
+                padding: 4px 8px;
+                .card{
+                    .card-body{
+                        padding: 5px;
+                        .card-title{
+                            font-size: $fs-4;
+                        }
+                        .card-text{
+                            font-size: $fs-1;
+                        }
+                        .card-price{
+                            font-size: $fs-4;
+                        }
+                    }
+                    
+                }
+            }
+        }
+        .category__right-bottom{
+            text-align: center;
+            margin-top: 20px;
+            p{ 
+                font-size: 20px;
+                color: $color-4;
+            }
+        }
+    }
+}

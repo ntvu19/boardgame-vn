@@ -1,0 +1,16 @@
+footer{
+    background-color: $color-5;
+    .footer__item{
+        h4{
+            @include textStyle($fs-4,700,$color-0,null);
+        }
+        li{
+            list-style: none;
+            line-height: 30px;
+            a{
+                color: $color-0;
+                
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.delivery{
+    border-top: 3px solid $color-5;
+    // border-bottom: 3px solid $color-5;
+    .delivery__content{
+        text-align: center;
+        .delivery__item{
+            i{
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                background-color: $color-5;
+                border-radius: 50%;
+                color: $color-0;
+                font-size: $fs-3;
+            }
+            p{
+                color: $color-8;
+                margin: 0;
+                margin-top: 10px;
+                font-size: $fs-0;
+            }
+        }
+    }
+}

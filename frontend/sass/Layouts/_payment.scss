@@ -1,0 +1,16 @@
+.payment{
+    border-top: 3px solid $color-5;
+    h3{
+        @include textStyle(null, $fw-2,$color-4,null);
+        text-align: center;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+    }
+    .payment__item{
+        text-align: center;
+        img{
+            width: 30%;
+            height: auto;
+        }
+    }
+}
