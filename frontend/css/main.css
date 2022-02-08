@@ -341,17 +341,17 @@ footer .footer__item li a {
   padding-right: 10px;
 }
 
-.category .category__left li {
-  list-style: none;
-}
-
-.category .category__left li a {
+.category .category__left .nav .nav-link {
+  font-size: 14px;
   color: #333;
-  text-decoration: none;
 }
 
-.category .category__left li a:hover {
+.category .category__left .nav .nav-link:hover {
   color: #fb5332;
+}
+
+.category .category__left .nav .nav-link.active {
+  color: #fff;
 }
 
 .category .category__right .category__right-top {
@@ -394,6 +394,77 @@ footer .footer__item li a {
 .category .category__right .category__right-bottom p {
   font-size: 20px;
   color: #333;
+}
+
+.login {
+  background-image: url(../../img/bg-login.jpg);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.login .login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+.login .login-page .form {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login .login-page .form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 14px;
+}
+
+.login .login-page .form button {
+  text-transform: uppercase;
+  outline: 0;
+  background: #fb5332;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.login .login-page .form button:hover, .login .login-page .form button:focus, .login .login-page .form button:active {
+  background: #fb5332;
+}
+
+.login .login-page .form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.login .login-page .form .message a {
+  color: #fb5332;
+  text-decoration: none;
+}
+
+.login .login-page .form .register-form {
+  display: none;
 }
 
 .section {

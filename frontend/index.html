@@ -9,7 +9,6 @@
 
     <!-- https://youtu.be/HrzV05lzf2Y?list=PLPNLZmPSwSkc0jZwYBIxHjACQrq16lJQe -->
 
-
     <!-- FONT GG -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,13 +76,13 @@
         <div class="container">
             <ul class="nav nav-pills">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"><i
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="./category.html" role="button"><i
                             class="fa fa-list"></i>DANH MỤC SẢN PHẨM</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Flash Sale US 2022</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Game hot giá sốc</a>
-                        <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game gia đình</a>
-                        <a class="dropdown-item" href="./category.html"><i class="fa fa-angle-right"></i>Board game trẻ em</a>
+                        <a class="dropdown-item" href="#v-pills-bgfamily-tab"><i class="fa fa-angle-right"></i>Board game gia đình</a>
+                        <a class="dropdown-item" href="#v-pills-bgchild-tab"><i class="fa fa-angle-right"></i>Board game trẻ em</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game Việt Nam</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game Nhập Mỹ</a>
                         <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>BG Giải trí/Nhóm</a>
@@ -91,7 +90,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./category.html#bg-child">Game US có sẵn</a>
+                    <a class="nav-link" href="#">Game US có sẵn</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Board Game</a>
@@ -321,6 +320,131 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="category section">
+        <div class="container">
+            <div class="row">
+                <div class="col-2 category__left">
+                    <h4><i class="fa fa-list"></i>DANH MỤC</h4>
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-bgfamily-tab" data-toggle="pill" href="#v-pills-bgfamily"
+                            role="tab" aria-controls="v-pills-bgfamily" aria-selected="true">Board game gia đình</a>
+                        <a class="nav-link" id="v-pills-bgchild-tab" data-toggle="pill" href="#v-pills-bgchild"
+                            role="tab" aria-controls="v-pills-bgchild" aria-selected="false">Board game trẻ em</a>
+                        <a class="nav-link" id="v-pills-bgvietnam-tab" data-toggle="pill" href="#v-pills-bgvietnam"
+                            role="tab" aria-controls="v-pills-bgvietnam" aria-selected="false">Board game Việt Nam</a>
+                        <a class="nav-link" id="v-pills-bgUS-tab" data-toggle="pill" href="#v-pills-bgUS" role="tab"
+                            aria-controls="v-pills-bgUS" aria-selected="false">Board game Nhập Mỹ</a>
+                    </div>
+                </div>
+                <div class="col-10 category__right">
+                    <div class="category__right-top">
+                        <p>Sắp xếp</p>
+                        <select name="" id="">
+                            <option value="">Phổ biến</option>
+                            <option value="">Giá cao đến thấp</option>
+                            <option value="">Giá thấp đến cao</option>
+                        </select>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
+                            aria-labelledby="v-pills-bgfamily-tab">
+                            <div class="col-3 card-item">
+                                <div class="card">
+                                    <img src="./img/product1.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Lớp học mật ngữ</h5>
+                                        <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12
+                                            cùng
+                                            hoàng đạo lớp học mật ngữ</p>
+                                        <p class="card-price">440.000 VND</p>
+                                    </div>
+                                    <div class="card__overlay">
+                                        <a href="#" class="card__overlay-detail">
+                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                        </a>
+                                        <button class="card__overlay-cart">
+                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bgchild" role="tabpanel"
+                            aria-labelledby="v-pills-bgchild-tab">
+                            <div class="col-3 card-item">
+                                <div class="card">
+                                    <img src="./img/product1.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Ma sói</h5>
+                                        <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12
+                                            cùng
+                                            hoàng đạo lớp học mật ngữ</p>
+                                        <p class="card-price">440.000 VND</p>
+                                    </div>
+                                    <div class="card__overlay">
+                                        <a href="#" class="card__overlay-detail">
+                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                        </a>
+                                        <button class="card__overlay-cart">
+                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bgvietnam" role="tabpanel"
+                            aria-labelledby="v-pills-bgvietnam-tab">
+                            <div class="col-3 card-item">
+                                <div class="card">
+                                    <img src="./img/product1.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tiểu thuyết</h5>
+                                        <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12
+                                            cùng
+                                            hoàng đạo lớp học mật ngữ</p>
+                                        <p class="card-price">440.000 VND</p>
+                                    </div>
+                                    <div class="card__overlay">
+                                        <a href="#" class="card__overlay-detail">
+                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                        </a>
+                                        <button class="card__overlay-cart">
+                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bgUS" role="tabpanel"
+                            aria-labelledby="v-pills-bgUS-tab">
+                            <div class="col-3 card-item">
+                                <div class="card">
+                                    <img src="./img/product1.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tiểu thuyết tình yêu</h5>
+                                        <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12
+                                            cùng hoàng đạo lớp học mật ngữ</p>
+                                        <p class="card-price">440.000 VND</p>
+                                    </div>
+                                    <div class="card__overlay">
+                                        <a href="#" class="card__overlay-detail">
+                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                        </a>
+                                        <button class="card__overlay-cart">
+                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category__right-bottom">
+                        <p><span>&#171;</span> 1 2 3 <span>&#187;</span></p>
                     </div>
                 </div>
             </div>
