@@ -1,0 +1,81 @@
+.product{
+    .product__content{
+        .product__img{
+            width: 100%;
+            height: 300px;
+            background-image: url('../../img/product2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .product__text{
+            h3{
+                @include textStyle($fs-2,null,$color-4,null);
+            }
+            .product__text-description{
+                p{
+                    @include textStyle($fs-1,700,$color-12,null);
+                    span{
+                        font-weight: 300;
+                    }
+                }
+            }
+            .product__text-price{
+                p{
+                    @include textStyle($fs-3,700,$color-5,null);
+                }
+            }
+            .product__text-select{
+                p{
+                    display: inline;
+                    @include textStyle($fs-1,700,$color-12,null);
+                }
+            }
+            .product__text-button{
+                width: 100%;
+                button{
+                    width: 100%;
+                    background-color: $color-11;
+                    color: $color-0;
+                    border: none;
+                    margin-top: 20px;
+                    padding: 10px 0;
+                    border-radius: 50px;
+                    transition: all .5s;
+                    &:hover{
+                        background-color: $color-7;
+                    }
+                }
+            }
+        }
+        .product__service{
+            width: 70%;
+            margin: 0 auto;
+            .product__service-item{
+                padding: 5px 0;
+                text-align: center;
+                background-color: $color-3;
+                border-top: 1px solid $color-2;
+                border-left: 1px solid $color-2;
+                border-right: 1px solid $color-2;
+                i{
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    font-size: $fs-4;
+                    color: $color-0;
+                    background-color: $color-5;
+                    border-radius: 50%;
+                }
+                p{
+                    @include textStyle($fs-0,null,$color-4,20px);
+                    margin: 0;
+                    line-height: 40px;
+                }
+                &:last-child{
+                    border-bottom: 1px solid $color-2;
+                }
+            }
+        }
+    }
+}

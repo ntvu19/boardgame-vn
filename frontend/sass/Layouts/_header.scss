@@ -49,6 +49,10 @@ header{
                         border-radius: 10px;
                         border: none;
                         transition: all .5s;
+                        text-transform: uppercase;
+                        i{
+                            padding-right: 10px;
+                        }
                         &:hover{
                             background-color: $color-7;
                             color: $color-0;
