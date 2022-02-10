@@ -125,7 +125,7 @@
                             <div class="card" style="width: 16rem;">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <h5 class="card-title">Lớp học mật ngữ 1</h5>
                                     <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
                                         hoàng đạo lớp học mật ngữ</p>
                                     <p class="card-price">440.000 VND</p>
@@ -144,7 +144,7 @@
                             <div class="card" style="width: 16rem;">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <h5 class="card-title">Lớp học mật ngữ 2</h5>
                                     <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
                                         hoàng đạo lớp học mật ngữ</p>
                                     <p class="card-price">440.000 VND</p>
@@ -163,7 +163,7 @@
                             <div class="card" style="width: 16rem;">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <h5 class="card-title">Lớp học mật ngữ 3</h5>
                                     <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
                                         hoàng đạo lớp học mật ngữ</p>
                                     <p class="card-price">440.000 VND</p>
@@ -182,7 +182,7 @@
                             <div class="card" style="width: 16rem;">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <h5 class="card-title">Lớp học mật ngữ 4</h5>
                                     <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
                                         hoàng đạo lớp học mật ngữ</p>
                                     <p class="card-price">440.000 VND</p>
@@ -201,7 +201,7 @@
                             <div class="card" style="width: 16rem;">
                                 <img src="./img/product1.png" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <h5 class="card-title">Lớp học mật ngữ</h5>
+                                    <h5 class="card-title">Lớp học mật ngữ 5</h5>
                                     <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
                                         hoàng đạo lớp học mật ngữ</p>
                                     <p class="card-price">440.000 VND</p>
@@ -353,7 +353,7 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
                             aria-labelledby="v-pills-bgfamily-tab">
-                            <div class="col-3 card-item">
+                            <!-- <div class="col-3 card-item">
                                 <div class="card">
                                     <img src="./img/product1.png" class="card-img-top" alt="">
                                     <div class="card-body">
@@ -372,7 +372,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="tab-pane fade" id="v-pills-bgchild" role="tabpanel"
                             aria-labelledby="v-pills-bgchild-tab">
@@ -579,6 +579,49 @@
     </script>
     <!-- Main JS -->
     <script src="./js/main.js"></script>
+
+    <script>
+        url_list_product = "http://localhost:5000/api/product/view-all"
+        fetch(url_list_product)
+            .then(function(respone) {
+                return respone.json();
+            })
+            .then(function(products) {
+                var t = ''
+                productArr = products.product;
+                var htmls = []  
+                productArr.forEach(element => {            
+                    htmls.push(  `
+                    <div class="col-3 card-item">
+                        <div class="card">
+                            <img src="./img/product1.png" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">${element.name}</h5>
+                                <p class="card-text">${element.description}Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
+                                                hoàng đạo lớp học mật ngữ</p>
+                                <p class="card-price">${element.price}</p>  <!-- ở đây là giá  chưa hiện thị được giá dạng 500,000 đ -->
+                            </div>
+                        <div class="card__overlay">
+                            <a href="#" class="card__overlay-detail">
+                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                            </a>
+                            <button class="card__overlay-cart">
+                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                            </button>
+                            </div>
+                        </div>
+                    </div>`)
+
+                });
+                var listProducts = document.getElementById('v-pills-bgfamily');
+                listProducts.innerHTML = htmls.join('');
+
+            })
+            .catch(function(err){
+                console.log(err);
+            })
+
+    </script>
 </body>
 
 </html>
