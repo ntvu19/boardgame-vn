@@ -358,12 +358,12 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
                             aria-labelledby="v-pills-bgfamily-tab">
-                            <div class="row">
-                                <div class="col-3 card-item">
+                            <div class="row" id="v-pills-bgfamily2">
+                                <!-- <div class="col-3 card-item">
                                     <div class="card">
                                         <img src="./img/product1.png" class="card-img-top" alt="">
                                         <div class="card-body">
-                                            <h5 class="card-title">Lớp học mật ngữ</h5>
+                                            <h5 class="card-title">Lớp học mật ngữ1</h5>
                                             <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng
                                                 12
                                                 cùng
@@ -473,7 +473,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-bgchild" role="tabpanel"
@@ -662,6 +662,54 @@
         </a>
     </div>
 
+    
+
+    <script>
+        url_list_product = "http://localhost:5000/api/product/view-all"
+        fetch(url_list_product)
+            .then(function (respone) {
+                return respone.json();
+            })
+            .then(function (products) {
+                var t = ''
+                productArr = products.product;
+                var htmls = []
+                productArr.forEach(element => {
+                    htmls.push(`
+                    <div class="col-3 card-item">
+                        <div class="card">
+                            <img src="./img/product1.png" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">${element.name}</h5>
+                                <p class="card-text">${element.description}Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
+                                                hoàng đạo lớp học mật ngữ</p>
+                                <div class="card-price">
+                                    <p class="card-price-num">${element.price}</p><span> VND</span>
+
+                                </div>
+                            </div>
+                        <div class="card__overlay">
+                            <a href="#" class="card__overlay-detail">
+                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                            </a>
+                            <button class="card__overlay-cart">
+                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                            </button>
+                            </div>
+                        </div>
+                    </div>`)
+
+                });
+                var listProducts = document.getElementById('v-pills-bgfamily2');
+                listProducts.innerHTML = htmls.join('');
+
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+
+    </script>
+
     <!-- Jquery -->
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
@@ -706,51 +754,6 @@
     <script src="./js/util.js"></script>
     <!-- Main JS -->
     <script src="./js/main.js"></script>
-
-<!--     <script>
-        url_list_product = "http://localhost:5000/api/product/view-all"
-        fetch(url_list_product)
-            .then(function (respone) {
-                return respone.json();
-            })
-            .then(function (products) {
-                var t = ''
-                productArr = products.product;
-                var htmls = []
-                productArr.forEach(element => {
-                    htmls.push(`
-                    <div class="col-3 card-item">
-                        <div class="card">
-                            <img src="./img/product1.png" class="card-img-top" alt="">
-                            <div class="card-body">
-                                <h5 class="card-title">${element.name}</h5>
-                                <p class="card-text">${element.description}Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                                hoàng đạo lớp học mật ngữ</p>
-                                <div class="card-price">
-                                    <p class="card-price-num">${element.price}</p><span> VND</span>
-                                </div>
-                            </div>
-                        <div class="card__overlay">
-                            <a href="#" class="card__overlay-detail">
-                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                            </a>
-                            <button class="card__overlay-cart">
-                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                            </button>
-                            </div>
-                        </div>
-                    </div>`)
-
-                });
-                var listProducts = document.getElementById('v-pills-bgfamily');
-                listProducts.innerHTML = htmls.join('');
-
-            })
-            .catch(function (err) {
-                console.log(err);
-            })
-
-    </script> -->
 </body>
 
 </html>
