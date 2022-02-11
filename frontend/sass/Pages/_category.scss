@@ -35,7 +35,7 @@
             padding-bottom: 18px;
             border-bottom: 1px solid $color-2;
         }
-        .category__right-content {
+        .tab-content{
             .card-item {
                 padding: 4px 8px;
                 .card {
@@ -49,6 +49,9 @@
                         }
                         .card-price {
                             font-size: $fs-4;
+                            p{
+                                display: inline;
+                            }
                         }
                     }
                 }

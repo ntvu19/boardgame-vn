@@ -371,24 +371,28 @@ footer .footer__item li a {
   padding-right: 20px;
 }
 
-.category .category__right .category__right-content .card-item {
+.category .category__right .tab-content .card-item {
   padding: 4px 8px;
 }
 
-.category .category__right .category__right-content .card-item .card .card-body {
+.category .category__right .tab-content .card-item .card .card-body {
   padding: 5px;
 }
 
-.category .category__right .category__right-content .card-item .card .card-body .card-title {
+.category .category__right .tab-content .card-item .card .card-body .card-title {
   font-size: 18px;
 }
 
-.category .category__right .category__right-content .card-item .card .card-body .card-text {
+.category .category__right .tab-content .card-item .card .card-body .card-text {
   font-size: 14px;
 }
 
-.category .category__right .category__right-content .card-item .card .card-body .card-price {
+.category .category__right .tab-content .card-item .card .card-body .card-price {
   font-size: 18px;
+}
+
+.category .category__right .tab-content .card-item .card .card-body .card-price p {
+  display: inline;
 }
 
 .category .category__right .category__right-bottom {
@@ -663,10 +667,44 @@ footer .footer__item li a {
 }
 
 .card-item .card:hover .card__overlay .card__overlay-detail {
-  top: 38%;
+  top: 37%;
 }
 
 .card-item .card:hover .card__overlay .card__overlay-cart {
-  bottom: 38%;
+  bottom: 37%;
+}
+
+.backToTop {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  opacity: 0;
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.cd-top--is-visible {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+}
+
+.backToTop i {
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+  text-align: center;
+  line-height: 40px;
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.backToTop i:hover {
+  color: #323232;
+  background-color: #ccc;
 }
 /*# sourceMappingURL=main.css.map */

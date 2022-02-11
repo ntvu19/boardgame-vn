@@ -1,0 +1,28 @@
+.backToTop {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.2s;
+}
+
+.cd-top--is-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.backToTop i {
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all 0.2s;
+    &:hover {
+        color: #323232;
+        background-color: $color-1;
+    }
+}
