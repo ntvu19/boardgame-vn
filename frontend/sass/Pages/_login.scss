@@ -8,14 +8,21 @@
         width: 360px;
         padding: 8% 0 0;
         margin: auto;
+        .login-logo{
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 20px 20px 0 0;
+            background-color: $color-5;
+        }
         .form {
             position: relative;
             z-index: 1;
             background: #ffffff;
             max-width: 360px;
             margin: 0 auto 100px;
-            padding: 45px;
+            padding: 35px 45px;
             text-align: center;
+            border-radius: 0px 0px 20px 20px;
             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
             input {
                 outline: 0;

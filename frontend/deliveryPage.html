@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
+    <title>Delivery</title>
 
     <!-- FONT GG -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,72 +103,88 @@
             </ul>
         </div>
     </section>
-    <!--CART -->
-    <section class="cart section">
+    <!-- DELIVERY PAGE -->
+    <section class="deliveryPage section">
         <div class="container">
-            <div class="cart-top-wrap">
-                <div class="cart-top">
-                    <div class="cart-top-cart cart-top-item">
+            <div class="deliveryPage-top-wrap">
+                <div class="deliveryPage-top">
+                    <div class="deliveryPage-top-delivery deliveryPage-top-item">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <div class="cart-top-adress cart-top-item">
+                    <div class="deliveryPage-top-adress deliveryPage-top-item">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <div class="cart-top-payment cart-top-item">
+                    <div class="deliveryPage-top-payment deliveryPage-top-item">
                         <i class="fas fa-money-check-alt"></i>
                     </div>
                 </div>
-           </div>
-           <div class="cart__content row">
-                <div class="cart__content-left">
+            </div>
+            <div class="deliveryPage__content row">
+                <div class="deliveryPage__left col-8">
+                    <p>Vui lòng chọn địa chỉ giao hàng</p>
+                    <div class="deliveryPage__left-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <p>Đăng nhập (Nếu bạn đã có tài khoản)</p>
+                    </div>
+                    <div class="deliveryPage__left-wig">
+                        <input checked="checked" name="loaikhach" type="radio">
+                        <p><span style="font-weight: bold;">Khách lẻ</span> (Nếu bạn không muốn lưu lại thông tin)</p>
+                    </div>
+                    <div class="deliveryPage__left-reg">
+                        <input type="radio" name="loaikhach" value="dangky">
+                        <p><span style="font-weight: bold;">Đăng ký</span> (Tạo mới tài khoản với thông tin bên dưới)
+                        </p>
+                    </div>
+                    <div class="deliveryPage__left-input-top row">
+                        <div class="deliveryPage__left-input-top-item col-6">
+                            <label for="">Họ tên <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="deliveryPage__left-input-top-item col-6">
+                            <label for="">Điện thoại <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="deliveryPage__left-input-top-item col-6">
+                            <label for="">Tỉnh/TP <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="deliveryPage__left-input-top-item col-6">
+                            <label for="">Quận/Huyện <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="deliveryPage__left-input-buttom">
+                        <label for="">Địa chỉ <span style="color: red;">*</span></label>
+                        <input type="text">
+                    </div>
+                    <div class="deliveryPage__left-button">
+                        <a href=""><span>&#8810;</span>
+                            <p>Quay lại giỏ hàng</p>
+                        </a>
+                        <button>
+                            <p style="font-weight: bold;">THANH TOÁN VÀ GIAO HÀNG</p>
+                        </button>
+                    </div>
+                </div>
+                <div class="deliveryPage__right col-4">
                     <table>
                         <tr>
-                            <th>Sản phẩm</th>
                             <th>Tên sản phẩm</th>
                             <th>Số lượng</th>
                             <th>Thành tiền</th>
-                            <th>Xoá</th>
                         </tr>
                         <tr>
-                            <td>
-                                <img src="./img/product2.jpg" alt="">
-                            </td>
-                            <td><p>Jishaku (US)</p></td>
-                            <td><input type="number" value="1" min="1"></td>
-                            <td><p>123456 <sup>đ</sup></p></td>
-                            <td><span>x</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="./img/product2.jpg" alt="">
-                            </td>
-                            <td><p>Jishaku (US)</p></td>
-                            <td><input type="number" value="1" min="1"></td>
-                            <td><p>123456 <sup>đ</sup></p></td>
-                            <td><span>x</span></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="cart__content-right">
-                    <table>
-                        <tr>
-                            <th colspan="2">TỔNG TIỀN GIỎ HÀNG</th>
-                        </tr>
-                        <tr>
-                            <td>TỔNG SẢN PHẨM</td>
+                            <td>MA SÓI</td>
                             <td>1</td>
+                            <td>123456<sup>đ</sup></td>
                         </tr>
                         <tr>
-                            <td>TỔNG TIỀN HÀNG</td>
-                            <td><p>123456 <sup>đ</sup></p></td>
+                            <td style="font-weight: bold;" colspan="2">Tổng tiền hàng</td>
+                            <td style="font-weight: bold;"><p>123456<sup>đ</sup></p></td>                          
                         </tr>
                     </table>
-                    <div class="cart__content-right-button">
-                        <button>TIẾP TỤC MUA SẮM</button>
-                        <button>THANH TOÁN</button>
-                    </div>
                 </div>
-           </div>
+            </div>
         </div>
     </section>
     <!-- DELIVERY -->
@@ -258,7 +274,7 @@
         </div>
     </footer>
 
-    
+
     <!-- Jquery -->
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
