@@ -487,10 +487,11 @@ footer .footer__item li a {
 .product .product__content .product__img {
   width: 100%;
   height: 300px;
-  background-image: url("../../img/product2.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+}
+
+.product .product__content .product__img img {
+  width: 100%;
+  height: auto;
 }
 
 .product .product__content .product__text h3 {
