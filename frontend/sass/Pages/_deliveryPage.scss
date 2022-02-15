@@ -1,9 +1,9 @@
 .deliveryPage {
-    .deliveryPage-top-wrap {
+    .cart-top-wrap {
         display: flex;
         justify-content: center;
         align-items: center;
-        .deliveryPage-top {
+        .cart-top {
             height: 2px;
             width: 70%;
             background-color: $color-13;
@@ -11,7 +11,7 @@
             justify-content: space-between;
             align-items: center;
             margin: 50px 0 100px;
-            .deliveryPage-top-item {
+            .cart-top-item {
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
@@ -24,7 +24,7 @@
                     color: $color-5;
                 }
             }
-            .deliveryPage-top-adress {
+            .cart-top-adress {
                 border: 1px solid $color-7;
                 i {
                     color: $color-7;
@@ -45,13 +45,14 @@
                 margin-bottom: 6px;
             }
             .deliveryPage__left-login {
-                margin-top: 12px;
+                margin: 10px 0;
                 i {
                     margin-right: 12px;
                     color: $color-4;
                 }
             }
             .deliveryPage__left-input-top {
+                margin-top: 10px;
                 justify-content: space-between;
                 .deliveryPage__left-input-top-item {
                     color: $color-4;
@@ -134,6 +135,9 @@
                     }
                     td:last-child{
                         text-align: right;
+                        p{
+                            margin: 0;
+                        }   
                     }
                 }
             }

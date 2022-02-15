@@ -760,7 +760,7 @@ footer .footer__item li a {
   color: #333;
 }
 
-.deliveryPage .deliveryPage-top-wrap {
+.deliveryPage .cart-top-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -772,7 +772,7 @@ footer .footer__item li a {
           align-items: center;
 }
 
-.deliveryPage .deliveryPage-top-wrap .deliveryPage-top {
+.deliveryPage .cart-top-wrap .cart-top {
   height: 2px;
   width: 70%;
   background-color: #dddddd;
@@ -788,7 +788,7 @@ footer .footer__item li a {
   margin: 50px 0 100px;
 }
 
-.deliveryPage .deliveryPage-top-wrap .deliveryPage-top .deliveryPage-top-item {
+.deliveryPage .cart-top-wrap .cart-top .cart-top-item {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -805,15 +805,15 @@ footer .footer__item li a {
   background-color: #fff;
 }
 
-.deliveryPage .deliveryPage-top-wrap .deliveryPage-top .deliveryPage-top-item i {
+.deliveryPage .cart-top-wrap .cart-top .cart-top-item i {
   color: #fb5332;
 }
 
-.deliveryPage .deliveryPage-top-wrap .deliveryPage-top .deliveryPage-top-adress {
+.deliveryPage .cart-top-wrap .cart-top .cart-top-adress {
   border: 1px solid #3fa1fa;
 }
 
-.deliveryPage .deliveryPage-top-wrap .deliveryPage-top .deliveryPage-top-adress i {
+.deliveryPage .cart-top-wrap .cart-top .cart-top-adress i {
   color: #3fa1fa;
 }
 
@@ -833,7 +833,7 @@ footer .footer__item li a {
 }
 
 .deliveryPage .deliveryPage__content .deliveryPage__left .deliveryPage__left-login {
-  margin-top: 12px;
+  margin: 10px 0;
 }
 
 .deliveryPage .deliveryPage__content .deliveryPage__left .deliveryPage__left-login i {
@@ -842,6 +842,7 @@ footer .footer__item li a {
 }
 
 .deliveryPage .deliveryPage__content .deliveryPage__left .deliveryPage__left-input-top {
+  margin-top: 10px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -951,6 +952,134 @@ footer .footer__item li a {
 
 .deliveryPage .deliveryPage__content .deliveryPage__right table tr td:last-child {
   text-align: right;
+}
+
+.deliveryPage .deliveryPage__content .deliveryPage__right table tr td:last-child p {
+  margin: 0;
+}
+
+.paymentPage .cart-top-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.paymentPage .cart-top-wrap .cart-top {
+  height: 2px;
+  width: 70%;
+  background-color: #dddddd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 50px 0 100px;
+}
+
+.paymentPage .cart-top-wrap .cart-top .cart-top-item {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #dddddd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #fff;
+}
+
+.paymentPage .cart-top-wrap .cart-top .cart-top-item i {
+  color: #fb5332;
+}
+
+.paymentPage .cart-top-wrap .cart-top .cart-top-payment {
+  border: 1px solid #3fa1fa;
+}
+
+.paymentPage .cart-top-wrap .cart-top .cart-top-payment i {
+  color: #3fa1fa;
+}
+
+.paymentPage .paymentPage__content {
+  width: 100%;
+}
+
+.paymentPage .paymentPage__content .paymentPage__delivery {
+  color: #333;
+}
+
+.paymentPage .paymentPage__content .paymentPage__delivery p {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.paymentPage .paymentPage__content .paymentPage__delivery .paymentPage__delivery-item {
+  padding-left: 20px;
+}
+
+.paymentPage .paymentPage__content .paymentPage__payment {
+  color: #333;
+}
+
+.paymentPage .paymentPage__content .paymentPage__payment p {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.paymentPage .paymentPage__content .paymentPage__payment .paymentPage__payment-item {
+  padding-left: 20px;
+}
+
+.paymentPage .paymentPage__content .paymentPage__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.paymentPage .paymentPage__content .paymentPage__button a {
+  text-decoration: none;
+  color: #333;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.paymentPage .paymentPage__content .paymentPage__button a:hover {
+  color: #ff2020;
+}
+
+.paymentPage .paymentPage__content .paymentPage__button button {
+  width: 30%;
+  padding: 10px 0;
+  font-weight: bold;
+  background-color: #dddddd;
+  color: black;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.paymentPage .paymentPage__content .paymentPage__button button:hover {
+  background-color: black;
+  color: #fff;
 }
 
 .section {
