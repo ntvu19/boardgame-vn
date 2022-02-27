@@ -221,7 +221,7 @@
                     </div>
                 </div>
             </div>
-            <div class="homeProduct__content">
+            <!-- <div class="homeProduct__content">
                 <div class="homeProduct__title">
                     <h3><a href="#">Board game trẻ em</a></h3>
                 </div>
@@ -324,7 +324,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
     <!-- CATEGORY -->
@@ -559,7 +559,17 @@
                         </div>
                     </div>
                     <div class="category__right-bottom">
-                        <p><span>&#171;</span> 1 2 3 <span>&#187;</span></p>
+                        <!-- <p><span>&#171;</span> 1 2 3 <span>&#187;</span></p> -->
+                        <div class="category_pagination">
+                            <ul class="pagination pagination-lg" style="margin-left: 500px" id="num-page">
+                                <!-- <li class="page-item">
+                                    <a class="page-link" href="/frontend/index.html&?page=1" tabindex="-1">1</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="/?page=2">2</a></li>
+                                <li class="page-item"><a class="page-link" href="/?page=3">3</a></li> -->
+                                
+                            </ul>
+                        </div>   
                     </div>
                 </div>
             </div>
@@ -660,7 +670,7 @@
 
     
 
-    <script>
+    <!-- <script>
         url_list_product = "http://localhost:5000/api/product/view-all"
         fetch(url_list_product)
             .then(function (respone) {
@@ -704,8 +714,101 @@
                 console.log(err);
             })
 
-    </script>
+        
+    </script> -->
+    <script>
+        let perPage = 8;
+        let start = 0;
+        let end = perPage;
+        let currentPage = 1;
+        url_list_product = "http://localhost:5000/api/product/view-all"
 
+        function changPage(){
+            let cur = document.getElementById('num-page');
+            
+
+            for(let i = 0; i < cur.length; i++){
+                cur[i].addEventListener('click', () => {
+                    let val = i + 1;
+                    cur = val;
+
+                    start = (cur - 1) * perPage;
+                    end = cur * perPage;
+                    
+                    renderProductPage();
+                })
+            }
+        }
+        function renderProductPage(){
+
+            fetch(url_list_product)
+                .then(function (respone) {
+                    return respone.json();
+                })
+                .then(function (products) {
+                    let test = ''
+
+                    productArr = products.product;
+                    const totalPages = Math.ceil(productArr.length / perPage);
+
+                    loadListPages(totalPages);
+
+                    console.log(start, end);
+
+
+                    productArr.map((item, index) => {
+                        if(index >= start && index < end){ 
+                            test += `
+                        <div class="col-3 card-item">
+                            <div class="card">
+                                <img src="./img/product1.png" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.name}</h5>
+                                    <p class="card-text">${item.description}Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
+                                                    hoàng đạo lớp học mật ngữ</p>
+                                    <div class="card-price">
+                                        <p class="card-price-num">${item.price}</p><span> VND</span>
+
+                                    </div>
+                                </div>
+                            <div class="card__overlay">
+                                <a href="#" class="card__overlay-detail">
+                                    <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                </a>
+                                <button class="card__overlay-cart">
+                                    <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                </button>
+                                </div>
+                            </div>
+                        </div>`
+                        }
+                    })
+
+                    var listProducts = document.getElementById('v-pills-bgfamily2');
+                    listProducts.innerHTML = test;
+
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+            
+        }
+        function loadListPages(num) {
+            console.log(num);
+            let html = '';
+            html += `<li class="active"><a class="page-link">${1}</a></li>`;
+            for(let i = 2; i <= num; i++){
+                html += `<li class="page-item"><a class="page-link">${i}</a></li>`;
+            }
+            document.getElementById('num-page').innerHTML = html;
+        }
+
+        
+        changPage();
+        renderProductPage();
+    
+    
+    </script>
     <!-- Jquery -->
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
