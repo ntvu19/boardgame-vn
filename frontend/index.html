@@ -717,23 +717,25 @@
         
     </script> -->
     <script>
-        let perPage = 8;
+        let perPage = 3;
         let start = 0;
         let end = perPage;
         let currentPage = 1;
         url_list_product = "http://localhost:5000/api/product/view-all"
 
+        function getCurrentPage(current) {
+            start = (current - 1) * perPage;
+            end = current * perPage;
+        }
         function changPage(){
-            let cur = document.getElementById('num-page');
-            
+            let cur = document.querySelectorAll('.page-item');
 
             for(let i = 0; i < cur.length; i++){
                 cur[i].addEventListener('click', () => {
                     let val = i + 1;
                     cur = val;
 
-                    start = (cur - 1) * perPage;
-                    end = cur * perPage;
+                    getCurrentPage(cur);
                     
                     renderProductPage();
                 })
@@ -753,7 +755,7 @@
 
                     loadListPages(totalPages);
 
-                    console.log(start, end);
+
 
 
                     productArr.map((item, index) => {
@@ -794,18 +796,17 @@
             
         }
         function loadListPages(num) {
-            console.log(num);
             let html = '';
-            html += `<li class="active"><a class="page-link">${1}</a></li>`;
+            html += `<li class="page-item"><a class="page-link">${1}</a></li>`;
             for(let i = 2; i <= num; i++){
                 html += `<li class="page-item"><a class="page-link">${i}</a></li>`;
             }
             document.getElementById('num-page').innerHTML = html;
         }
 
-        
-        changPage();
         renderProductPage();
+        changPage();
+        
     
     
     </script>
