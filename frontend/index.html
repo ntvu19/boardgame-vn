@@ -561,7 +561,7 @@
                     <div class="category__right-bottom">
                         <!-- <p><span>&#171;</span> 1 2 3 <span>&#187;</span></p> -->
                         <div class="category_pagination">
-                            <ul class="pagination pagination-lg" style="margin-left: 500px" id="num-page">
+                            <ul class="pagination pagination-lg" style="margin-left: 370px" id="num-page">
                                 <!-- <li class="page-item">
                                     <a class="page-link" href="/frontend/index.html&?page=1" tabindex="-1">1</a>
                                 </li>
@@ -723,22 +723,11 @@
         let currentPage = 1;
         url_list_product = "http://localhost:5000/api/product/view-all"
 
-        function changPage(){
-            let cur = document.getElementById('num-page');
-            
-
-            for(let i = 0; i < cur.length; i++){
-                cur[i].addEventListener('click', () => {
-                    let val = i + 1;
-                    cur = val;
-
-                    start = (cur - 1) * perPage;
-                    end = cur * perPage;
-                    
-                    renderProductPage();
-                })
-            }
+        function getCurrentPage(current) {
+            start = (current - 1) * perPage;
+            end = current * perPage;
         }
+        
         function renderProductPage(){
 
             fetch(url_list_product)
@@ -749,12 +738,10 @@
                     let test = ''
 
                     productArr = products.product;
+                    console.log(productArr.length);
                     const totalPages = Math.ceil(productArr.length / perPage);
 
                     loadListPages(totalPages);
-
-                    console.log(start, end);
-
 
                     productArr.map((item, index) => {
                         if(index >= start && index < end){ 
@@ -794,18 +781,31 @@
             
         }
         function loadListPages(num) {
-            console.log(num);
             let html = '';
-            html += `<li class="active"><a class="page-link">${1}</a></li>`;
+            html += `<li class="page-item"><a class="page-link" onclick="changPage()">${1}</a></li>`;
             for(let i = 2; i <= num; i++){
-                html += `<li class="page-item"><a class="page-link">${i}</a></li>`;
+                html += `<li class="page-item"><a class="page-link" onclick="changPage()">${i}</a></li>`;
             }
             document.getElementById('num-page').innerHTML = html;
         }
 
-        
-        changPage();
+        function changPage(){
+            let cur = document.querySelectorAll('.page-item');
+
+            for(let i = 0; i < cur.length; i++){
+                cur[i].addEventListener('click', () => {
+                    let val = i + 1;
+                    cur = val;
+
+                    getCurrentPage(cur);
+                    
+                    renderProductPage();
+                })
+            }
+        }
         renderProductPage();
+        changPage();
+        
     
     
     </script>
