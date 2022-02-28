@@ -717,7 +717,7 @@
         
     </script> -->
     <script>
-        let perPage = 3;
+        let perPage = 8;
         let start = 0;
         let end = perPage;
         let currentPage = 1;
@@ -727,20 +727,7 @@
             start = (current - 1) * perPage;
             end = current * perPage;
         }
-        function changPage(){
-            let cur = document.querySelectorAll('.page-item');
-
-            for(let i = 0; i < cur.length; i++){
-                cur[i].addEventListener('click', () => {
-                    let val = i + 1;
-                    cur = val;
-
-                    getCurrentPage(cur);
-                    
-                    renderProductPage();
-                })
-            }
-        }
+        
         function renderProductPage(){
 
             fetch(url_list_product)
@@ -751,12 +738,10 @@
                     let test = ''
 
                     productArr = products.product;
+                    console.log(productArr.length);
                     const totalPages = Math.ceil(productArr.length / perPage);
 
                     loadListPages(totalPages);
-
-
-
 
                     productArr.map((item, index) => {
                         if(index >= start && index < end){ 
@@ -797,13 +782,27 @@
         }
         function loadListPages(num) {
             let html = '';
-            html += `<li class="page-item"><a class="page-link">${1}</a></li>`;
+            html += `<li class="page-item"><a class="page-link" onclick="changPage()">${1}</a></li>`;
             for(let i = 2; i <= num; i++){
-                html += `<li class="page-item"><a class="page-link">${i}</a></li>`;
+                html += `<li class="page-item"><a class="page-link" onclick="changPage()">${i}</a></li>`;
             }
             document.getElementById('num-page').innerHTML = html;
         }
 
+        function changPage(){
+            let cur = document.querySelectorAll('.page-item');
+
+            for(let i = 0; i < cur.length; i++){
+                cur[i].addEventListener('click', () => {
+                    let val = i + 1;
+                    cur = val;
+
+                    getCurrentPage(cur);
+                    
+                    renderProductPage();
+                })
+            }
+        }
         renderProductPage();
         changPage();
         
