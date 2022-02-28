@@ -1,6 +1,7 @@
 window.addEventListener("load", function(){
     truncateCardText();
     truncateCardPrice();
+    truncateCardTitle();
 });
 
 function truncateCardText(){
@@ -35,5 +36,14 @@ function truncatePrice(str) {
     }
      else {
         return str;
+    }
+}
+
+function truncateCardTitle(){
+    var cardList = document.getElementsByClassName("card-title");
+    for(var i = 0; i < cardList.length; i++){
+        var text = cardList[i].innerHTML;
+        var newText = truncateString(text,19);
+        cardList[i].innerHTML = newText;
     }
 }

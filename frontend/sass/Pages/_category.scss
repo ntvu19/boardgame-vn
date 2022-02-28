@@ -64,6 +64,17 @@
                 font-size: 20px;
                 color: $color-4;
             }
+            .category__right-bottom-content{
+                ul{
+                    float: right;
+                    li{
+                        a{
+                            color: $color-4;
+                        }
+                       
+                    }
+                }
+            }
         }
     }
 }

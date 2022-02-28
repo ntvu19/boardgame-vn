@@ -405,6 +405,14 @@ footer .footer__item li a {
   color: #333;
 }
 
+.category .category__right .category__right-bottom .category__right-bottom-content ul {
+  float: right;
+}
+
+.category .category__right .category__right-bottom .category__right-bottom-content ul li a {
+  color: #333;
+}
+
 .login {
   background-image: url(../../img/bg-login.jpg);
   background-position: center;

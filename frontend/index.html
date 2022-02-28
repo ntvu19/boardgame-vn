@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoardGame</title>
-
     <!-- FONT GG -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -356,8 +355,8 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
                             aria-labelledby="v-pills-bgfamily-tab">
-                            <div class="row" id="v-pills-bgfamily2">
-                                <!-- <div class="col-3 card-item">
+                            <!-- <div class="row" id="v-pills-bgfamily2">
+                                <div class="col-3 card-item">
                                     <div class="card">
                                         <img src="./img/product1.png" class="card-img-top" alt="">
                                         <div class="card-body">
@@ -384,7 +383,7 @@
                                     <div class="card">
                                         <img src="./img/product1.png" class="card-img-top" alt="">
                                         <div class="card-body">
-                                            <h5 class="card-title">Lớp học mật ngữ</h5>
+                                            <h5 class="card-title">Lớp học mật ngữ 123123123123</h5>
                                             <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng
                                                 12
                                                 cùng
@@ -449,30 +448,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3 card-item">
-                                    <div class="card">
-                                        <img src="./img/product1.png" class="card-img-top" alt="">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Lớp học mật ngữ</h5>
-                                            <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng
-                                                12
-                                                cùng
-                                                hoàng đạo lớp học mật ngữ</p>
-                                            <div class="card-price">
-                                                <p class="card-price-num">123456</p><span> VND</span>
-                                            </div>
-                                        </div>
-                                        <div class="card__overlay">
-                                            <a href="#" class="card__overlay-detail">
-                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                            </a>
-                                            <button class="card__overlay-cart">
-                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
+                            </div> -->
                         </div>
                         <div class="tab-pane fade" id="v-pills-bgchild" role="tabpanel"
                             aria-labelledby="v-pills-bgchild-tab">
@@ -559,17 +535,32 @@
                         </div>
                     </div>
                     <div class="category__right-bottom">
-                        <!-- <p><span>&#171;</span> 1 2 3 <span>&#187;</span></p> -->
-                        <div class="category_pagination">
+                        <nav aria-label="Page navigation example" class="category__right-bottom-content">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- <div class="category_pagination">
                             <ul class="pagination pagination-lg" style="margin-left: 370px" id="num-page">
-                                <!-- <li class="page-item">
+                                <li class="page-item">
                                     <a class="page-link" href="/frontend/index.html&?page=1" tabindex="-1">1</a>
                                 </li>
                                 <li class="page-item"><a class="page-link" href="/?page=2">2</a></li>
-                                <li class="page-item"><a class="page-link" href="/?page=3">3</a></li> -->
-                                
+                                <li class="page-item"><a class="page-link" href="/?page=3">3</a></li>
                             </ul>
-                        </div>   
+                        </div>    -->
                     </div>
                 </div>
             </div>
@@ -668,7 +659,7 @@
         </a>
     </div>
 
-    
+
 
     <!-- <script>
         url_list_product = "http://localhost:5000/api/product/view-all"
@@ -727,8 +718,8 @@
             start = (current - 1) * perPage;
             end = current * perPage;
         }
-        
-        function renderProductPage(){
+
+        function renderProductPage() {
 
             fetch(url_list_product)
                 .then(function (respone) {
@@ -744,7 +735,7 @@
                     loadListPages(totalPages);
 
                     productArr.map((item, index) => {
-                        if(index >= start && index < end){ 
+                        if (index >= start && index < end) {
                             test += `
                         <div class="col-3 card-item">
                             <div class="card">
@@ -778,36 +769,36 @@
                 .catch(function (err) {
                     console.log(err);
                 })
-            
+
         }
         function loadListPages(num) {
             let html = '';
             html += `<li class="page-item"><a class="page-link" onclick="changPage()">${1}</a></li>`;
-            for(let i = 2; i <= num; i++){
+            for (let i = 2; i <= num; i++) {
                 html += `<li class="page-item"><a class="page-link" onclick="changPage()">${i}</a></li>`;
             }
             document.getElementById('num-page').innerHTML = html;
         }
 
-        function changPage(){
+        function changPage() {
             let cur = document.querySelectorAll('.page-item');
 
-            for(let i = 0; i < cur.length; i++){
+            for (let i = 0; i < cur.length; i++) {
                 cur[i].addEventListener('click', () => {
                     let val = i + 1;
                     cur = val;
 
                     getCurrentPage(cur);
-                    
+
                     renderProductPage();
                 })
             }
         }
         renderProductPage();
         changPage();
-        
-    
-    
+
+
+
     </script>
     <!-- Jquery -->
     <script src="./js/jquery.min.js"></script>
