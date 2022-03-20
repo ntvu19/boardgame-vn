@@ -1,0 +1,35 @@
+.darkMode{
+    nav{
+        background-color: $color-dark-0;
+        .search-bar{
+            background-color: $color-dark-1;
+            input{
+                color: $color-dark-2;
+                &::placeholder{
+                    color: $color-dark-3;
+                }
+            }
+        }
+        .profile-area{
+            .theme-btn{
+                background-color: $color-dark-1;
+                color: $color-dark-2;
+                .active{
+                    background-color: $color-dark-2;
+                    color: $color-dark-0;
+                }
+            }
+            .profile{
+                h4{
+                    color: $color-dark-2;
+                }
+            }
+            button{
+                color: $color-dark-2;
+                &:hover{
+                    color: $color-dark-0;
+                }
+            }
+        }
+    }
+}

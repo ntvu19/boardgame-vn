@@ -1,0 +1,218 @@
+.admin {
+    background-color: $color-light;
+    .admin__left {
+        height: 88vh;
+        #close-btn {
+            display: none;
+        }
+        .nav {
+            .nav-link {
+                color: $color-gray-light;
+                font-size: $fs-0;
+                font-weight: $fw-2;
+                display: flex;
+                position: relative;
+                align-items: center;
+                transition: all 0.2s;
+                padding: 15px 0;
+                span {
+                    font-size: $fs-4;
+                    padding-right: 10px;
+                    transition: all 0.2s;
+                    margin-left: 15px;
+                }
+                &:hover {
+                    color: $color-primary;
+                    span {
+                        margin-left: 20px;
+                    }
+                }
+            }
+            .active {
+                background-color: $color-white;
+                color: $color-primary;
+                &::before {
+                    content: "";
+                    width: 6px;
+                    height: 100%;
+                    position: absolute;
+                    left: 0%;
+                    top: 0%;
+                    background-color: $color-primary;
+                }
+            }
+        }
+    }
+    .admin__right {
+        .tab-content {
+            .admin__home-content {
+                .admin__home-item {
+                    width: 80%;
+                    padding: 20px 0;
+                    margin: 0 auto;
+                    text-align: center;
+                    border-radius: $card-border-radius;
+                    background: linear-gradient(to bottom, $color-orange-light, $color-orange);
+                    box-shadow: 0 2rem 3rem $color-orange-light;
+                    p {
+                        font-size: $fs-3;
+                        color: $color-dark;
+                        font-weight: 700;
+                        margin: 0;
+                    }
+                }
+                .chart-container {
+                    width: 90%;
+                    margin: 0 auto;
+                    #myChart {
+                        background-color: $color-white;
+                        margin-top: 3rem;
+                        border-radius: $card-border-radius;
+                        padding: $card-padding;
+                    }
+                }
+            }
+            h1 {
+                color: $color-orange;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 30px;
+            }
+            table {
+                margin-top: 20px;
+                thead {
+                    tr {
+                        th {
+                            text-align: center;
+                            font-size: $fs-0;
+                        }
+                    }
+                }
+                tbody {
+                    td {
+                        font-size: $fs-0;
+                        p {
+                            font-size: $fs-0;
+                        }
+                    }
+                }
+                .table__img {
+                    img {
+                        width: 100px;
+                        height: auto;
+                    }
+                }
+                .table__btn {
+                    button {
+                        padding: 0px 10px;
+                        border: none;
+                        border-radius: 10px;
+                    }
+                    .table__btn-left {
+                        text-align: right;
+                        button {
+                            background-color: $color-blue;
+                        }
+                    }
+                    .table__btn-right {
+                        text-align: left;
+                        button {
+                            background-color: $color-orange;
+                        }
+                    }
+                    .table__btn-center {
+                        text-align: center;
+                        button {
+                            background-color: $color-success;
+                        }
+                    }
+                }
+            }
+            .tab-pane-btn {
+                text-align: center;
+                margin-top: 30px;
+            }
+            select {
+                padding: 5px 10px;
+                border-radius: $card-border-radius;
+                font-size: $fs-0;
+                font-weight: $fw-2;
+                background: linear-gradient($color-orange-light, $color-orange);
+            }
+            .search-date {
+                label {
+                    font-size: $fs-0;
+                    padding-right: 10px;
+                }
+                input {
+                    text-align: center;
+                    width: 60px;
+                    &::placeholder {
+                        text-align: center;
+                    }
+                    border-radius: $border-radius-1;
+                    padding: 5px 3px;
+                }
+                button {
+                    padding: 5px 20px;
+                    margin-left: 20px;
+                    border-radius: $border-radius-1;
+                }
+            }
+            .search-customers {
+                input {
+                    width: 30%;
+                    border-radius: $border-radius-1;
+                    padding: 5px 10px;
+                }
+                button {
+                    padding: 5px 20px;
+                    margin-left: 20px;
+                    border-radius: $border-radius-1;
+                }
+            }
+        }
+    }
+    // RESPONSIVE
+    // max-width 1200pxs
+    @include responsive("extra-large") {
+        .admin__left {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            z-index: 3;
+            background-color: $color-white;
+            width: 20rem;
+            height: 100vh;
+            box-shadow: 2rem 0 2rem $color-primary-light;
+            padding: 0;
+            display: none;
+            animation: showSidebar 500ms ease forwards;
+            #close-btn {
+                display: inline-block;
+                width: 3rem;
+                height: 3rem;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 4;
+                background: transparent;
+                color: $color-dark;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            .nav {
+                margin-top: 4rem;
+                .nav-link {
+                    font-size: $fs-0 - 2;
+                }
+            }
+            @keyframes showSidebar {
+                to {
+                    left: 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.modal{
+    .modal-content{
+        .modal-header{
+            .modal-title{
+                color: $color-orange;
+            }
+        }
+        .modal-body{
+            label{
+                color: blue;
+            }
+            input{
+                width: 100%;
+                padding: 3px 5px;
+                border: 1px solid $color-gray-light;
+            }
+            textarea{
+                width: 100%;
+                padding: 3px 5px;
+                border: 1px solid $color-gray-light;
+            }
+            .modal-body-img{
+                color: red;
+                cursor: pointer;
+            }
+        }
+    }
+}

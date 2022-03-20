@@ -1,0 +1,57 @@
+// font size
+$fs-0: 15px;
+$fs-1: 18px;
+$fs-2: 20px;
+$fs-3: 24px;
+$fs-4: 30px;
+$fs-5z: 36px;
+// font weight
+$fw-0: 300;
+$fw-1: 400;
+$fw-2:700;
+// color
+$color-white: #ffffff;
+$color-light: #f0eff5;
+$color-orange: rgb(251, 83, 50);
+$color-blue: #007bff;
+$color-gray-light: #86848c;
+$color-gray-dark: #56555e;
+$color-dark: #27282f;
+$color-primary: rgb(71, 7,234);
+$color-success: rgb(34, 202, 75);
+$color-danger: rgb(255, 67, 54);
+$color-warning: rgb(234, 181, 7);
+$color-purple: rgb(160, 99, 245);
+$color-primary-light: rgba(71, 7, 234, 0.2);
+$color-success-light: rgba(34, 202, 75, 0.2);
+$color-danger-light: rgba(255, 67, 54, 0.2);
+$color-warning-light: rgba(234, 181, 7, 0.2);
+$color-purple-light: rgba(160, 99, 245, 0.2);
+$color-dark-light: rgba(0,0,0,0.2);
+$color-orange-light: rgba(251, 83, 50, 0.2);
+// dark-theme
+$color-dark-0: rgb(19, 19, 22);
+$color-dark-1: rgb(35, 35, 42);
+$color-dark-2: #ddd;
+$color-dark-3: rgb(173, 172, 213);
+$color-dark-3-light: rgba(173, 172, 213, 0.2);
+// padding
+$card-padding: 1.6rem;
+$pd-1: 1rem;
+$pd-2: 8px;
+
+// border 
+$card-border-radius: 1.6rem;
+
+// border radius
+$border-radius-1: 1rem;
+$border-radius-2: 6px;
+
+// break points
+$breakpoints: (
+    'screen-1': 1350px,
+    'extra-large': 1200px,
+    'large': 992px,
+    'medium': 768px,
+    'small': 576px,
+)

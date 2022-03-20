@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: 0;
+    appearance: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    min-height: 100vh;
+    color: $color-dark;
+}
+html {
+    font-size: 12px;
+}
+img {
+    width: 100%;
+}
+h1 {
+    font-size: 2.2rem;
+}
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1.2rem;
+}
+h4 {
+    font-size: 1rem;
+}
+h5 {
+    font-size: 0.9rem;
+    font-weight: $fw-1;
+}
+p {
+    // font-weight: 0.86rem;
+    color: $color-gray-dark;
+}
+small {
+    font-weight: 300;
+    font-size: 0.77rem;
+}
+// .bg-orange{
+//     background: linear-gradient(to bottom,$color-orange-light, $color-orange);
+//     box-shadow: 0 2rem 3rem $color-orange-light;
+// }
