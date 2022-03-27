@@ -120,7 +120,9 @@ header nav .profile-area .theme-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #f0eff5;
+  background-color: #27282f;
+  -webkit-transition: all .5s;
+  transition: all .5s;
   width: 5rem;
   height: 2rem;
   border-radius: 6px;
@@ -130,6 +132,7 @@ header nav .profile-area .theme-btn {
 header nav .profile-area .theme-btn span {
   width: 50%;
   height: 100%;
+  color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -143,9 +146,9 @@ header nav .profile-area .theme-btn span {
 }
 
 header nav .profile-area .theme-btn .active {
-  background-color: #27282f;
+  background-color: #ffffff;
   border-radius: 6px;
-  color: #ffffff;
+  color: #27282f;
 }
 
 header nav .profile-area .profile {
@@ -341,6 +344,7 @@ header nav .profile-area #menu-btn {
   padding: 0px 10px;
   border: none;
   border-radius: 10px;
+  margin: 0 5px;
 }
 
 .admin .admin__right .tab-content table .table__btn .table__btn-left {
@@ -612,8 +616,8 @@ header nav .profile-area #menu-btn {
 }
 
 .darkMode nav .profile-area .theme-btn {
-  background-color: #23232a;
-  color: #ddd;
+  background-color: #56555e;
+  color: #ffffff;
 }
 
 .darkMode nav .profile-area .theme-btn .active {

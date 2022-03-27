@@ -198,11 +198,11 @@
                                     <th scope="row">1</th>
                                     <td>Boardgame gia đình</td>
                                     <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-left">
+                                        <div class="table__btn d-flex justify-content-center">
+                                            <div class="table__btn-left">
                                                 <button>Sửa</button>
                                             </div>
-                                            <div class="col-6 table__btn-right">
+                                            <div class="table__btn-right">
                                                 <button>Xoá</button>
                                             </div>
                                         </div>
@@ -212,11 +212,11 @@
                                     <th scope="row">2</th>
                                     <td>Boardgame trẻ em</td>
                                     <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-left">
+                                        <div class="table__btn d-flex justify-content-center">
+                                            <div class="table__btn-left">
                                                 <button>Sửa</button>
                                             </div>
-                                            <div class="col-6 table__btn-right">
+                                            <div class="table__btn-right">
                                                 <button>Xoá</button>
                                             </div>
                                         </div>
@@ -238,54 +238,73 @@
                             <option value="">Boardgame gia đình</option>
                             <option value="">Boardgame trẻ em</option>
                         </select>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Ảnh sản phẩm</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Mô tả</th>
-                                    <th scope="col">Giá</th>
-                                    <th scope="col">Tuỳ biến</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td class="table__img"><img src="./img/product2.jpg" alt=""></td>
-                                    <td>Jishaku</td>
-                                    <td>Mô tả sản phẩm</td>
-                                    <td>123456 <sup>đ</sup></td>
-                                    <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-left">
-                                                <button>Sửa</button>
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Ảnh sản phẩm</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Mô tả</th>
+                                        <th scope="col">Giá</th>
+                                        <th scope="col">Tuỳ biến</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td class="table__img"><img src="./img/product2.jpg" alt=""></td>
+                                        <td>Jishaku</td>
+                                        <td>Mô tả sản phẩm</td>
+                                        <td>123456 <sup>đ</sup></td>
+                                        <td>
+                                            <div class="table__btn d-flex justify-content-center">
+                                                <div class="table__btn-left">
+                                                    <button>Sửa</button>
+                                                </div>
+                                                <div class="table__btn-right">
+                                                    <button>Xoá</button>
+                                                </div>
                                             </div>
-                                            <div class="col-6 table__btn-right">
-                                                <button>Xoá</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td class="table__img"><img src="./img/product2.jpg" alt=""></td>
+                                        <td>Jishaku</td>
+                                        <td>Mô tả sản phẩm</td>
+                                        <td>123456 <sup>đ</sup></td>
+                                        <td>
+                                            <div class="table__btn d-flex justify-content-center">
+                                                <div class="table__btn-left">
+                                                    <button>Sửa</button>
+                                                </div>
+                                                <div class="table__btn-right">
+                                                    <button>Xoá</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td class="table__img"><img src="./img/product2.jpg" alt=""></td>
-                                    <td>Jishaku</td>
-                                    <td>Mô tả sản phẩm</td>
-                                    <td>123456 <sup>đ</sup></td>
-                                    <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-left">
-                                                <button>Sửa</button>
-                                            </div>
-                                            <div class="col-6 table__btn-right">
-                                                <button>Xoá</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation example ">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                         <div class="tab-pane-btn">
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalSanPham">
@@ -296,45 +315,47 @@
                     <div class="tab-pane fade show" id="v-pills-donhang" role="tabpanel"
                         aria-labelledby="v-pills-donhang-tab">
                         <h1>Đơn hàng</h1>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên khách hàng</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Thành tiền</th>
-                                    <th scope="col">Địa chỉ</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Tuỳ biến</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Đoàn Hương Ngàn</td>
-                                    <td>
-                                        <p>Jishaku</p>
-                                        <p>Ma sói</p>
-                                    </td>
-                                    <td>123456 <sup>đ</sup></td>
-                                    <td>227 Nguyễn Văn Cừ</td>
-                                    <td>0987654321</td>
-                                    <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-center">
-                                                <button>Giao hàng</button>
+                        <div style="overflow-x:auto">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên khách hàng</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Thành tiền</th>
+                                        <th scope="col">Địa chỉ</th>
+                                        <th scope="col">Số điện thoại</th>
+                                        <th scope="col">Tuỳ biến</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Đoàn Hương Ngàn</td>
+                                        <td>
+                                            <p>Jishaku</p>
+                                            <p>Ma sói</p>
+                                        </td>
+                                        <td>123456 <sup>đ</sup></td>
+                                        <td>227 Nguyễn Văn Cừ</td>
+                                        <td>0987654321</td>
+                                        <td>
+                                            <div class="table__btn d-flex justify-content-center">
+                                                <div class="table__btn-center">
+                                                    <button>Giao hàng</button>
+                                                </div>
+                                                <div class="table__btn-left">
+                                                    <button>Sửa</button>
+                                                </div>
+                                                <div class="table__btn-right">
+                                                    <button>Xoá</button>
+                                                </div>
                                             </div>
-                                            <div class="col-3 table__btn-left">
-                                                <button>Sửa</button>
-                                            </div>
-                                            <div class="col-3 table__btn-right">
-                                                <button>Xoá</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade show" id="v-pills-doanhthu" role="tabpanel"
                         aria-labelledby="v-pills-doanhthu-tab">
@@ -352,29 +373,31 @@
                             <input type="number" placeholder="năm">
                             <button class="btn btn-primary">Tìm</button>
                         </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Tên khách hàng</th>
-                                    <th scope="col">Thành tiền</th>
-                                    <th scope="col">Thời gian</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>
-                                        <p>Jishaku</p>
-                                        <p>Ma sói</p>
-                                    </td>
-                                    <td>Đoàn Hương Ngàn</td>
-                                    <td>123456 <sup>đ</sup></td>
-                                    <td>22/02/2022</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Tên khách hàng</th>
+                                        <th scope="col">Thành tiền</th>
+                                        <th scope="col">Thời gian</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <p>Jishaku</p>
+                                            <p>Ma sói</p>
+                                        </td>
+                                        <td>Đoàn Hương Ngàn</td>
+                                        <td>123456 <sup>đ</sup></td>
+                                        <td>22/02/2022</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade show" id="v-pills-customer" role="tabpanel"
                         aria-labelledby="v-pills-customers-tab">
@@ -383,35 +406,37 @@
                             <input type="text" placeholder="Tìm khách hàng">
                             <button class="btn btn-primary">Tìm</button>
                         </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên khách hàng</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Địa chỉ</th>
-                                    <th scope="col">Tuỳ biến</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Đoàn Hương Ngàn</td>
-                                    <td>0987654321</td>
-                                    <td>227 Nguyễn Văn Cừ</td>
-                                    <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-left">
-                                                <button>Sửa</button>
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên khách hàng</th>
+                                        <th scope="col">Số điện thoại</th>
+                                        <th scope="col">Địa chỉ</th>
+                                        <th scope="col">Tuỳ biến</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Đoàn Hương Ngàn</td>
+                                        <td>0987654321</td>
+                                        <td>227 Nguyễn Văn Cừ</td>
+                                        <td>
+                                            <div class="table__btn d-flex justify-content-center">
+                                                <div class="table__btn-left">
+                                                    <button>Sửa</button>
+                                                </div>
+                                                <div class="table__btn-right">
+                                                    <button>Xoá</button>
+                                                </div>
                                             </div>
-                                            <div class="col-6 table__btn-right">
-                                                <button>Xoá</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade show" id="v-pills-admin" role="tabpanel"
                         aria-labelledby="v-pills-admin-tab">
@@ -420,35 +445,37 @@
                             <input type="text" placeholder="Tìm tên quản trị viên">
                             <button class="btn btn-primary">Tìm</button>
                         </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên khách hàng</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Địa chỉ</th>
-                                    <th scope="col">Tuỳ biến</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Đoàn Hương Ngàn</td>
-                                    <td>0987654321</td>
-                                    <td>227 Nguyễn Văn Cừ</td>
-                                    <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-left">
-                                                <button>Sửa</button>
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên khách hàng</th>
+                                        <th scope="col">Số điện thoại</th>
+                                        <th scope="col">Địa chỉ</th>
+                                        <th scope="col">Tuỳ biến</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Đoàn Hương Ngàn</td>
+                                        <td>0987654321</td>
+                                        <td>227 Nguyễn Văn Cừ</td>
+                                        <td>
+                                            <div class="table__btn d-flex justify-content-center">
+                                                <div class="table__btn-left">
+                                                    <button>Sửa</button>
+                                                </div>
+                                                <div class="table__btn-right">
+                                                    <button>Xoá</button>
+                                                </div>
                                             </div>
-                                            <div class="col-6 table__btn-right">
-                                                <button>Xoá</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="tab-pane-btn">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdmin">
                                 Thêm
@@ -457,34 +484,36 @@
                     </div>
                     <div class="tab-pane fade show" id="v-pills-bug" role="tabpanel" aria-labelledby="v-pills-bug-tab">
                         <h1>Phản hồi của khách hàng</h1>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên khách hàng</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Nội dung phản hồi</th>
-                                    <th scope="col">Thời gian</th>
-                                    <th scope="col">Tuỳ biến</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Đoàn Hương Ngàn</td>
-                                    <td>0987654321</td>
-                                    <td>lỗi giao diện trang chủ</td>
-                                    <td>22/02/2022</td>
-                                    <td>
-                                        <div class="table__btn row">
-                                            <div class="col-12 table__btn-center">
-                                                <button>Đã xử lí</button>
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên khách hàng</th>
+                                        <th scope="col">Số điện thoại</th>
+                                        <th scope="col">Nội dung phản hồi</th>
+                                        <th scope="col">Thời gian</th>
+                                        <th scope="col">Tuỳ biến</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Đoàn Hương Ngàn</td>
+                                        <td>0987654321</td>
+                                        <td>lỗi giao diện trang chủ</td>
+                                        <td>22/02/2022</td>
+                                        <td>
+                                            <div class="table__btn">
+                                                <div class="table__btn-center">
+                                                    <button class="">Đã xử lí</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
