@@ -1,11 +1,15 @@
-const loginRouter = require('../routes/login.route');
-const adminRouter = require('../routes/admin.route');
-const userRouter = require('../routes/user.route');
-const orderRouter = require('../routes/order.route');
-const productRouter = require('../routes/product.route');
-const commentRouter = require('../routes/comment.route');
+const homeRouter = require('../routes/home.route')
+const loginRouter = require('../routes/login.route')
+const adminRouter = require('../routes/admin.route')
+const userRouter = require('../routes/user.route')
+const orderRouter = require('../routes/order.route')
+const productRouter = require('../routes/product.route')
+const commentRouter = require('../routes/comment.route')
 
 const route = (app) => {
+
+    app.use('/admin', adminRouter)
+
     app.use('/login', (req, res, next) => {
         res.render('login')
     })
@@ -26,13 +30,8 @@ const route = (app) => {
         res.render('payment')
     })
 
-    app.use('/product', (req, res, next) => {
-        res.render('product')
-    })
-
-    app.use('/', (req, res, next) => {
-        res.render('home')
-    })
+    app.use('/product', productRouter)
+    app.use('/', homeRouter)
 }
 
 module.exports = route

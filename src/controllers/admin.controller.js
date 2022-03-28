@@ -7,6 +7,14 @@ const bcrypt = require('bcryptjs')
 
 class AdminController {
 
+    index(req, res, next) {
+        res.render('admin/home')
+    }
+
+    login(req, res, next) {
+        res.render('admin/login')
+    }
+
     /**
      * @route [POST] /api/admin/login
      * @desc Login as administrator role

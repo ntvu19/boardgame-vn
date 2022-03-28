@@ -1,0 +1,547 @@
+<!-- HEADER -->
+<header>
+    <nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2 d-flex align-item-center">
+                    <img src="/img/logo.png" alt="" class="logo">
+                </div>
+                <div class="col-2 col-md-4 col-xl-6">
+                    <div class="search-bar">
+                        <span class="material-icons-sharp">
+                            search
+                        </span>
+                        <input type="search" placeholder="Tìm kiếm...">
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-xl-4">
+                    <div class="profile-area">
+                        <div class="theme-btn">
+                            <span class="material-icons-sharp active">
+                                light_mode
+                            </span>
+                            <span class="material-icons-sharp">
+                                dark_mode
+                            </span>
+                        </div>
+                        <div class="profile">
+                            <div class="profile-photo">
+                                <img src="/img/avatar_19127049.JPG" alt="">
+                            </div>
+                            <h4>Hương Ngàn</h4>
+                        </div>
+                        <button>
+                            <span class="material-icons-sharp">
+                                logout
+                            </span>
+                        </button>
+                        <button id="menu-btn">
+                            <span class="material-icons-sharp">
+                                menu
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- ADMIN -->
+<section class="admin section">
+    <div class="container-fluid row">
+        <div class="admin__left col-xl-2">
+            <button id="close-btn">
+                <span class="material-icons-sharp">
+                    close
+                </span>
+            </button>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                    aria-controls="v-pills-home" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        home
+                    </span>
+                    Trang chủ
+                </a>
+                <a class="nav-link" id="v-pills-danhmuc-tab" data-toggle="pill" href="#v-pills-danhmuc" role="tab"
+                    aria-controls="v-pills-danhmuc" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        dashboard_customize
+                    </span>
+                    Danh mục sản phẩm
+                </a>
+                <a class="nav-link" id="v-pills-sanpham-tab" data-toggle="pill" href="#v-pills-sanpham" role="tab"
+                    aria-controls="v-pills-sanpham" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        category
+                    </span>
+                    Sản phẩm
+                </a>
+                <a class="nav-link" id="v-pills-donhang-tab" data-toggle="pill" href="#v-pills-donhang" role="tab"
+                    aria-controls="v-pills-donhang" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        add_shopping_cart
+                    </span>
+                    Đơn hàng
+                </a>
+                <a class="nav-link" id="v-pills-doanhthu-tab" data-toggle="pill" href="#v-pills-doanhthu" role="tab"
+                    aria-controls="v-pills-doanhthu" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        analytics
+                    </span>
+                    Doanh thu
+                </a>
+
+                <a class="nav-link" id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-customer" role="tab"
+                    aria-controls="v-pills-customer" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        perm_contact_calendar
+                    </span>
+                    Danh sách khách hàng
+                </a>
+                <a class="nav-link" id="v-pills-admin-tab" data-toggle="pill" href="#v-pills-admin" role="tab"
+                    aria-controls="v-pills-admin" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        admin_panel_settings
+                    </span>
+                    Danh sách admin
+                </a>
+                <a class="nav-link" id="v-pills-bug-tab" data-toggle="pill" href="#v-pills-bug" role="tab"
+                    aria-controls="v-pills-bug" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        help_center
+                    </span>
+                    Phản hồi
+                </a>
+            </div>
+        </div>
+        <div class="admin__right col-12 col-xl-10">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                    aria-labelledby="v-pills-home-tab">
+                    <div class="row admin__home-content">
+                        <div class="col-6 col-lg-3 pb-5">
+                            <div class="admin__home-item">
+                                <h3>Tổng khách hàng</h3>
+                                <p class="num">123456</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="admin__home-item">
+                                <h3>Doanh thu</h3>
+                                <p><span class="num">123456 </span><sup>đ</sup></p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="admin__home-item">
+                                <h3>Vốn</h3>
+                                <p><span class="num">123456 </span><sup>đ</sup></p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="admin__home-item">
+                                <h3>Thuế</h3>
+                                <p><span class="num">123456 </span><sup>đ</sup></p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="chart-container">
+                                <canvas id="myChart" class="col-12">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="v-pills-danhmuc" role="tabpanel"
+                    aria-labelledby="v-pills-danhmuc-tab">
+                    <h1>Danh mục sản phẩm</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Boardgame gia đình</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-6 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Boardgame trẻ em</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-6 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tab-pane-btn">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalDanhMuc">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="v-pills-sanpham" role="tabpanel"
+                    aria-labelledby="v-pills-sanpham-tab">
+                    <h1>Sản phẩm</h1>
+                    <select name="" id="">
+                        <option value="">Boardgame gia đình</option>
+                        <option value="">Boardgame trẻ em</option>
+                    </select>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Ảnh sản phẩm</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Mô tả</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td class="table__img"><img src="/img/product2.jpg" alt=""></td>
+                                <td>Jishaku</td>
+                                <td>Mô tả sản phẩm</td>
+                                <td>123456 <sup>đ</sup></td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-6 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td class="table__img"><img src="/img/product2.jpg" alt=""></td>
+                                <td>Jishaku</td>
+                                <td>Mô tả sản phẩm</td>
+                                <td>123456 <sup>đ</sup></td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-6 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tab-pane-btn">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalSanPham">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="v-pills-donhang" role="tabpanel"
+                    aria-labelledby="v-pills-donhang-tab">
+                    <h1>Đơn hàng</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Đoàn Hương Ngàn</td>
+                                <td>
+                                    <p>Jishaku</p>
+                                    <p>Ma sói</p>
+                                </td>
+                                <td>123456 <sup>đ</sup></td>
+                                <td>227 Nguyễn Văn Cừ</td>
+                                <td>0987654321</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-center">
+                                            <button>Giao hàng</button>
+                                        </div>
+                                        <div class="col-3 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-3 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade show" id="v-pills-doanhthu" role="tabpanel"
+                    aria-labelledby="v-pills-doanhthu-tab">
+                    <h1>Doanh thu</h1>
+                    <div class="search-date">
+                        <label for="">Từ</label>
+                        <input type="number" placeholder="ngày">/
+                        <input type="number" placeholder="tháng">/
+                        <input type="number" placeholder="năm">
+                    </div>
+                    <div class="search-date">
+                        <label for="">Đến</label>
+                        <input type="number" placeholder="ngày">/
+                        <input type="number" placeholder="tháng">/
+                        <input type="number" placeholder="năm">
+                        <button class="btn btn-primary">Tìm</button>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Thời gian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>
+                                    <p>Jishaku</p>
+                                    <p>Ma sói</p>
+                                </td>
+                                <td>Đoàn Hương Ngàn</td>
+                                <td>123456 <sup>đ</sup></td>
+                                <td>22/02/2022</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade show" id="v-pills-customer" role="tabpanel"
+                    aria-labelledby="v-pills-customers-tab">
+                    <h1>Danh sách khách hàng</h1>
+                    <div class="search-customers">
+                        <input type="text" placeholder="Tìm khách hàng">
+                        <button class="btn btn-primary">Tìm</button>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Đoàn Hương Ngàn</td>
+                                <td>0987654321</td>
+                                <td>227 Nguyễn Văn Cừ</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-6 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade show" id="v-pills-admin" role="tabpanel"
+                    aria-labelledby="v-pills-admin-tab">
+                    <h1>Danh sách quản trị viên</h1>
+                    <div class="search-customers">
+                        <input type="text" placeholder="Tìm tên quản trị viên">
+                        <button class="btn btn-primary">Tìm</button>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Đoàn Hương Ngàn</td>
+                                <td>0987654321</td>
+                                <td>227 Nguyễn Văn Cừ</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-6 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tab-pane-btn">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdmin">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="v-pills-bug" role="tabpanel" aria-labelledby="v-pills-bug-tab">
+                    <h1>Phản hồi của khách hàng</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Nội dung phản hồi</th>
+                                <th scope="col">Thời gian</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Đoàn Hương Ngàn</td>
+                                <td>0987654321</td>
+                                <td>lỗi giao diện trang chủ</td>
+                                <td>22/02/2022</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-12 table__btn-center">
+                                            <button>Đã xử lí</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal danh mục -->
+<div class="modal fade" id="modalDanhMuc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Thêm danh mục</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="">Tên danh mục<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="product_name"> <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal sản phẩm -->
+<div class="modal fade" id="modalSanPham" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="">Tên sản phẩm<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="product_name"><br>
+                    <label for="">Giá<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="product_price"><br>
+                    <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
+                    <textarea name="" id="" rows="6"> </textarea><br>
+                    <label for="">Ảnh sản phẩm<span style="color: red;">*</span></label> <br>
+                    <input class="modal-body-img" type="file" name="product_img"> <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal danh sách admin -->
+<div class="modal fade" id="modalAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Thêm quản trị viên</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="">Họ và tên<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="admin-prof"> <br>
+                    <label for="">Số điện thoại<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="admin-prof"> <br>
+                    <label for="">Địa chỉ<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="admin-prof"> <br>
+                    <label for="">Email<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="admin-prof"> <br>
+                    <label for="">Tên đăng nhập<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="admin-prof"> <br>
+                    <label for="">Mật khẩu<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="admin-prof"> <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>

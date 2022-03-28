@@ -1,0 +1,706 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: 0;
+    -webkit-appearance: 0;
+    -moz-appearance: 0;
+    appearance: 0;
+    text-decoration: none;
+    list-style: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    min-height: 100vh;
+    color: #27282f;
+}
+
+html {
+    font-size: 12px;
+}
+
+img {
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+h5 {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+p {
+    color: #56555e;
+}
+
+small {
+    font-weight: 300;
+    font-size: 0.77rem;
+}
+
+header nav {
+    width: 100%;
+    background-color: #fb5332;
+    padding: 1rem 0;
+}
+
+header nav .logo {
+    width: 20rem;
+}
+
+header nav .search-bar {
+    background-color: #f0eff5;
+    padding: 8px 1.6rem;
+    width: 32vw;
+    border-radius: 6px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1rem;
+    color: #86848c;
+    margin: 0 auto;
+}
+
+header nav .search-bar input {
+    color: #27282f;
+    background: transparent;
+    width: 100%;
+}
+
+header nav .search-bar input::-webkit-input-placeholder {
+    color: #56555e;
+}
+
+header nav .search-bar input:-ms-input-placeholder {
+    color: #56555e;
+}
+
+header nav .search-bar input::-ms-input-placeholder {
+    color: #56555e;
+}
+
+header nav .search-bar input::placeholder {
+    color: #56555e;
+}
+
+header nav .profile-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+header nav .profile-area .theme-btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #f0eff5;
+    width: 5rem;
+    height: 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+header nav .profile-area .theme-btn span {
+    width: 50%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+header nav .profile-area .theme-btn .active {
+    background-color: #27282f;
+    border-radius: 6px;
+    color: #ffffff;
+}
+
+header nav .profile-area .profile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+header nav .profile-area .profile .profile-photo {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+header nav .profile-area .profile h4 {
+    margin: 0;
+    color: #ffffff;
+}
+
+header nav .profile-area button {
+    text-align: center;
+    background: transparent;
+    width: 3rem;
+    height: 3rem;
+    color: #ffffff;
+    border-radius: 6px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+header nav .profile-area button span {
+    line-height: 3rem;
+}
+
+header nav .profile-area button:hover {
+    background-color: #ffffff;
+    color: #fb5332;
+}
+
+header nav .profile-area #menu-btn {
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    header nav .search-bar {
+        display: none;
+    }
+    header nav .profile-area #menu-btn {
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header nav .logo {
+        width: 15rem;
+        margin: auto 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    header nav .logo {
+        width: 10rem;
+        margin: auto 0;
+    }
+}
+
+.admin {
+    background-color: #f0eff5;
+}
+
+.admin .admin__left {
+    height: 88vh;
+}
+
+.admin .admin__left #close-btn {
+    display: none;
+}
+
+.admin .admin__left .nav .nav-link {
+    color: #86848c;
+    font-size: 15px;
+    font-weight: 700;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    padding: 15px 0;
+}
+
+.admin .admin__left .nav .nav-link span {
+    font-size: 30px;
+    padding-right: 10px;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    margin-left: 15px;
+}
+
+.admin .admin__left .nav .nav-link:hover {
+    color: #4707ea;
+}
+
+.admin .admin__left .nav .nav-link:hover span {
+    margin-left: 20px;
+}
+
+.admin .admin__left .nav .active {
+    background-color: #ffffff;
+    color: #4707ea;
+}
+
+.admin .admin__left .nav .active::before {
+    content: "";
+    width: 6px;
+    height: 100%;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    background-color: #4707ea;
+}
+
+.admin .admin__right .tab-content .admin__home-content .admin__home-item {
+    width: 80%;
+    padding: 20px 0;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 1.6rem;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(251, 83, 50, 0.2)), to(#fb5332));
+    background: linear-gradient(to bottom, rgba(251, 83, 50, 0.2), #fb5332);
+    -webkit-box-shadow: 0 2rem 3rem rgba(251, 83, 50, 0.2);
+    box-shadow: 0 2rem 3rem rgba(251, 83, 50, 0.2);
+}
+
+.admin .admin__right .tab-content .admin__home-content .admin__home-item p {
+    font-size: 24px;
+    color: #27282f;
+    font-weight: 700;
+    margin: 0;
+}
+
+.admin .admin__right .tab-content .admin__home-content .chart-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.admin .admin__right .tab-content .admin__home-content .chart-container #myChart {
+    background-color: #ffffff;
+    margin-top: 3rem;
+    border-radius: 1.6rem;
+    padding: 1.6rem;
+}
+
+.admin .admin__right .tab-content h1 {
+    color: #fb5332;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.admin .admin__right .tab-content table {
+    margin-top: 20px;
+}
+
+.admin .admin__right .tab-content table thead tr th {
+    text-align: center;
+    font-size: 15px;
+}
+
+.admin .admin__right .tab-content table tbody td {
+    font-size: 15px;
+}
+
+.admin .admin__right .tab-content table tbody td p {
+    font-size: 15px;
+}
+
+.admin .admin__right .tab-content table .table__img img {
+    width: 100px;
+    height: auto;
+}
+
+.admin .admin__right .tab-content table .table__btn button {
+    padding: 0px 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.admin .admin__right .tab-content table .table__btn .table__btn-left {
+    text-align: right;
+}
+
+.admin .admin__right .tab-content table .table__btn .table__btn-left button {
+    background-color: #007bff;
+}
+
+.admin .admin__right .tab-content table .table__btn .table__btn-right {
+    text-align: left;
+}
+
+.admin .admin__right .tab-content table .table__btn .table__btn-right button {
+    background-color: #fb5332;
+}
+
+.admin .admin__right .tab-content table .table__btn .table__btn-center {
+    text-align: center;
+}
+
+.admin .admin__right .tab-content table .table__btn .table__btn-center button {
+    background-color: #22ca4b;
+}
+
+.admin .admin__right .tab-content .tab-pane-btn {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.admin .admin__right .tab-content select {
+    padding: 5px 10px;
+    border-radius: 1.6rem;
+    font-size: 15px;
+    font-weight: 700;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(251, 83, 50, 0.2)), to(#fb5332));
+    background: linear-gradient(rgba(251, 83, 50, 0.2), #fb5332);
+}
+
+.admin .admin__right .tab-content .search-date label {
+    font-size: 15px;
+    padding-right: 10px;
+}
+
+.admin .admin__right .tab-content .search-date input {
+    text-align: center;
+    width: 60px;
+    border-radius: 1rem;
+    padding: 5px 3px;
+}
+
+.admin .admin__right .tab-content .search-date input::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.admin .admin__right .tab-content .search-date input:-ms-input-placeholder {
+    text-align: center;
+}
+
+.admin .admin__right .tab-content .search-date input::-ms-input-placeholder {
+    text-align: center;
+}
+
+.admin .admin__right .tab-content .search-date input::placeholder {
+    text-align: center;
+}
+
+.admin .admin__right .tab-content .search-date button {
+    padding: 5px 20px;
+    margin-left: 20px;
+    border-radius: 1rem;
+}
+
+.admin .admin__right .tab-content .search-customers input {
+    width: 30%;
+    border-radius: 1rem;
+    padding: 5px 10px;
+}
+
+.admin .admin__right .tab-content .search-customers button {
+    padding: 5px 20px;
+    margin-left: 20px;
+    border-radius: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .admin .admin__left {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        z-index: 3;
+        background-color: #ffffff;
+        width: 20rem;
+        height: 100vh;
+        -webkit-box-shadow: 2rem 0 2rem rgba(71, 7, 234, 0.2);
+        box-shadow: 2rem 0 2rem rgba(71, 7, 234, 0.2);
+        padding: 0;
+        display: none;
+        -webkit-animation: showSidebar 500ms ease forwards;
+        animation: showSidebar 500ms ease forwards;
+    }
+    .admin .admin__left #close-btn {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 4;
+        background: transparent;
+        color: #27282f;
+    }
+    .admin .admin__left #close-btn:hover {
+        cursor: pointer;
+    }
+    .admin .admin__left .nav {
+        margin-top: 4rem;
+    }
+    .admin .admin__left .nav .nav-link {
+        font-size: 13px;
+    }
+    @-webkit-keyframes showSidebar {
+        to {
+            left: 0;
+        }
+    }
+    @keyframes showSidebar {
+        to {
+            left: 0;
+        }
+    }
+}
+
+.modal .modal-content .modal-header .modal-title {
+    color: #fb5332;
+}
+
+.modal .modal-content .modal-body label {
+    color: blue;
+}
+
+.modal .modal-content .modal-body input {
+    width: 100%;
+    padding: 3px 5px;
+    border: 1px solid #86848c;
+}
+
+.modal .modal-content .modal-body textarea {
+    width: 100%;
+    padding: 3px 5px;
+    border: 1px solid #86848c;
+}
+
+.modal .modal-content .modal-body .modal-body-img {
+    color: red;
+    cursor: pointer;
+}
+
+.login {
+    background-image: url(../../img/bg-login.jpg);
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.login .login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.login .login-page .login-logo {
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 20px 20px 0 0;
+    background-color: #fb5332;
+}
+
+.login .login-page .login-logo img {
+    width: auto;
+}
+
+.login .login-page .form {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 35px 45px;
+    text-align: center;
+    border-radius: 0px 0px 20px 20px;
+    -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login .login-page .form input {
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.login .login-page .form button {
+    text-transform: uppercase;
+    outline: 0;
+    background: #fb5332;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.login .login-page .form button:hover,
+.login .login-page .form button:focus,
+.login .login-page .form button:active {
+    background: #fb5332;
+}
+
+.login .login-page .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.login .login-page .form .message a {
+    color: #fb5332;
+    text-decoration: none;
+}
+
+.login .login-page .form .register-form {
+    display: none;
+}
+
+.darkMode nav {
+    background-color: #131316;
+}
+
+.darkMode nav .search-bar {
+    background-color: #23232a;
+}
+
+.darkMode nav .search-bar input {
+    color: #ddd;
+}
+
+.darkMode nav .search-bar input::-webkit-input-placeholder {
+    color: #adacd5;
+}
+
+.darkMode nav .search-bar input:-ms-input-placeholder {
+    color: #adacd5;
+}
+
+.darkMode nav .search-bar input::-ms-input-placeholder {
+    color: #adacd5;
+}
+
+.darkMode nav .search-bar input::placeholder {
+    color: #adacd5;
+}
+
+.darkMode nav .profile-area .theme-btn {
+    background-color: #23232a;
+    color: #ddd;
+}
+
+.darkMode nav .profile-area .theme-btn .active {
+    background-color: #ddd;
+    color: #131316;
+}
+
+.darkMode nav .profile-area .profile h4 {
+    color: #ddd;
+}
+
+.darkMode nav .profile-area button {
+    color: #ddd;
+}
+
+.darkMode nav .profile-area button:hover {
+    color: #131316;
+}
+
+.darkMode .admin {
+    background-color: #23232a;
+}
+
+.darkMode .admin .admin__left .nav .active {
+    background-color: #ffffff;
+}
+
+.darkMode .admin .admin__right .tab-content .admin__home-content .admin__home-item {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(71, 7, 234, 0.2)), to(#4707ea));
+    background: linear-gradient(to bottom, rgba(71, 7, 234, 0.2), #4707ea);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.darkMode .admin .admin__right .tab-content .admin__home-content .admin__home-item h3 {
+    color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content .admin__home-content .admin__home-item p {
+    color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content .admin__home-content .chart-container #myChart {
+    background-color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content h1 {
+    color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content table thead tr th {
+    color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content table tbody td {
+    color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content table tbody td p {
+    color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content table tbody th {
+    color: #ddd;
+}
+
+.darkMode .admin .admin__right .tab-content select {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#adacd5));
+    background: linear-gradient(to bottom, #ddd, #adacd5);
+}
+
+@media screen and (max-width: 1200px) {
+    .darkMode .admin .admin__left {
+        background-color: #23232a;
+        -webkit-box-shadow: 2rem 0 2rem rgba(173, 172, 213, 0.2);
+        box-shadow: 2rem 0 2rem rgba(173, 172, 213, 0.2);
+    }
+    .darkMode .admin .admin__left #close-btn {
+        color: #ddd;
+    }
+}
+
+.section {
+    padding: 40px 0;
+}
+
+
+/*# sourceMappingURL=main.css.map */
