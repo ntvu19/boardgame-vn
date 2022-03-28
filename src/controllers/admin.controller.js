@@ -4,11 +4,31 @@ const OrderModel = require('../models/order.model')
 const UserModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const { render } = require('express/lib/response')
 
 class AdminController {
 
+    // index(req, res, next) {
+    //     res.render('admin/home')
+    // }
+
     index(req, res, next) {
-        res.render('admin/home')
+        ProductModel.find({})
+            .then(product => {
+                res.render('admin/home', { products: product.map(mongoose => mongoose.toObject()) })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        
+        // UserModel.find({})
+        //     .then(user => {
+        //         res.render('admin/home', { users: user.map(mongoose => mongoose.toObject()) })
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
+
     }
 
     login(req, res, next) {
@@ -111,6 +131,7 @@ class AdminController {
     viewAllUser(req, res, next) {
         UserModel.find({})
             .then(user => {
+                res.render('admin/home', { users: user.map(mongoose => mongoose.toObject()) });
                 if (!user) {
                     return res.status(404).json({
                         message: 'User Not Found',
@@ -171,7 +192,8 @@ class AdminController {
      * @access private
      */
     addProduct(req, res, next) {
-        const newProduct = new ProductModel(req.body)
+        const newProduct = new ProductModel(req.body);
+        console.log(newProduct);
         newProduct.save()
             .then(() => {
                 return res.status(200).json({

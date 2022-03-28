@@ -10,9 +10,9 @@ const ProductSchema = new Schema({
      * 0 - family,      1 - children,       2 - vietnam,        3 - usa
      * 4 - group,       5 - tactics,        6 - flag,           7 - accessories
      */
-    type: { type: Number, required: true },
-    stock: { type: Number, required: true, default: 0 },
-    sold: { type: Number, required: true, default: 0 },
+    type: { type: Number, required: false },
+    stock: { type: Number, required: false, default: 0 },
+    sold: { type: Number, required: false, default: 0 },
     conditions: {
         numberOfPlayer: String,
         idealNumberOfPlayer: String,
