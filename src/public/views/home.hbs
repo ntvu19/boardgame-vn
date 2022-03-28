@@ -213,101 +213,139 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
                         aria-labelledby="v-pills-bgfamily-tab">
-                        <div class="row" id="v-pills-bgfamily2">
-                        
+                        <div class="row">
+                            {{#each products}}
+                                <div class="col-3 card-item">
+                                    <div class="card">
+                                        <img src="/img/product1.png" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{this.name}}</h5>
+                                            <p class="card-text">{{this.description}}</p>
+                                            <div class="card-price">
+                                                <p class="card-price-num">{{this.price}}</p><span> VND</span>
+                                            </div>
+                                        </div>
+                                        <div class="card__overlay">
+                                            <a href="/product/{{this._id}}" class="card__overlay-detail">
+                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                            </a>
+                                            <button class="card__overlay-cart">
+                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <div class="category__right-bottom">
+                            <ul class="pagination pagination-lg" style="margin-left: 500px">
+                                <li class="page-item"><button class="page-link">1</button></li>
+                                <li class="page-item"><button class="page-link">2</button></li>
+                                <li class="page-item"><button class="page-link">3</button></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgchild" role="tabpanel"
                         aria-labelledby="v-pills-bgchild-tab">
                         <div class="row">
-                            <div class="col-3 card-item">
-                                <div class="card">
-                                    <img src="/img/product1.png" class="card-img-top" alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Lớp học mật ngữ</h5>
-                                        <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng
-                                            12
-                                            cùng
-                                            hoàng đạo lớp học mật ngữ</p>
-                                        <div class="card-price">
-                                            <p class="card-price-num">123456</p><span> VND</span>
+                            {{#each products}}
+                                <div class="col-3 card-item">
+                                    <div class="card">
+                                        <img src="/img/product1.png" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{this.name}}</h5>
+                                            <p class="card-text">{{this.description}}</p>
+                                            <div class="card-price">
+                                                <p class="card-price-num">{{this.price}}</p><span> VND</span>
+                                            </div>
+                                        </div>
+                                        <div class="card__overlay">
+                                            <a href="/product/{{this._id}}" class="card__overlay-detail">
+                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                            </a>
+                                            <button class="card__overlay-cart">
+                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="card__overlay">
-                                        <a href="#" class="card__overlay-detail">
-                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                        </a>
-                                        <button class="card__overlay-cart">
-                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                        </button>
-                                    </div>
                                 </div>
+                            {{/each}}
+                            <div class="category__right-bottom">
+                                <ul class="pagination pagination-lg" style="margin-left: 500px">
+                                    <li class="page-item"><button class="page-link">1</button></li>
+                                    <li class="page-item"><button class="page-link">2</button></li>
+                                    <li class="page-item"><button class="page-link">3</button></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgvietnam" role="tabpanel"
                         aria-labelledby="v-pills-bgvietnam-tab">
                         <div class="row">
-                            <div class="col-3 card-item">
-                                <div class="card">
-                                    <img src="/img/product1.png" class="card-img-top" alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Lớp học mật ngữ</h5>
-                                        <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng
-                                            12
-                                            cùng
-                                            hoàng đạo lớp học mật ngữ</p>
-                                        <div class="card-price">
-                                            <p class="card-price-num">123456</p><span> VND</span>
+                            {{#each products}}
+                                <div class="col-3 card-item">
+                                    <div class="card">
+                                        <img src="/img/product1.png" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{this.name}}</h5>
+                                            <p class="card-text">{{this.description}}</p>
+                                            <div class="card-price">
+                                                <p class="card-price-num">{{this.price}}</p><span> VND</span>
+                                            </div>
+                                        </div>
+                                        <div class="card__overlay">
+                                            <a href="/product/{{this._id}}" class="card__overlay-detail">
+                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                            </a>
+                                            <button class="card__overlay-cart">
+                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="card__overlay">
-                                        <a href="#" class="card__overlay-detail">
-                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                        </a>
-                                        <button class="card__overlay-cart">
-                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                        </button>
-                                    </div>
                                 </div>
+                            {{/each}}
+                            <div class="category__right-bottom">
+                                <ul class="pagination pagination-lg" style="margin-left: 500px">
+                                    <li class="page-item"><button class="page-link">1</button></li>
+                                    <li class="page-item"><button class="page-link">2</button></li>
+                                    <li class="page-item"><button class="page-link">3</button></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgUS" role="tabpanel" aria-labelledby="v-pills-bgUS-tab">
                         <div class="row">
-                            <div class="col-3 card-item">
-                                <div class="card">
-                                    <img src="/img/product1.png" class="card-img-top" alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Lớp học mật ngữ</h5>
-                                        <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng
-                                            12
-                                            cùng
-                                            hoàng đạo lớp học mật ngữ</p>
-                                        <div class="card-price">
-                                            <p class="card-price-num">123456</p><span> VND</span>
+                            {{#each products}}
+                                <div class="col-3 card-item">
+                                    <div class="card">
+                                        <img src="/img/product1.png" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{this.name}}</h5>
+                                            <p class="card-text">{{this.description}}</p>
+                                            <div class="card-price">
+                                                <p class="card-price-num">{{this.price}}</p><span> VND</span>
+                                            </div>
+                                        </div>
+                                        <div class="card__overlay">
+                                            <a href="/product/{{this._id}}" class="card__overlay-detail">
+                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                            </a>
+                                            <button class="card__overlay-cart">
+                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="card__overlay">
-                                        <a href="#" class="card__overlay-detail">
-                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                        </a>
-                                        <button class="card__overlay-cart">
-                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                        </button>
-                                    </div>
                                 </div>
+                            {{/each}}
+                            <div class="category__right-bottom">
+                                <ul class="pagination pagination-lg" style="margin-left: 500px">
+                                    <li class="page-item"><button class="page-link">1</button></li>
+                                    <li class="page-item"><button class="page-link">2</button></li>
+                                    <li class="page-item"><button class="page-link">3</button></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="category__right-bottom">
-                    <nav aria-label="Page navigation example" class="category__right-bottom-content">
-                        <ul class="pagination" id="num-page">
-
-                        </ul>
-                    </nav>
-
                 </div>
             </div>
         </div>
@@ -405,3 +443,5 @@
         <i class="fa fa-chevron-up"></i>
     </a>
 </div>
+
+<script src="/js/home/pagination.js"></script>

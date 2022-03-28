@@ -68,6 +68,7 @@
 <section class="product section">
     <div class="container">
         <div class="row product__content">
+            {{#with product}}
             <div class="col-4">
                 <div class="product__img">
                     <img src="/img/product2.jpg" alt="">
@@ -75,7 +76,7 @@
             </div>
             <div class="col-4">
                 <div class="product__text">
-                    <h3>Jishaku (US)</h3>
+                    <h3>{{name}}</h3>
                     <hr>
                     <div class="product__text-description">
                         <p>Số người chơi: <span>2 người</span></p>
@@ -86,9 +87,7 @@
                     </div>
                     <hr>
                     <div class="product__text-price">
-                        <p>
-                            340.000 VND
-                        </p>
+                        <p>{{price}} VNĐ</p>
                         <hr>
                     </div>
                     <div class="product__text-select">
@@ -113,6 +112,7 @@
                     </div>
                 </div>
             </div>
+            {{/with}}
             <div class="col-4">
                 <div class="product__service">
                     <div class="product__service-item row">

@@ -2,6 +2,25 @@ const ProductModel = require('../models/product.model')
 
 class ProductController {
 
+    // [GET] /product
+    index(req, res, next) {
+        res.render('category')
+    }
+
+    // [GET] /product/:id
+    details(req, res, next) {
+        let productId = req.params.id
+        ProductModel.findById(productId)
+            .then(product => {
+                res.render('product', {
+                    product: product ? product.toObject() : product
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     /**
      * @route [GET] /api/product/view-all
      * @desc View all of product by type
