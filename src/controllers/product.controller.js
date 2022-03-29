@@ -4,7 +4,13 @@ class ProductController {
 
     // [GET] /product
     index(req, res, next) {
-        res.render('category')
+        ProductModel.find({})
+            .then(product => {
+                res.render('product', { products: product.map(mongoose => mongoose.toObject()) })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     // [GET] /product/:id
@@ -12,7 +18,7 @@ class ProductController {
         let productId = req.params.id
         ProductModel.findById(productId)
             .then(product => {
-                res.render('product', {
+                res.render('detail', {
                     product: product ? product.toObject() : product
                 })
             })

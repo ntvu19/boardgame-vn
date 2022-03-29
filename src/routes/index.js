@@ -18,10 +18,6 @@ const route = (app) => {
         res.render('cart')
     })
 
-    app.use('/category', (req, res, next) => {
-        res.render('category')
-    })
-
     app.use('/delivery', (req, res, next) => {
         res.render('delivery')
     })
