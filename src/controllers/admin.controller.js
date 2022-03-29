@@ -8,11 +8,39 @@ const bcrypt = require('bcryptjs')
 class AdminController {
 
     index(req, res, next) {
-        res.render('admin/home')
+        // Add multiple data to an object, then send to client
+        ProductModel.find({})
+            .then(product => {
+                res.render('admin/home', {
+                    products: product.map(mongoose => mongoose.toObject())
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     login(req, res, next) {
         res.render('admin/login')
+    }
+
+    addProduct(req, res, next) {
+        const newProduct = new ProductModel(req.body)
+        newProduct.save()
+            .then(() => res.redirect('back'))
+            .catch(err => console.log(err))
+    }
+
+    deleteProduct(req, res, next) {
+        ProductModel.findByIdAndDelete(req.params.id)
+            .then(() => res.redirect('back'))
+            .catch(err => console.log(err))
+    }
+
+    updateProduct(req, res, next) {
+        ProductModel.findByIdAndUpdate(req.params.id, req.body)
+            .then(() => res.redirect('back'))
+            .catch(err => console.log(err))
     }
 
     /**
@@ -163,63 +191,6 @@ class AdminController {
                 message: 'Wrong Query',
             })
         }
-    }
-
-    /**
-     * @route [POST] /api/admin/add-product
-     * @desc Create a product to database
-     * @access private
-     */
-    addProduct(req, res, next) {
-        const newProduct = new ProductModel(req.body)
-        newProduct.save()
-            .then(() => {
-                return res.status(200).json({
-                    message: 'Add product successfully',
-                })
-            })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
-    }
-
-    /**
-     * @route [PUT] /api/admin/update-product/:id 61f6011248f4a07fc1832db6
-     * @desc Update product to database
-     * @access private
-     */
-    updateProduct(req, res, next) {
-            ProductModel.findByIdAndUpdate(req.params.id, req.body)
-                .then(() => {
-                    return res.status(200).json({
-                        message: 'Updating Product Successfully',
-                    })
-                })
-                .catch(err => {
-                    return res.status(500).json({
-                        message: err,
-                    })
-                })
-        }
-        /**
-         * @route [DELETE] /api/admin/delete-product/:id
-         * @desc Delete product to database
-         * @access private
-         */
-    deleteProduct(req, res, next) {
-        ProductModel.findByIdAndDelete(req.params.id)
-            .then(() => {
-                return res.status(200).json({
-                    message: 'Deleting Product Successfully',
-                })
-            })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
     }
 
     /** 
