@@ -15,15 +15,15 @@ const route = (app) => {
     })
 
     app.use('/cart', (req, res, next) => {
-        res.render('cart')
+        res.render('cart', { layout: 'customer' })
     })
 
     app.use('/delivery', (req, res, next) => {
-        res.render('delivery')
+        res.render('delivery', { layout: 'customer' })
     })
 
     app.use('/payment', (req, res, next) => {
-        res.render('payment')
+        res.render('payment', { layout: 'customer' })
     })
 
     app.use('/product', productRouter)

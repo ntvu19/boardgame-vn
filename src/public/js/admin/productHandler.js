@@ -21,7 +21,7 @@ const deleteProduct = () => {
     const deleteProductForm = document.forms['delete-product-form']
     const confirmDeleteProduct = document.querySelector('#btn-delete-product')
     confirmDeleteProduct.addEventListener('click', () => {
-        deleteProductForm.action = '/admin/delete-product/' + productId + '?_method=DELETE'
+        deleteProductForm.action = '/admin/product/delete/' + productId + '?_method=DELETE'
         deleteProductForm.submit()
     })
 }

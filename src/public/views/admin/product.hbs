@@ -1,0 +1,209 @@
+<!-- ADMIN -->
+<section class="admin section">
+    <div class="container-fluid row">
+        <div class="admin__left col-xl-2">
+            <button id="close-btn">
+                <span class="material-icons-sharp">
+                    close
+                </span>
+            </button>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link" id="v-pills-home-tab" href="/admin" role="tab"
+                    aria-controls="v-pills-home" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        home
+                    </span>
+                    Trang chủ
+                </a>
+                <a class="nav-link" id="v-pills-danhmuc-tab" href="/admin/category" role="tab"
+                    aria-controls="v-pills-danhmuc" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        dashboard_customize
+                    </span>
+                    Danh mục sản phẩm
+                </a>
+                <a class="nav-link active" id="v-pills-sanpham-tab" href="/admin/product" role="tab"
+                    aria-controls="v-pills-sanpham" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        category
+                    </span>
+                    Sản phẩm
+                </a>
+                <a class="nav-link" id="v-pills-donhang-tab" href="/admin/order" role="tab"
+                    aria-controls="v-pills-donhang" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        add_shopping_cart
+                    </span>
+                    Đơn hàng
+                </a>
+                <a class="nav-link" id="v-pills-doanhthu-tab" href="/admin/revenue" role="tab"
+                    aria-controls="v-pills-doanhthu" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        analytics
+                    </span>
+                    Doanh thu
+                </a>
+
+                <a class="nav-link" id="v-pills-customer-tab" href="/admin/customer" role="tab"
+                    aria-controls="v-pills-customer" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        perm_contact_calendar
+                    </span>
+                    Danh sách khách hàng
+                </a>
+                <a class="nav-link" id="v-pills-admin-tab" href="/admin/admin" role="tab"
+                    aria-controls="v-pills-admin" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        admin_panel_settings
+                    </span>
+                    Danh sách admin
+                </a>
+                <a class="nav-link" id="v-pills-bug-tab" href="/admin/feedback" role="tab"
+                    aria-controls="v-pills-bug" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        help_center
+                    </span>
+                    Phản hồi
+                </a>
+            </div>
+        </div>
+        <div class="admin__right col-12 col-xl-10">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-sanpham" role="tabpanel"
+                    aria-labelledby="v-pills-sanpham-tab">
+                    <h1>Sản phẩm</h1>
+                    <select name="" id="">
+                        <option value="">Boardgame gia đình</option>
+                        <option value="">Boardgame trẻ em</option>
+                    </select>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Ảnh sản phẩm</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Mô tả</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each products}}
+                                <tr hidden>
+                                    <th scope="row">{{sum @index 1}}</th>
+                                    <td class="table__img"><img src="/img/product2.jpg" alt=""></td>
+                                    <td>{{this.name}}</td>
+                                    {{!-- <td>Mô tả sản phẩm</td> --}}
+                                    <td>{{this.description}}</td>
+                                    <td>{{this.price}} <sup>đ</sup></td>
+                                    <td>
+                                        <div class="table__btn row">
+                                            <div class="col-6 table__btn-left">
+                                                <button class="update-product" data-id="{{this._id}}" data-toggle="modal" data-target="#update-product-modal">Sửa</button>
+                                            </div>
+                                            <div class="col-6 table__btn-right">
+                                                <button class="delete-product" data-id="{{this._id}}" data-toggle="modal" data-target="#delete-product-confirm">Xoá</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example ">
+                            <ul class="pagination justify-content-end"></ul>
+                        </nav>
+                    <div class="tab-pane-btn">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalSanPham">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal sản phẩm -->
+<div class="modal fade" id="modalSanPham" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="add-product-form" action="/admin/product/add" method="POST">
+                    <label for="">Tên sản phẩm<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="name"><br>
+                    <label for="">Giá<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="price"><br>
+                    <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
+                    <textarea name="description" id="" rows="6"> </textarea><br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button id="btn-add-product" type="button" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Sửa sản phẩm --}}
+<div class="modal fade" id="update-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{#each products}}
+        <div class="modal-dialog edit-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Cập nhật thông tin sản phẩm</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/product/update/{{this._id}}?_method=PUT" method="POST">
+                        <label for="">Tên sản phẩm<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="name" value="{{this.name}}"><br>
+                        <label for="">Giá<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="price" value="{{this.price}}"><br>
+                        <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
+                        <textarea name="description" rows="6">{{this.description}}</textarea><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button id="btn-update-product" class="btn btn-primary btn-update-product">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+{{!-- Xoá sản phẩm --}}
+<div id="delete-product-confirm" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Xoá sản phẩm</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Bạn có chắc chắn xoá sản phẩm này?</p>
+            <form name="delete-product-form" method="POST"></form>
+        </div>
+        <div class="modal-footer">
+            <button id="btn-delete-product" class="btn btn-danger">Xoá bỏ</button>
+            <button class="btn btn-default" data-dismiss="modal">Huỷ</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/admin/pagination.js"></script>
+<script src="/js/admin/productHandler.js"></script>

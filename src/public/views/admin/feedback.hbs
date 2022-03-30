@@ -8,7 +8,7 @@
                 </span>
             </button>
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-home-tab" href="/admin" role="tab"
+                <a class="nav-link" id="v-pills-home-tab" href="/admin" role="tab"
                     aria-controls="v-pills-home" aria-selected="true">
                     <span class="material-icons-sharp">
                         home
@@ -58,7 +58,7 @@
                     </span>
                     Danh sách admin
                 </a>
-                <a class="nav-link" id="v-pills-bug-tab" href="/admin/feedback" role="tab"
+                <a class="nav-link active" id="v-pills-bug-tab" href="/admin/feedback" role="tab"
                     aria-controls="v-pills-bug" aria-selected="false">
                     <span class="material-icons-sharp">
                         help_center
@@ -69,69 +69,40 @@
         </div>
         <div class="admin__right col-12 col-xl-10">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                    aria-labelledby="v-pills-home-tab">
-                    <div class="row admin__home-content">
-                        <div class="col-6 col-lg-3 pb-5">
-                            <div class="admin__home-item">
-                                <h3>Tổng khách hàng</h3>
-                                <p class="num">123456</p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="admin__home-item">
-                                <h3>Doanh thu</h3>
-                                <p><span class="num">123456 </span><sup>đ</sup></p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="admin__home-item">
-                                <h3>Vốn</h3>
-                                <p><span class="num">123456 </span><sup>đ</sup></p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="admin__home-item">
-                                <h3>Thuế</h3>
-                                <p><span class="num">123456 </span><sup>đ</sup></p>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="chart-container">
-                                <canvas id="myChart" class="col-12">
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
+                <div class="tab-pane fade show active" id="v-pills-bug" role="tabpanel" aria-labelledby="v-pills-bug-tab">
+                    <h1>Phản hồi của khách hàng</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Nội dung phản hồi</th>
+                                <th scope="col">Thời gian</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Đoàn Hương Ngàn</td>
+                                <td>0987654321</td>
+                                <td>lỗi giao diện trang chủ</td>
+                                <td>22/02/2022</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-12 table__btn-center">
+                                            <button>Đã xử lí</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- GG CHART -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
-    integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- CHART -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script>
-    window.onload = () => {
-        const chart = document.querySelector("#myChart").getContext('2d');
-        // creat new chart
-        new Chart(chart, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', ' Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Doanh thu',
-                    data: [50, 100, 200, 70, 80, 150, 60, 40, 20, 10],
-                    borderColor: 'blue',
-                    borderWidth: 2
-                }]
-            },
-        })
-    }
-</script>
+<script src="/js/admin/pagination.js"></script>
