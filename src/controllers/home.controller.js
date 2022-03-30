@@ -6,7 +6,10 @@ class HomeController {
     index(req, res, next) {
         ProductModel.find({})
             .then(product => {
-                res.render('home', { products: product.map(mongoose => mongoose.toObject()) })
+                res.render('home', {
+                    layout: 'customer',
+                    products: product.map(mongoose => mongoose.toObject())
+                })
             })
             .catch(err => {
                 console.log(err)

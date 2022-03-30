@@ -20,3 +20,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.onload = () => {
+        $('.message a').click(function () {
+            $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        });
+    }
+</script>

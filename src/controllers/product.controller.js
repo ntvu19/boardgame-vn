@@ -6,7 +6,10 @@ class ProductController {
     index(req, res, next) {
         ProductModel.find({})
             .then(product => {
-                res.render('product', { products: product.map(mongoose => mongoose.toObject()) })
+                res.render('product', {
+                    layout: 'customer',
+                    products: product.map(mongoose => mongoose.toObject())
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -19,40 +22,13 @@ class ProductController {
         ProductModel.findById(productId)
             .then(product => {
                 res.render('detail', {
+                    layout: 'customer',
                     product: product ? product.toObject() : product
                 })
             })
             .catch(err => {
                 console.log(err)
             })
-    }
-
-    /**
-     * @route [GET] /api/product/view-all
-     * @desc View all of product by type
-     * @access public
-     */
-    getListProduct(req, res, next) {
-        ProductModel.find({})
-            .then(product => {
-                return res.status(200).json({
-                    product,
-                })
-            })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
-    }
-
-    /**
-     * @route [GET] /api/product/view-detail/:id
-     * @desc View detail of a product
-     * @access public
-     */
-    viewDetail(req, res, next) {
-
     }
 
     /**

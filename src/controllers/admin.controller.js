@@ -8,20 +8,45 @@ const bcrypt = require('bcryptjs')
 class AdminController {
 
     index(req, res, next) {
-        // Add multiple data to an object, then send to client
-        ProductModel.find({})
-            .then(product => {
-                res.render('admin/home', {
-                    products: product.map(mongoose => mongoose.toObject())
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        res.render('admin/home', { layout: 'admin' })
+    }
+
+    categoryPage(req, res, next) {
+        res.render('admin/category', { layout: 'admin' })
+    }
+
+    revenuePage(req, res, next) {
+        res.render('admin/revenue', { layout: 'admin' })
+    }
+
+    orderPage(req, res, next) {
+        res.render('admin/order', { layout: 'admin' })
+    }
+
+    customerPage(req, res, next) {
+        res.render('admin/customer', { layout: 'admin' })
+    }
+
+    adminPage(req, res, next) {
+        res.render('admin/admin', { layout: 'admin' })
+    }
+
+    feedbackPage(req, res, next) {
+        res.render('admin/feedback', { layout: 'admin' })
     }
 
     login(req, res, next) {
         res.render('admin/login')
+    }
+
+    productPage(req, res, next) {
+        ProductModel.find({})
+            .then(product => {
+                res.render('admin/product', {
+                    layout: 'admin',
+                    products: product.map(mongoose => mongoose.toObject())
+                })
+            })
     }
 
     addProduct(req, res, next) {
@@ -42,6 +67,8 @@ class AdminController {
             .then(() => res.redirect('back'))
             .catch(err => console.log(err))
     }
+
+
 
     /**
      * @route [POST] /api/admin/login

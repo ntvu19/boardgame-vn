@@ -20,18 +20,62 @@
 
     <!-- BS4 CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <!-- OWL Carousel -->
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="/css/main.css">
     <title>Board Game VN</title>
 </head>
 <body>
-    
+
+    {{> customer/header}}
+
     {{{body}}}
+
+    {{> customer/footer}}
 
     <!-- Jquery -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <!-- BS4 JS -->
     <script src="/js/bootstrap.min.js"></script>
+    <!-- OWL Carousel -->
+    <script src="/js/owl.carousel.js"></script>
+    <script>
+        $('.myCarousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 8000,
+            smartSpeed: 2000,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+            }
+        })
+    </script>
+    <script>
+        $('.myProduct').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 8000,
+            smartSpeed: 2000,
+            responsive: {
+                0: {
+                    items: 4,
+                },
+            }
+        })
+    </script>
+    
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
 </body>
 </html>
