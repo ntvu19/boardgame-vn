@@ -6,6 +6,7 @@ const path = require('path')
 const express = require('express')
 const handlebars = require('express-handlebars')
 const methodOverride = require('method-override')
+const cookieParser = require('cookie-parser')
 
 // Local file
 const route = require('./routes')
@@ -24,6 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Body parser
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+// Cookie parser
+app.use(cookieParser())
 
 // Method override
 app.use(methodOverride('_method'))

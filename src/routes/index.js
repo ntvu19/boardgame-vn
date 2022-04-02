@@ -10,10 +10,6 @@ const route = (app) => {
 
     app.use('/admin', adminRouter)
 
-    app.use('/login', (req, res, next) => {
-        res.render('login')
-    })
-
     app.use('/cart', (req, res, next) => {
         res.render('cart', { layout: 'customer' })
     })

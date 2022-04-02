@@ -87,22 +87,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Đoàn Hương Ngàn</td>
-                                <td>0987654321</td>
-                                <td>227 Nguyễn Văn Cừ</td>
-                                <td>
-                                    <div class="table__btn row">
-                                        <div class="col-6 table__btn-left">
-                                            <button>Sửa</button>
+                            {{#each admins}}
+                                <tr>
+                                    <th scope="row">{{sum @index 1}}</th>
+                                    <td>{{this.fullName}}</td>
+                                    <td>{{this.phone}}</td>
+                                    <td>{{this.address}}</td>
+                                    <td>
+                                        <div class="table__btn row">
+                                            <div class="col-6 table__btn-left">
+                                                <button class="update-admin" data-id="{{this._id}}" data-toggle="modal" data-target="#editAdminModal">Sửa</button>
+                                            </div>
+                                            <div class="col-6 table__btn-right">
+                                                <button class="delete-admin" data-id="{{this._id}}" data-toggle="modal" data-target="#delete-admin">Xoá</button>
+                                            </div>
                                         </div>
-                                        <div class="col-6 table__btn-right">
-                                            <button>Xoá</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                     <div class="tab-pane-btn">
@@ -116,7 +118,7 @@
     </div>
 </section>
 
-<!-- Modal danh sách admin -->
+<!-- Thêm người quản trị -->
 <div class="modal fade" id="modalAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -127,27 +129,82 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="/admin/admin/add" method="POST" name="add-form">
                     <label for="">Họ và tên<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="admin-prof"> <br>
+                    <input type="text" name="fullName"> <br>
                     <label for="">Số điện thoại<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="admin-prof"> <br>
+                    <input type="text" name="phone"> <br>
                     <label for="">Địa chỉ<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="admin-prof"> <br>
+                    <input type="text" name="address"> <br>
                     <label for="">Email<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="admin-prof"> <br>
+                    <input type="text" name="email"> <br>
                     <label for="">Tên đăng nhập<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="admin-prof"> <br>
+                    <input type="text" name="username"> <br>
                     <label for="">Mật khẩu<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="admin-prof"> <br>
+                    <input type="text" name="password"> <br>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Cập nhật</button>
+                <button id="btn-add-submit" type="button" class="btn btn-primary">Cập nhật</button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/js/admin/pagination.js"></script>
+<!-- Sửa thông tin người quản trị -->
+<div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{#each admins}}
+        <div class="modal-dialog edit-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Thêm quản trị viên</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/admin/update/{{this._id}}?_method=PUT" method="POST">
+                        <label for="">Họ và tên<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="fullName" value="{{this.fullName}}"> <br>
+                        <label for="">Số điện thoại<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="phone" value="{{this.phone}}"> <br>
+                        <label for="">Địa chỉ<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="address" value="{{this.address}}"> <br>
+                        <label for="">Email<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="email" value="{{this.email}}"> <br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary btn-update-submit">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+{{!-- Xoá người quản trị --}}
+<div id="delete-admin" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xoá sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn xoá sản phẩm này?</p>
+                <form name="delete-admin" method="POST"></form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-submit" class="btn btn-danger">Xoá bỏ</button>
+                <button class="btn btn-default" data-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- <script src="/js/admin/pagination.js"></script> --}}
+<script src="/js/admin/adminHandler.js"></script>

@@ -21,4 +21,6 @@ npm-debug.log*
 !.yarn/versions
 .pnp.*
 
+yarn.lock
+
 .vscode

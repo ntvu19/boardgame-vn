@@ -23,14 +23,6 @@ class AdminController {
         res.render('admin/order', { layout: 'admin' })
     }
 
-    customerPage(req, res, next) {
-        res.render('admin/customer', { layout: 'admin' })
-    }
-
-    adminPage(req, res, next) {
-        res.render('admin/admin', { layout: 'admin' })
-    }
-
     feedbackPage(req, res, next) {
         res.render('admin/feedback', { layout: 'admin' })
     }
@@ -39,6 +31,9 @@ class AdminController {
         res.render('admin/login')
     }
 
+    /**
+     * Product
+     */
     productPage(req, res, next) {
         ProductModel.find({})
             .then(product => {
@@ -47,6 +42,7 @@ class AdminController {
                     products: product.map(mongoose => mongoose.toObject())
                 })
             })
+            .catch(err => console.log(err))
     }
 
     addProduct(req, res, next) {
@@ -68,6 +64,60 @@ class AdminController {
             .catch(err => console.log(err))
     }
 
+    /**
+     * Customer
+     */
+    customerPage(req, res, next) {
+        res.render('admin/customer', { layout: 'admin' })
+    }
+
+    /**
+     * Admin
+     */
+    adminPage(req, res, next) {
+        AdminModel.find({})
+            .then(admin => {
+                res.render('admin/admin', {
+                    layout: 'admin',
+                    admins: admin.map(mongoose => mongoose.toObject())
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
+    addAdmin(req, res, next) {
+        // Haven't hashed password yet
+        const newAdmin = new AdminModel(req.body)
+
+        // Generating a token
+        const token = jwt.sign({
+            userId: newAdmin._id,
+            role: 'admin'
+        }, process.env.SECRET_KEY)
+        newAdmin.token = token
+
+        // Hashing password
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newAdmin.password, salt, (err, hashed) => {
+                newAdmin.password = hashed
+                newAdmin.save()
+                    .then(() => { res.redirect('back') })
+                    .catch(err => console.log(err))
+            })
+        })
+    }
+
+    deleteAdmin(req, res, next) {
+        AdminModel.findByIdAndDelete(req.params.id)
+            .then(() => res.redirect('back'))
+            .catch(err => console.log(err))
+    }
+
+    updateAdmin(req, res, next) {
+        AdminModel.findByIdAndUpdate(req.params.id, req.body)
+            .then(() => res.redirect('back'))
+            .catch(err => console.log(err))
+    }
 
 
     /**
@@ -99,57 +149,6 @@ class AdminController {
                             token: admin.token,
                         })
                     })
-            })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
-    }
-
-    /**
-     * @route [POST] /api/admin/register
-     * @desc Sign up an administrator account
-     * @access public
-     */
-    registerAdminAccount(req, res, next) {
-        AdminModel.findOne({
-                username: req.body.username,
-            })
-            .then(admin => {
-                if (admin) {
-                    return res.status(400).json({
-                        message: 'Account Has Already Existed',
-                    })
-                }
-                const newAdmin = new AdminModel(req.body)
-
-                // Generating a token
-                const token = jwt.sign({
-                    userId: newAdmin._id,
-                    username: newAdmin.username,
-                    role: 'admin',
-                }, process.env.SECRET_KEY)
-                newAdmin.token = token
-
-                // Hashing password
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newAdmin.password, salt, (err, hashedPassword) => {
-                        newAdmin.password = hashedPassword
-                            // Save the new account to the database
-                        newAdmin.save()
-                            .then(() => {
-                                return res.status(200).json({
-                                    message: 'Sign Up Successfully',
-                                })
-                            })
-                            .catch(err => {
-                                return res.status(500).json({
-                                    message: err,
-                                })
-                            })
-                    })
-                })
             })
             .catch(err => {
                 return res.status(500).json({
