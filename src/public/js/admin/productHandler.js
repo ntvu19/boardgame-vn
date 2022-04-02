@@ -10,8 +10,8 @@ addProduct()
 
 // Delete product
 const deleteProduct = () => {
-    const deleteProductBtn = document.querySelectorAll('.delete-product')
     let productId
+    const deleteProductBtn = document.querySelectorAll('.delete-product')
     deleteProductBtn.forEach(btn => {
         btn.addEventListener('click', () => {
             productId = btn.dataset.id
