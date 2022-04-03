@@ -181,8 +181,8 @@ header .myNavbar .myNavbar__right .navbar-nav .myNavBar__buttons .button {
   line-height: 40px;
   border-radius: 10px;
   border: none;
-  -webkit-transition: all .5s;
-  transition: all .5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   text-transform: uppercase;
 }
 
@@ -193,6 +193,22 @@ header .myNavbar .myNavbar__right .navbar-nav .myNavBar__buttons .button i {
 header .myNavbar .myNavbar__right .navbar-nav .myNavBar__buttons .button:hover {
   background-color: #3fa1fa;
   color: #fff;
+}
+
+header .myNavbar .myNavbar__right .navbar-nav .myNavbar__user .myNavbar__user-content .dropdown-toggle {
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #fb5332;
+}
+
+header .myNavbar .myNavbar__right .navbar-nav .myNavbar__user .myNavbar__user-content .dropdown-menu {
+  top: 135%;
+}
+
+header .myNavbar .myNavbar__right .navbar-nav .myNavbar__user .myNavbar__user-content .dropdown-menu a {
+  color: #fb5332;
 }
 
 .menu {
@@ -1088,6 +1104,40 @@ footer .footer__item li a {
 .paymentPage .paymentPage__content .paymentPage__button button:hover {
   background-color: black;
   color: #fff;
+}
+
+.infor .nav .nav-link {
+  color: #fff;
+  background-color: #1a3652;
+  margin-bottom: 10px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  font-size: 20px;
+}
+
+.infor .nav .nav-link:hover {
+  color: #fb5332;
+}
+
+.infor .nav .active {
+  background-color: #fb5332;
+}
+
+.infor .nav .active:hover {
+  color: #1a3652;
+}
+
+.infor .tab-content .tab-address h5 {
+  color: #333;
+}
+
+.infor .tab-content .tab-address input {
+  display: block;
+  color: #333;
+  font-size: 15px;
+  width: 70%;
+  margin: 10px 0;
+  padding: 5px 10px;
 }
 
 .section {
