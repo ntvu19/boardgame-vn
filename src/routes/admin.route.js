@@ -27,8 +27,13 @@ router.put('/admin/update/:id', AdminController.updateAdmin)
 router.delete('/admin/delete/:id', AdminController.deleteAdmin)
 router.post('/admin/add', AdminController.addAdmin)
 
+// Login
+router.get('/logout', AdminController.logout)
+router.post('/register', AdminController.adminRegister)
+router.post('/login', AdminController.adminLogin)
+router.get('/login', AdminController.loginPage)
 
-router.get('/login', AdminController.login)
+// Index
 router.get('/', AdminController.index)
 
 

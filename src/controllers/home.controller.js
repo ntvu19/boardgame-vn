@@ -2,12 +2,12 @@ const ProductModel = require('../models/product.model')
 const UserModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const { redirect } = require('express/lib/response')
 
 class HomeController {
 
     // [GET] /
     index(req, res, next) {
+        // Login status
         ProductModel.find({})
             .then(product => {
                 res.render('home', {
@@ -21,12 +21,19 @@ class HomeController {
     }
 
     // [GET] /login
-    userLoginPage(req, res, next) {
-        res.render('login')
+    userLogInPage(req, res, next) {
+        if (!req.cookies.token) {
+            res.render('login')
+        } else {
+            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+            UserModel.findById(decodedToken.userId)
+                .then(user => { user ? res.redirect('/') : res.render('login') })
+                .catch(err => console.log(err))
+        }
     }
 
     // [POST] /login
-    userLogin(req, res, next) {
+    userLogIn(req, res, next) {
         UserModel.findOne({ username: req.body.username })
             .then(user => {
                 if (!user) {
@@ -77,12 +84,21 @@ class HomeController {
                                     res.cookie('token', newUser.token, { httpOnly: true })
                                     res.redirect('/')
                                 })
-                                .catch(err => console.log(err))
                         })
                     })
                 }
             })
             .catch(err => console.log(err))
+    }
+
+    // [POST] /logout
+    userLogOut(req, res, next) {
+        if (req.cookies.token) {
+            res.clearCookie('token')
+            res.redirect('/')
+        } else {
+            res.redirect('/')
+        }
     }
 
 }

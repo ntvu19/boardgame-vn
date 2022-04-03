@@ -9,6 +9,7 @@ const commentRouter = require('../routes/comment.route')
 const route = (app) => {
 
     app.use('/admin', adminRouter)
+    app.use('/login', loginRouter)
 
     app.use('/cart', (req, res, next) => {
         res.render('cart', { layout: 'customer' })

@@ -7,8 +7,18 @@ const bcrypt = require('bcryptjs')
 
 class AdminController {
 
+    // [GET] /admin
     index(req, res, next) {
-        res.render('admin/home', { layout: 'admin' })
+        if (!req.cookies.token) {
+            res.redirect('/admin/login')
+        } else {
+            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+            AdminModel.findById(decodedToken.userId)
+                .then(admin => {
+                    admin ? res.render('admin/home', { layout: 'admin' }) : res.redirect('/admin/login')
+                })
+                .catch(err => console.log(err))
+        }
     }
 
     categoryPage(req, res, next) {
@@ -27,8 +37,90 @@ class AdminController {
         res.render('admin/feedback', { layout: 'admin' })
     }
 
-    login(req, res, next) {
-        res.render('admin/login')
+    /**
+     * Login, register, logout
+     */
+    // [GET] /admin/login
+    loginPage(req, res, next) {
+        if (!req.cookies.token) {
+            res.render('admin/login')
+        } else {
+            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+            AdminModel.findById(decodedToken.userId)
+                .then(admin => {
+                    admin ? res.redirect('/admin') : res.render('admin/login')
+                })
+                .catch(err => console.log(err))
+        }
+    }
+
+    // [POST] /admin/login
+    adminLogin(req, res, next) {
+        AdminModel.findOne({ username: req.body.username })
+            .then(admin => {
+                if (!admin) {
+                    res.redirect('back')
+                    console.log('Incorrectly username or password')
+                } else {
+                    bcrypt.compare(req.body.password, admin.password)
+                        .then(success => {
+                            let announcement = success ? 'Login successfully' : 'Incorrectly username or password'
+                            console.log(announcement)
+
+                            if (success) {
+                                res.cookie('token', admin.token, { httpOnly: true })
+                                res.redirect('/admin')
+                            } else {
+                                redirect('back')
+                            }
+                        })
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
+    // [POST] /admin/register
+    adminRegister(req, res, next) {
+        AdminModel.findOne({ username: req.body.username })
+            .then(admin => {
+                if (admin) {
+                    res.redirect('back')
+                    console.log('Username has already taken')
+                } else {
+                    // Create admin
+                    const newAdmin = new AdminModel(req.body)
+
+                    // Generating token
+                    const token = jwt.sign({
+                        userId: newAdmin._id,
+                        role: 'admin'
+                    }, process.env.SECRET_KEY)
+                    newAdmin.token = token
+
+                    // Hashing password
+                    bcrypt.genSalt(10, (err, salt) => {
+                        bcrypt.hash(newAdmin.password, salt, (err, hashed) => {
+                            newAdmin.password = hashed
+                            newAdmin.save()
+                                .then(() => {
+                                    res.cookie('token', newAdmin.token, { httpOnly: true })
+                                    res.redirect('/admin')
+                                })
+                        })
+                    })
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
+    // [GET] /admin/logout
+    logout(req, res, next) {
+        if (req.cookies.token) {
+            res.clearCookie('token')
+            res.redirect('/admin/login')
+        } else {
+            res.redirect('/admin/login')
+        }
     }
 
     /**
@@ -120,42 +212,42 @@ class AdminController {
     }
 
 
-    /**
-     * @route [POST] /api/admin/login
-     * @desc Login as administrator role
-     * @access public
-     */
-    loginAsAdmin(req, res, next) {
-        AdminModel.findOne({
-                username: req.body.username,
-            })
-            .then(admin => {
-                if (!admin) {
-                    return res.status(401).json({
-                        message: 'Incorrectly username or password',
-                    })
-                }
-                bcrypt.compare(req.body.password, admin.password)
-                    .then(success => {
-                        if (!success) {
-                            return res.status(401).json({
-                                message: 'Incorrectly username or password',
-                            })
-                        }
-                        return res.status(200).json({
-                            userId: admin._id,
-                            username: admin.username,
-                            role: 'admin',
-                            token: admin.token,
-                        })
-                    })
-            })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
-    }
+    // /**
+    //  * @route [POST] /api/admin/login
+    //  * @desc Login as administrator role
+    //  * @access public
+    //  */
+    // loginAsAdmin(req, res, next) {
+    //     AdminModel.findOne({
+    //             username: req.body.username,
+    //         })
+    //         .then(admin => {
+    //             if (!admin) {
+    //                 return res.status(401).json({
+    //                     message: 'Incorrectly username or password',
+    //                 })
+    //             }
+    //             bcrypt.compare(req.body.password, admin.password)
+    //                 .then(success => {
+    //                     if (!success) {
+    //                         return res.status(401).json({
+    //                             message: 'Incorrectly username or password',
+    //                         })
+    //                     }
+    //                     return res.status(200).json({
+    //                         userId: admin._id,
+    //                         username: admin.username,
+    //                         role: 'admin',
+    //                         token: admin.token,
+    //                     })
+    //                 })
+    //         })
+    //         .catch(err => {
+    //             return res.status(500).json({
+    //                 message: err,
+    //             })
+    //         })
+    // }
 
     /**
      * @route [GET] /api/admin/view-all-user
