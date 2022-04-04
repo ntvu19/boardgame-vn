@@ -2,6 +2,7 @@ const ProductModel = require('../models/product.model')
 const UserModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const mailer = require('../configs/nodemailer.config')
 
 class HomeController {
 
@@ -87,6 +88,13 @@ class HomeController {
                                     res.cookie('fullName', newUser.fullName)
                                     res.cookie('token', newUser.token, { httpOnly: true })
                                     res.redirect('/')
+
+                                    // Nodemailer
+                                    mailer.sendConfirmationEmail(
+                                        newUser.fullName,
+                                        newUser.email,
+                                        newUser._id
+                                    )
                                 })
                         })
                     })

@@ -47,6 +47,21 @@ class UserController {
         })
     }
 
+    // [PUT] /user/active/:id
+    activeUser(req, res, next) {
+        if (!req.cookies.token) {
+            res.redirect('/')
+        } else {
+            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+            if (decodedToken.userId == req.params.id) {
+                const active = { active: true }
+                UserModel.findByIdAndUpdate(req.params.id, active)
+                    .then(() => res.redirect('/'))
+                    .catch(err => console.log(err))
+            }
+        }
+    }
+
 }
 
 module.exports = new UserController()

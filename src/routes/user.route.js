@@ -5,6 +5,7 @@ const router = express.Router()
 
 // Official
 
+router.get('/active/:id', UserController.activeUser)
 router.put('/edit/:id', UserController.editUser)
 router.get('/', UserController.userInformation)
 
