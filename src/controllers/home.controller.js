@@ -46,6 +46,8 @@ class HomeController {
                             console.log(announcement)
 
                             if (success) {
+                                res.cookie('logged', true)
+                                res.cookie('fullName', user.fullName)
                                 res.cookie('token', user.token, { httpOnly: true })
                                 res.redirect('/')
                             } else {
@@ -81,6 +83,8 @@ class HomeController {
                             newUser.password = hashed
                             newUser.save()
                                 .then(() => {
+                                    res.cookie('logged', true)
+                                    res.cookie('fullName', newUser.fullName)
                                     res.cookie('token', newUser.token, { httpOnly: true })
                                     res.redirect('/')
                                 })
@@ -91,15 +95,19 @@ class HomeController {
             .catch(err => console.log(err))
     }
 
-    // [POST] /logout
+    // [GET] /logout
     userLogOut(req, res, next) {
         if (req.cookies.token) {
+            res.cookie('logged', false)
+            res.cookie('fullName', '')
             res.clearCookie('token')
             res.redirect('/')
         } else {
             res.redirect('/')
         }
     }
+
+
 
 }
 

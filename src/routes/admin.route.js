@@ -27,7 +27,7 @@ router.put('/admin/update/:id', AdminController.updateAdmin)
 router.delete('/admin/delete/:id', AdminController.deleteAdmin)
 router.post('/admin/add', AdminController.addAdmin)
 
-// Login
+// Login, register, logout
 router.get('/logout', AdminController.logout)
 router.post('/register', AdminController.adminRegister)
 router.post('/login', AdminController.adminLogin)
