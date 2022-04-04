@@ -47,9 +47,7 @@ class AdminController {
         } else {
             const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
             AdminModel.findById(decodedToken.userId)
-                .then(admin => {
-                    admin ? res.redirect('/admin') : res.render('admin/login')
-                })
+                .then(admin => { admin ? res.redirect('/admin') : res.render('admin/login') })
                 .catch(err => console.log(err))
         }
     }
@@ -68,6 +66,8 @@ class AdminController {
                             console.log(announcement)
 
                             if (success) {
+                                res.cookie('logged', true)
+                                res.cookie('fullName', admin.fullName)
                                 res.cookie('token', admin.token, { httpOnly: true })
                                 res.redirect('/admin')
                             } else {
@@ -103,6 +103,8 @@ class AdminController {
                             newAdmin.password = hashed
                             newAdmin.save()
                                 .then(() => {
+                                    res.cookie('logged', true)
+                                    res.cookie('fullName', newAdmin.fullName)
                                     res.cookie('token', newAdmin.token, { httpOnly: true })
                                     res.redirect('/admin')
                                 })
@@ -116,6 +118,8 @@ class AdminController {
     // [GET] /admin/logout
     logout(req, res, next) {
         if (req.cookies.token) {
+            res.cookie('logged', false)
+            res.cookie('fullName', '')
             res.clearCookie('token')
             res.redirect('/admin/login')
         } else {
