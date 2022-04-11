@@ -65,8 +65,7 @@ class HomeController {
         UserModel.findOne({ username: req.body.username })
             .then(user => {
                 if (user) {
-                    res.redirect('back')
-                    console.log('Username has already taken')
+                    res.status(403).send({ message: 'User has already taken' })
                 } else {
                     // Create user
                     const newUser = new UserModel(req.body)
@@ -87,7 +86,7 @@ class HomeController {
                                     res.cookie('logged', true)
                                     res.cookie('fullName', newUser.fullName)
                                     res.cookie('token', newUser.token, { httpOnly: true })
-                                    res.redirect('/')
+                                    res.status(200).send({ message: 'Success' })
 
                                     // Nodemailer
                                     mailer.sendConfirmationEmail(
@@ -100,7 +99,7 @@ class HomeController {
                     })
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
     // [GET] /logout

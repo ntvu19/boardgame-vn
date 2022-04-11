@@ -87,31 +87,10 @@
                                 <th scope="col">Tuỳ biến</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {{#each products}}
-                                <tr hidden>
-                                    <th scope="row">{{sum @index 1}}</th>
-                                    <td class="table__img"><img src="/img/product2.jpg" alt=""></td>
-                                    <td>{{this.name}}</td>
-                                    {{!-- <td>Mô tả sản phẩm</td> --}}
-                                    <td>{{this.description}}</td>
-                                    <td>{{this.price}} <sup>đ</sup></td>
-                                    <td>
-                                        <div class="table__btn row">
-                                            <div class="col-6 table__btn-left">
-                                                <button class="update-product" data-id="{{this._id}}" data-toggle="modal" data-target="#update-product-modal">Sửa</button>
-                                            </div>
-                                            <div class="col-6 table__btn-right">
-                                                <button class="delete-product" data-id="{{this._id}}" data-toggle="modal" data-target="#delete-product-confirm">Xoá</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
+                        <tbody id="product-list"></tbody>
                     </table>
                     <nav aria-label="Page navigation example ">
-                            <ul class="pagination justify-content-end"></ul>
+                            <ul id="pagination-btn" class="pagination justify-content-end"></ul>
                         </nav>
                     <div class="tab-pane-btn">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -155,8 +134,7 @@
 
 {{!-- Sửa sản phẩm --}}
 <div class="modal fade" id="update-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    {{#each products}}
-        <div class="modal-dialog edit-modal">
+    <div class="modal-dialog edit-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLabel">Cập nhật thông tin sản phẩm</h3>
@@ -164,23 +142,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="/admin/product/update/{{this._id}}?_method=PUT" method="POST">
-                        <label for="">Tên sản phẩm<span style="color: red;">*</span></label> <br>
-                        <input type="text" name="name" value="{{this.name}}"><br>
-                        <label for="">Giá<span style="color: red;">*</span></label> <br>
-                        <input type="text" name="price" value="{{this.price}}"><br>
-                        <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
-                        <textarea name="description" rows="6">{{this.description}}</textarea><br>
-                    </form>
-                </div>
+                <div class="modal-body"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button id="btn-update-product" class="btn btn-primary btn-update-product">Cập nhật</button>
+                    <button id="btn-update-product" class="btn btn-primary">Cập nhật</button>
                 </div>
             </div>
         </div>
-    {{/each}}
 </div>
 
 {{!-- Xoá sản phẩm --}}
@@ -195,7 +163,6 @@
         </div>
         <div class="modal-body">
             <p>Bạn có chắc chắn xoá sản phẩm này?</p>
-            <form name="delete-product-form" method="POST"></form>
         </div>
         <div class="modal-footer">
             <button id="btn-delete-product" class="btn btn-danger">Xoá bỏ</button>

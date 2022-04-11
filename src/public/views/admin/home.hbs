@@ -118,20 +118,18 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
-    window.onload = () => {
-        const chart = document.querySelector("#myChart").getContext('2d');
-        // creat new chart
-        new Chart(chart, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', ' Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Doanh thu',
-                    data: [50, 100, 200, 70, 80, 150, 60, 40, 20, 10],
-                    borderColor: 'blue',
-                    borderWidth: 2
-                }]
-            },
-        })
-    }
+    const chart = document.querySelector("#myChart").getContext('2d');
+    // creat new chart
+    new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', ' Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Doanh thu',
+                data: [50, 100, 200, 70, 80, 150, 60, 40, 20, 10],
+                borderColor: 'blue',
+                borderWidth: 2
+            }]
+        },
+    })
 </script>
