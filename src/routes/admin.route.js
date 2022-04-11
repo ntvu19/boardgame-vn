@@ -11,6 +11,9 @@ router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder
 // Official
 // Product
 router.get('/product', AdminController.productPage)
+router.get('/api/product-size', AdminController.getProductSize)
+router.get('/product/:offset', AdminController.productPagination)
+router.get('/product/detail/:id', AdminController.getProductDetail)
 router.put('/product/update/:id', AdminController.updateProduct) // Auth.isAdmin
 router.delete('/product/delete/:id', AdminController.deleteProduct) // Auth.isAdmin
 router.post('/product/add', AdminController.addProduct) // Auth.isAdmin

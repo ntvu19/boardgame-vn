@@ -84,8 +84,7 @@ class AdminController {
         AdminModel.findOne({ username: req.body.username })
             .then(admin => {
                 if (admin) {
-                    res.redirect('back')
-                    console.log('Username has already taken')
+                    res.status(403).send({ message: 'Username has already taken' })
                 } else {
                     // Create admin
                     const newAdmin = new AdminModel(req.body)
@@ -106,13 +105,13 @@ class AdminController {
                                     res.cookie('logged', true)
                                     res.cookie('fullName', newAdmin.fullName)
                                     res.cookie('token', newAdmin.token, { httpOnly: true })
-                                    res.redirect('/admin')
+                                    res.status(200).send({ message: 'Success' })
                                 })
                         })
                     })
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
     // [GET] /admin/logout
@@ -130,15 +129,35 @@ class AdminController {
     /**
      * Product
      */
+    // [GET] /admin/product
     productPage(req, res, next) {
+        res.render('admin/product', { layout: 'admin' })
+    }
+
+    // [GET] /admin/api/product-size
+    getProductSize(req, res, next) {
+        ProductModel.count()
+            .then(result => res.status(200).send({ productSize: result }))
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [GET] /admin/product/:offset
+    productPagination(req, res, next) {
+        const maxElement = 4
+        const offset = Number.parseInt(req.params.offset)
         ProductModel.find({})
             .then(product => {
-                res.render('admin/product', {
-                    layout: 'admin',
-                    products: product.map(mongoose => mongoose.toObject())
-                })
+                const productSize = product.length
+                let productListReturn = []
+                for (let i = offset * maxElement; i < (offset + 1) * maxElement; i++) {
+                    if (i == productSize) {
+                        break
+                    }
+                    productListReturn.push(product[i])
+                }
+                res.status(200).send(productListReturn)
             })
-            .catch(err => console.log(err))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
     addProduct(req, res, next) {
@@ -148,16 +167,25 @@ class AdminController {
             .catch(err => console.log(err))
     }
 
+    // [DELETE] /admin/product/delete/:id
     deleteProduct(req, res, next) {
         ProductModel.findByIdAndDelete(req.params.id)
-            .then(() => res.redirect('back'))
-            .catch(err => console.log(err))
+            .then(() => res.status(200).send({ message: 'success' }))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
+    // [PUT] /admin/product/update/:id
     updateProduct(req, res, next) {
         ProductModel.findByIdAndUpdate(req.params.id, req.body)
             .then(() => res.redirect('back'))
             .catch(err => console.log(err))
+    }
+
+    // [GET] /admin/product/detail/:id
+    getProductDetail(req, res, next) {
+        ProductModel.findById(req.params.id)
+            .then(product => res.status(200).send(product))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
     /**
@@ -182,7 +210,6 @@ class AdminController {
     }
 
     addAdmin(req, res, next) {
-        // Haven't hashed password yet
         const newAdmin = new AdminModel(req.body)
 
         // Generating a token
@@ -191,6 +218,7 @@ class AdminController {
             role: 'admin'
         }, process.env.SECRET_KEY)
         newAdmin.token = token
+        newAdmin.active = true
 
         // Hashing password
         bcrypt.genSalt(10, (err, salt) => {

@@ -1,51 +1,68 @@
-/**
- * v-pills-home
- * v-pills-danhmuc
- * v-pills-sanpham
- * v-pills-donhang
- * v-pills-doanhthu
- * v-pills-customer
- * v-pills-admin
- * v-pills-bug
- */
+let productSize = 0
+let offset = 0
 
-const maxElement = 4
+const productTableBody = document.querySelector('#product-list')
 
-const productElement = document.querySelector('#v-pills-sanpham table tbody').rows
-let productSize = productElement.length
-let pageNumber = Math.ceil(productSize / maxElement)
-const ulPagination = document.querySelector('#v-pills-sanpham nav ul')
+document.addEventListener('DOMContentLoaded', () => {
+    loadPage()
+    getProductList(offset)
+})
 
-loadProduct = () => {
-    for (let i = 0; i < maxElement; i++) {
-        if (i == productSize - 1) {
-            break
-        }
-        productElement[i].removeAttribute('hidden')
-    }
-}
-loadProduct()
-
-for (let i = 0; i < pageNumber; i++) {
-    const li = document.createElement('li')
-    const button = document.createElement('button')
-    li.className = 'page-item'
-    button.className = 'page-link'
-    button.innerText = i + 1
-    button.addEventListener('click', (e) => {
-        for (let j = 0; j < productSize; j++) {
-            productElement[j].setAttribute('hidden', true)
-        }
-
-        let pageIdx = parseInt(e.target.innerText) - 1
-        for (let j = pageIdx * maxElement; j < (pageIdx + 1) * maxElement; j++) {
-            if (j == productSize) {
-                break
+const loadPage = () => {
+    $.get({
+        url: '/admin/api/product-size',
+        success: function(response) {
+            productSize = response.productSize
+            const paginationBtn = document.querySelector('#pagination-btn')
+            const pageNumber = Math.ceil(productSize / 4)
+            for (let i = 0; i < pageNumber; i++) {
+                const li = document.createElement('li')
+                const button = document.createElement('button')
+                li.className = 'page-item'
+                button.className = 'page-link'
+                button.innerText = i + 1
+                button.addEventListener('click', (e) => {
+                    productTableBody.innerHTML = ''
+                    getProductList(i)
+                })
+                li.appendChild(button)
+                paginationBtn.appendChild(li)
             }
-            productElement[j].removeAttribute('hidden')
         }
-
     })
-    li.appendChild(button)
-    ulPagination.appendChild(li)
+}
+
+const getProductList = (o) => {
+    $.get({
+        url: '/admin/product/' + o,
+        statusCode: {
+            200: function(response) {
+                let elementSize = response.length
+                for (let i = 0; i < elementSize; i++) {
+                    const element = response[i]
+                    productTableBody.innerHTML += `
+                    <tr>
+                        <th scope="row">${o * 4 + i + 1}</th>
+                        <td class="table__img"><img src="/img/product2.jpg" alt=""></td>
+                        <td>${element.name}</td>
+                        <td>${element.description}</td>
+                        <td>${element.price} <sup>đ</sup></td>
+                        <td>
+                            <div class="table__btn row">
+                                <div class="col-6 table__btn-left">
+                                    <button class="update-product" onclick="updateProduct('${element._id}')" data-toggle="modal" data-target="#update-product-modal">Sửa</button>
+                                </div>
+                                <div class="col-6 table__btn-right">
+                                    <button class="delete-product" onclick="deleteProduct('${element._id}')" data-toggle="modal" data-target="#delete-product-confirm">Xoá</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>`
+                }
+            },
+            400: function(response) {
+                console.log(response)
+            }
+        }
+    })
 }

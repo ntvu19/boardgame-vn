@@ -9,42 +9,40 @@ const addProduct = () => {
 addProduct()
 
 // Delete product
-const deleteProduct = () => {
-    let productId
-    const deleteProductBtn = document.querySelectorAll('.delete-product')
-    deleteProductBtn.forEach(btn => {
-        btn.addEventListener('click', () => {
-            productId = btn.dataset.id
-        })
-    })
-
-    const deleteProductForm = document.forms['delete-product-form']
+const deleteProduct = (productId) => {
     const confirmDeleteProduct = document.querySelector('#btn-delete-product')
     confirmDeleteProduct.addEventListener('click', () => {
-        deleteProductForm.action = '/admin/product/delete/' + productId + '?_method=DELETE'
-        deleteProductForm.submit()
+        $.ajax({
+            url: '/admin/product/delete/' + productId,
+            type: 'delete',
+            success: function(response) {
+                console.log(response)
+                window.location.href = '/admin/product'
+            }
+        })
     })
 }
-deleteProduct()
 
-// Update product
-const updateProduct = () => {
-    const editProductBtn = document.querySelectorAll('.update-product')
-    const editProductModal = document.querySelectorAll('.edit-modal')
-    const editProductConfirm = document.querySelectorAll('.btn-update-product')
+// Show edit product modal
+const updateProduct = (productId) => {
+    const editProductBody = document.querySelector('#update-product-modal .modal-body')
+    $.get({
+        url: '/admin/product/detail/' + productId,
+        success: function(response) {
+            editProductBody.innerHTML = `
+                <form action="/admin/product/update/${response._id}?_method=PUT" method="POST">
+                    <label for="">Tên sản phẩm<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="name" value=${response.name}"><br>
+                    <label for="">Giá<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="price" value="${response.price}"><br>
+                    <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
+                    <textarea name="description" rows="6">${response.description}</textarea><br>
+                </form>`
 
-    for (let i = 0; i < editProductBtn.length; i++) {
-        editProductBtn[i].onclick = () => {
-            for (let j = 0; j < editProductModal.length; j++) {
-                editProductModal[j].style.display = 'block'
-                editProductConfirm[j].onclick = () => {
-                    editProductModal[j].querySelector('form').submit()
-                }
-                if (i != j) {
-                    editProductModal[j].style.display = 'none'
-                }
+            const submitBtn = document.querySelector('#btn-update-product')
+            submitBtn.onclick = () => {
+                editProductBody.querySelector('form').submit()
             }
         }
-    }
+    })
 }
-updateProduct()
