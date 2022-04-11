@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +28,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <title>Board Game VN</title>
 </head>
+
 <body>
 
     {{> customer/header}}
@@ -37,12 +39,11 @@
 
     <!-- Jquery -->
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/popper.min.js"></script>
     <!-- BS4 JS -->
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
     <!-- OWL Carousel -->
     <script src="/js/owl.carousel.js"></script>
-    
+
     <script>
         $('.myCarousel').owlCarousel({
             loop: true,
@@ -70,13 +71,20 @@
             smartSpeed: 2000,
             responsive: {
                 0: {
-                    items: 4,
+                    items: 1,
                 },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
             }
         })
     </script>
-    
+
     <!-- Main JS -->
     <script src="/js/main.js"></script>
 </body>
+
 </html>

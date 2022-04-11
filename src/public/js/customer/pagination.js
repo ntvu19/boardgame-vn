@@ -44,3 +44,5 @@ arrCategory.forEach(category => {
         ulPagination.appendChild(li)
     }
 })
+
+

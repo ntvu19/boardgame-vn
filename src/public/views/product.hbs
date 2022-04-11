@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-2 category__left">
-                <h4><i class="fa fa-list"></i>DANH MỤC</h4>
+                <h4><a href="#" id="category-list"><i class="fa fa-list"></i>DANH MỤC</a></h4>
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="v-pills-bgfamily-tab" data-toggle="pill" href="#v-pills-bgfamily"
                         role="tab" aria-controls="v-pills-bgfamily" aria-selected="true">Board game gia đình</a>
@@ -29,7 +29,7 @@
                         aria-labelledby="v-pills-bgfamily-tab">
                         <div class="row">
                             {{#each products}}
-                                <div class="col-3 card-item" hidden>
+                                <div class="col-12 col-md-6 col-lg-3 card-item" hidden>
                                     <div class="card">
                                         <img src="/img/product1.png" class="card-img-top" alt="">
                                         <div class="card-body">
@@ -89,7 +89,7 @@
                         aria-labelledby="v-pills-bgvietnam-tab">
                         <div class="row">
                             {{#each products}}
-                                <div class="col-3 card-item" hidden>
+                                <div class="col-12 col-md-6 col-lg-3 card-item" hidden>
                                     <div class="card">
                                         <img src="/img/product1.png" class="card-img-top" alt="">
                                         <div class="card-body">

@@ -1,26 +1,27 @@
 <!-- HEADER -->
 <header>
     <div class="container-fluid">
-        <nav class="myNavbar navbar navbar-expand-xl">
-            <div class="myNavbar__left col-8">
-                <a href="/" class="navbar-brand">
-                    <img src="/img/logo.png" alt="">
-                </a>
-                <form class="myNavbar__form-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Thông tin Boardgame bạn muốn">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
+        <nav class="myNavbar navbar navbar-expand-lg">
+            <a href="/" class="navbar-brand">
+                <img src="/img/logo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse px-lg-5 pt-5 pt-lg-0" id="navbarSupportedContent">
+                <form id="widgets-searchbox" action="/product">
+                    <input class="input-field" type="text" name="keyword" placeholder="Search" />
+                    <button class="widgets-searchbox-btn" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </form>
-            </div>
-            <div class="myNavbar__right col-4">
-                <ul class="navbar-nav mlAQz-auto">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#v-pills-bgfamily-tab">DANH MỤC SẢN PHẨM</a>
+                    </li>
                     <li class="nav-item myNavBar__cart">
-                        <a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i></a>
+                        <a class="nav-link p-0" href="/cart"><i class="fa fa-shopping-cart"></i></a>
                     </li>
                     <li class="nav-item myNavBar__user" hidden>
                         <a class="nav-link text-white" href="/user"><i class="fa fa-user mr-2"></i></a>
@@ -33,7 +34,6 @@
                             <button class="button"><i class="fa fa-user"></i>Đăng nhập</button>
                         </a>
                     </li>
-
                 </ul>
             </div>
         </nav>
@@ -41,34 +41,24 @@
 </header>
 
 <!-- Menu -->
-<section class="menu">
+{{!-- <section class="menu">
     <div class="container">
         <ul class="nav nav-pills">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/category" role="button"><i
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#v-pills-bgfamily-tab"><i
                         class="fa fa-list"></i>DANH MỤC SẢN PHẨM</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Flash Sale US 2022</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Game hot giá sốc</a>
-                    <a class="dropdown-item" href="#v-pills-bgfamily-tab"><i class="fa fa-angle-right"></i>Board
-                        game gia đình</a>
-                    <a class="dropdown-item" href="#v-pills-bgchild-tab"><i class="fa fa-angle-right"></i>Board game
-                        trẻ em</a>
+                    <a class="dropdown-item" href="#v-pills-bgfamily-tab"><i class="fa fa-angle-right"></i>Board game
+                        gia đình</a>
+                    <a class="dropdown-item" href="#v-pills-bgchild-tab"><i class="fa fa-angle-right"></i>Board game trẻ
+                        em</a>
                     <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game Việt Nam</a>
                     <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Board game Nhập Mỹ</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>BG Giải trí/Nhóm</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-angle-right"></i>Phụ kiện Board Game</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Game US có sẵn</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Board Game</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Các loại cờ</a>
+                <a class="nav-link" href="#v-pills-bgfamily-tab"><i class="fa fa-list"></i> DANH MỤC SẢN PHẨM</a>
             </li>
         </ul>
     </div>
-</section>
+</section> --}}
