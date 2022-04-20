@@ -138,10 +138,10 @@
             <div class="col-10 category__right">
                 <div class="category__right-top">
                     <p>Sắp xếp</p>
-                    <select name="" id="">
+                    <select name="" id="" onchange="this.value">
                         <option value="">Phổ biến</option>
                         <option value="">Giá cao đến thấp</option>
-                        <option value="">Giá thấp đến cao</option>
+                        <option href="/product/descending"value="/product/descending">Giá thấp đến cao</option>
                     </select>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
@@ -165,7 +165,9 @@
                                             <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
                                         </a>
                                         <button class="card__overlay-cart">
-                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            <a href="/order/add-to-card/{{this._id}}" class="card__overlay-detail" method="POST">
+                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            </a>
                                         </button>
                                     </div>
                                 </div>
@@ -253,8 +255,14 @@
                                         <a href="/product/{{this._id}}" class="card__overlay-detail">
                                             <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
                                         </a>
+                                        <form action="/order/add-to-cart" method="POST">
+                                            <input type="'hidden" name="id" value="<%=p">
+                                        </form>
                                         <button class="card__overlay-cart">
-                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            <a href="/order/add-to-card/{{this._id}}" class="card__overlay-detail">
+                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            </a>
+                                            
                                         </button>
                                     </div>
                                 </div>

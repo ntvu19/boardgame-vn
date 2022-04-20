@@ -40,6 +40,24 @@ class ProductController {
 
     }
 
+    /**
+     * @route [GET] product/descending
+     * @desc View  product descending by price
+     * @access public
+     */
+
+    descending(req, res, next){
+        ProductModel.find({}).sort({price: "descending"})
+            .then(product => {
+                res.render('product', {
+                    layout: 'customer',
+                    products: product.map(mongoose => mongoose.toObject())
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 }
 
 module.exports = new ProductController()
