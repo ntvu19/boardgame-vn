@@ -7,7 +7,6 @@ router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser)
 router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser)
 router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder)
 
-
 // Official
 // Product
 router.get('/product', AdminController.productPage)

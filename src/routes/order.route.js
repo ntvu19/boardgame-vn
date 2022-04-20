@@ -5,6 +5,7 @@ const router = express.Router()
 router.get('/view', OrderController.viewAll)
 router.get('/view-detail-order/:id', OrderController.viewDetailOrder)
 router.post('/create-order', OrderController.createOrder)
+router.post('/add-to-cart/:id', OrderController.addCart)
 
 /**
  * 1. Lấy danh sách đơn hàng #

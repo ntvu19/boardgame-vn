@@ -46,6 +46,12 @@ app.engine('hbs', handlebars.engine({
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'public', 'views'))
 
+var hbs = require('handlebars');
+hbs.registerHelper("plusOne", function(value, options)
+{
+    return parseInt(value) + 1;
+});
+
 // Routes init
 route(app)
 
