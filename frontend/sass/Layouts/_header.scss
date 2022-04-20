@@ -1,4 +1,4 @@
-header{
+header {
     background-color: $color-5;
     .myNavbar {
         padding: 15px 16px;
@@ -29,16 +29,16 @@ header{
                     line-height: 35px;
                     border-radius: 50%;
                     text-align: center;
-                    .nav-link{
+                    .nav-link {
                         color: $color-0;
                         font-size: $fs-4;
                     }
-                    &:hover{
+                    &:hover {
                         background-color: $color-9;
                     }
                 }
-                .myNavBar__buttons{
-                    .button{
+                .myNavBar__buttons {
+                    .button {
                         color: $color-5;
                         background-color: $color-0;
                         font-size: $fs-1;
@@ -48,14 +48,31 @@ header{
                         line-height: 40px;
                         border-radius: 10px;
                         border: none;
-                        transition: all .5s;
+                        transition: all 0.5s;
                         text-transform: uppercase;
-                        i{
+                        i {
                             padding-right: 10px;
                         }
-                        &:hover{
+                        &:hover {
                             background-color: $color-7;
                             color: $color-0;
+                        }
+                    }
+                }
+                .myNavbar__user {
+                    .myNavbar__user-content {
+                        .dropdown-toggle {
+                            text-decoration: none;
+                            border-radius: 20px;
+                            padding: 10px 20px;
+                            background-color: $color-0;
+                            color: $color-5;
+                        }
+                        .dropdown-menu{
+                            top: 135%;
+                            a{
+                                color: $color-5;
+                            }
                         }
                     }
                 }

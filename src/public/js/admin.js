@@ -1,18 +1,3 @@
-const chart = document.querySelector("#myChart").getContext('2d');
-// creat new chart
-new Chart(chart, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', ' Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-            label: 'Doanh thu',
-            data: [50, 100, 200, 70, 80, 150, 60, 40, 20, 10],
-            borderColor: 'blue',
-            borderWidth: 2
-        }]
-    },
-})
-
 // show and hide menu
 const menuBtn = document.querySelector('#menu-btn');
 const closeBtn = document.querySelector('#close-btn');
@@ -32,3 +17,24 @@ themeBtn.addEventListener('click', () => {
     themeBtn.querySelector('span:first-child').classList.toggle('active');
     themeBtn.querySelector('span:last-child').classList.toggle('active');
 })
+
+window.onload = () => {
+    let logInState, fullName
+    const cookieSet = document.cookie.split('; ')
+    for (let i = 0; i < cookieSet.length; i++) {
+        const cookieVal = cookieSet[i].split('=')
+        if (cookieVal[0] === 'logged') {
+            logInState = cookieVal[1] === 'true'
+        } else if (cookieVal[0] === 'fullName') {
+            fullName = cookieVal[1].replace(/%20/g, ' ')
+        }
+    }
+
+    if (logInState) {
+        const infoRegion = document.querySelector('.profile-area .profile')
+
+        // Missing avatar
+        // infoRegion.querySelector('.profile-photo img').src = ``
+        infoRegion.querySelector('h4').innerText = `${fullName}`
+    }
+}

@@ -6,12 +6,10 @@ const AdministratorSchema = new Schema({
     password: { type: String, required: true, trim: true },
     email: { type: String, trim: true },
     fullName: { type: String, required: true, trim: true },
-    birthday: { type: String, default: '1970-01-01' },
     phone: String,
     address: String,
-    avatar: String,
-    active: { type: Boolean, default: false },
     gender: { type: Boolean, default: true },
+    active: { type: Boolean, default: false },
     createAt: { type: Date, default: Date.now },
     token: String
 })

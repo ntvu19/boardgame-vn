@@ -1,56 +1,65 @@
 const UserModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 class UserController {
 
-    /**
-     * @route [GET] /api/user/get-information
-     * @desc Get user's information
-     * @access private
-     */
-    getUserInformation(req, res, next) {
-        const token = req.header('Authorization').replace('Bearer ', '')
-        const decoded = jwt.verify(token, process.env.SECRET_KEY)
-        UserModel.findById(decoded.userId)
-            .then(user => {
-                return res.status(200).json({
-                    fullName: user.fullName,
-                    email: user.email,
-                    birthday: user.birthday,
-                    phone: user.phone,
-                    address: user.address,
-                    avatar: user.avatar,
-                    gender: user.gender,
-                    active: user.active,
-                    createAt: user.createAt
+    // [GET] /user
+    userInformation(req, res, next) {
+        if (!req.cookies.token) {
+            res.redirect('/')
+        } else {
+            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+            UserModel.findById(decodedToken.userId)
+                .then(user => {
+                    if (!user) {
+                        res.redirect('/')
+                    } else {
+                        res.render('info', {
+                            layout: 'customer',
+                            user: user ? user.toObject() : user
+                        })
+                    }
                 })
-            })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
+                .catch(err => console.log(err))
+        }
     }
 
-    /**
-     * @route [PUT] /api/user/edit-information
-     * @desc Update user's information
-     * @access private
-     */
-    editUserInformation(req, res, next) {
-        const token = req.header('Authorization').replace('Bearer ', '')
-        const decoded = jwt.verify(token, process.env.SECRET_KEY)
-        UserModel.findByIdAndUpdate(decoded.userId, req.body)
-            .then(() => {
-                return res.status(200).json({
-                    message: 'Update Successfully',
-                })
+    // [PUT] /user/edit/:id
+    editUser(req, res, next) {
+        const newPassword = req.body.newPassword
+        delete req.body.newPassword
+        delete req.body.confirmNewPassword
+
+        // Hashing password
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newPassword, salt, (err, hashed) => {
+                req.body.password = hashed
+                if (!req.cookies.token) {
+                    res.redirect('/')
+                } else {
+                    const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+                    UserModel.findByIdAndUpdate(decodedToken.userId, req.body)
+                        .then(() => res.redirect('/user'))
+                        .catch(err => console.log(err))
+                }
             })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
+        })
+    }
+
+    // [PUT] /user/active/:id
+    activeUser(req, res, next) {
+        if (!req.cookies.token) {
+            res.redirect('/')
+        } else {
+            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+            if (decodedToken.userId == req.params.id) {
+                const active = { active: true }
+                UserModel.findByIdAndUpdate(req.params.id, active)
+                    .then(() => res.redirect('/'))
+                    .catch(err => console.log(err))
+            }
+        }
     }
 
 }

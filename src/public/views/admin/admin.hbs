@@ -1,0 +1,210 @@
+<!-- ADMIN -->
+<section class="admin section">
+    <div class="container-fluid row">
+        <div class="admin__left col-xl-2">
+            <button id="close-btn">
+                <span class="material-icons-sharp">
+                    close
+                </span>
+            </button>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link" id="v-pills-home-tab" href="/admin" role="tab"
+                    aria-controls="v-pills-home" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        home
+                    </span>
+                    Trang chủ
+                </a>
+                <a class="nav-link" id="v-pills-danhmuc-tab" href="/admin/category" role="tab"
+                    aria-controls="v-pills-danhmuc" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        dashboard_customize
+                    </span>
+                    Danh mục sản phẩm
+                </a>
+                <a class="nav-link" id="v-pills-sanpham-tab" href="/admin/product" role="tab"
+                    aria-controls="v-pills-sanpham" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        category
+                    </span>
+                    Sản phẩm
+                </a>
+                <a class="nav-link" id="v-pills-donhang-tab" href="/admin/order" role="tab"
+                    aria-controls="v-pills-donhang" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        add_shopping_cart
+                    </span>
+                    Đơn hàng
+                </a>
+                <a class="nav-link" id="v-pills-doanhthu-tab" href="/admin/revenue" role="tab"
+                    aria-controls="v-pills-doanhthu" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        analytics
+                    </span>
+                    Doanh thu
+                </a>
+
+                <a class="nav-link" id="v-pills-customer-tab" href="/admin/customer" role="tab"
+                    aria-controls="v-pills-customer" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        perm_contact_calendar
+                    </span>
+                    Danh sách khách hàng
+                </a>
+                <a class="nav-link active" id="v-pills-admin-tab" href="/admin/admin" role="tab"
+                    aria-controls="v-pills-admin" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        admin_panel_settings
+                    </span>
+                    Danh sách admin
+                </a>
+                <a class="nav-link" id="v-pills-bug-tab" href="/admin/feedback" role="tab"
+                    aria-controls="v-pills-bug" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        help_center
+                    </span>
+                    Phản hồi
+                </a>
+            </div>
+        </div>
+        <div class="admin__right col-12 col-xl-10">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-admin" role="tabpanel"
+                    aria-labelledby="v-pills-admin-tab">
+                    <h1>Danh sách quản trị viên</h1>
+                    <div class="search-customers">
+                        <input type="text" placeholder="Tìm tên quản trị viên">
+                        <button class="btn btn-primary">Tìm</button>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each admins}}
+                                <tr>
+                                    <th scope="row">{{sum @index 1}}</th>
+                                    <td>{{this.fullName}}</td>
+                                    <td>{{this.phone}}</td>
+                                    <td>{{this.address}}</td>
+                                    <td>
+                                        <div class="table__btn row">
+                                            <div class="col-6 table__btn-left">
+                                                <button class="update-admin" data-id="{{this._id}}" data-toggle="modal" data-target="#editAdminModal">Sửa</button>
+                                            </div>
+                                            <div class="col-6 table__btn-right">
+                                                <button class="delete-admin" data-id="{{this._id}}" data-toggle="modal" data-target="#delete-admin">Xoá</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <div class="tab-pane-btn">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdmin">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Thêm người quản trị -->
+<div class="modal fade" id="modalAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Thêm quản trị viên</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/admin/add" method="POST" name="add-form">
+                    <label for="">Họ và tên<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="fullName"> <br>
+                    <label for="">Số điện thoại<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="phone"> <br>
+                    <label for="">Địa chỉ<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="address"> <br>
+                    <label for="">Email<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="email"> <br>
+                    <label for="">Tên đăng nhập<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="username"> <br>
+                    <label for="">Mật khẩu<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="password"> <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button id="btn-add-submit" type="button" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sửa thông tin người quản trị -->
+<div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{#each admins}}
+        <div class="modal-dialog edit-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Thêm quản trị viên</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/admin/update/{{this._id}}?_method=PUT" method="POST">
+                        <label for="">Họ và tên<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="fullName" value="{{this.fullName}}"> <br>
+                        <label for="">Số điện thoại<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="phone" value="{{this.phone}}"> <br>
+                        <label for="">Địa chỉ<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="address" value="{{this.address}}"> <br>
+                        <label for="">Email<span style="color: red;">*</span></label> <br>
+                        <input type="text" name="email" value="{{this.email}}"> <br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary btn-update-submit">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+{{!-- Xoá người quản trị --}}
+<div id="delete-admin" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xoá sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn xoá sản phẩm này?</p>
+                <form name="delete-admin" method="POST"></form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-submit" class="btn btn-danger">Xoá bỏ</button>
+                <button class="btn btn-default" data-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- <script src="/js/admin/pagination.js"></script> --}}
+<script src="/js/admin/adminHandler.js"></script>

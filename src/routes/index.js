@@ -9,28 +9,22 @@ const commentRouter = require('../routes/comment.route')
 const route = (app) => {
 
     app.use('/admin', adminRouter)
-
-    app.use('/login', (req, res, next) => {
-        res.render('login')
-    })
+    app.use('/login', loginRouter)
 
     app.use('/cart', (req, res, next) => {
-        res.render('cart')
-    })
-
-    app.use('/category', (req, res, next) => {
-        res.render('category')
+        res.render('cart', { layout: 'customer' })
     })
 
     app.use('/delivery', (req, res, next) => {
-        res.render('delivery')
+        res.render('delivery', { layout: 'customer' })
     })
 
     app.use('/payment', (req, res, next) => {
-        res.render('payment')
+        res.render('payment', { layout: 'customer' })
     })
 
     app.use('/product', productRouter)
+    app.use('/user', userRouter)
     app.use('/', homeRouter)
 }
 

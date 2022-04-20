@@ -2,6 +2,7 @@ window.addEventListener("load", function() {
     truncateCardText();
     truncateCardPrice();
     truncateCardTitle();
+    headerState();
 });
 
 function truncateCardText() {
@@ -44,5 +45,34 @@ function truncateCardTitle() {
         var text = cardList[i].innerHTML;
         var newText = truncateString(text, 19);
         cardList[i].innerHTML = newText;
+    }
+}
+
+function cookieParse() {
+    let logInState, fullName
+    const cookieSet = document.cookie.split('; ')
+    for (let i = 0; i < cookieSet.length; i++) {
+        const cookieVal = cookieSet[i].split('=')
+        if (cookieVal[0] === 'logged') {
+            logInState = cookieVal[1] === 'true'
+        } else if (cookieVal[0] === 'fullName') {
+            fullName = cookieVal[1].replace(/%20/g, ' ')
+        }
+    }
+    return [logInState, fullName]
+}
+
+function headerState() {
+    let [logInState, fullName] = cookieParse()
+    const infoUser = document.querySelector('.nav-item.myNavBar__user')
+    const logInBtn = document.querySelector('.nav-item.myNavBar__buttons')
+    const logOutBtn = document.querySelector('.nav-item.myNavBar__logout')
+
+    if (logInState) {
+        infoUser.removeAttribute('hidden')
+        logOutBtn.removeAttribute('hidden')
+        infoUser.querySelector('a').innerHTML += `${fullName}`
+    } else {
+        logInBtn.removeAttribute('hidden')
     }
 }

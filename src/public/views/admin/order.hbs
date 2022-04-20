@@ -1,0 +1,120 @@
+<!-- ADMIN -->
+<section class="admin section">
+    <div class="container-fluid row">
+        <div class="admin__left col-xl-2">
+            <button id="close-btn">
+                <span class="material-icons-sharp">
+                    close
+                </span>
+            </button>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link" id="v-pills-home-tab" href="/admin" role="tab"
+                    aria-controls="v-pills-home" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        home
+                    </span>
+                    Trang chủ
+                </a>
+                <a class="nav-link" id="v-pills-danhmuc-tab" href="/admin/category" role="tab"
+                    aria-controls="v-pills-danhmuc" aria-selected="true">
+                    <span class="material-icons-sharp">
+                        dashboard_customize
+                    </span>
+                    Danh mục sản phẩm
+                </a>
+                <a class="nav-link" id="v-pills-sanpham-tab" href="/admin/product" role="tab"
+                    aria-controls="v-pills-sanpham" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        category
+                    </span>
+                    Sản phẩm
+                </a>
+                <a class="nav-link active" id="v-pills-donhang-tab" href="/admin/order" role="tab"
+                    aria-controls="v-pills-donhang" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        add_shopping_cart
+                    </span>
+                    Đơn hàng
+                </a>
+                <a class="nav-link" id="v-pills-doanhthu-tab" href="/admin/revenue" role="tab"
+                    aria-controls="v-pills-doanhthu" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        analytics
+                    </span>
+                    Doanh thu
+                </a>
+
+                <a class="nav-link" id="v-pills-customer-tab" href="/admin/customer" role="tab"
+                    aria-controls="v-pills-customer" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        perm_contact_calendar
+                    </span>
+                    Danh sách khách hàng
+                </a>
+                <a class="nav-link" id="v-pills-admin-tab" href="/admin/admin" role="tab"
+                    aria-controls="v-pills-admin" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        admin_panel_settings
+                    </span>
+                    Danh sách admin
+                </a>
+                <a class="nav-link" id="v-pills-bug-tab" href="/admin/feedback" role="tab"
+                    aria-controls="v-pills-bug" aria-selected="false">
+                    <span class="material-icons-sharp">
+                        help_center
+                    </span>
+                    Phản hồi
+                </a>
+            </div>
+        </div>
+        <div class="admin__right col-12 col-xl-10">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-donhang" role="tabpanel"
+                    aria-labelledby="v-pills-donhang-tab">
+                    <h1>Đơn hàng</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Tuỳ biến</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Đoàn Hương Ngàn</td>
+                                <td>
+                                    <p>Jishaku</p>
+                                    <p>Ma sói</p>
+                                </td>
+                                <td>123456 <sup>đ</sup></td>
+                                <td>227 Nguyễn Văn Cừ</td>
+                                <td>0987654321</td>
+                                <td>
+                                    <div class="table__btn row">
+                                        <div class="col-6 table__btn-center">
+                                            <button>Giao hàng</button>
+                                        </div>
+                                        <div class="col-3 table__btn-left">
+                                            <button>Sửa</button>
+                                        </div>
+                                        <div class="col-3 table__btn-right">
+                                            <button>Xoá</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/js/admin/pagination.js"></script>
