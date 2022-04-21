@@ -56,12 +56,9 @@ class ProductController {
     // [GET] /product/sort
     productSortPagination(req, res, next) {
         const maxElement = 8;
-        console.log('resquest: ', req.query, req.params)
+
         const offset = Number.parseInt(req.params.offset);
-        const sortProduct = req.query.sortBy;//'None';//req.query.sortBy;//req.params.sortBy;//document.getElementById("sort").value;
-        // const sortProduct = 'None'
-        console.log('resquest2: ', offset, sortProduct)
-        // const offset = 0;
+        const sortProduct = req.query.sortBy;
         function product(){
             let products;
             if (sortProduct == ''){

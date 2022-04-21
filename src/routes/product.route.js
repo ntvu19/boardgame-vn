@@ -5,7 +5,7 @@ const router = express.Router()
 router.get('/view-related/:id', ProductController.viewRelated);
 
 
-router.get('/sort/:offset', ProductController.productSortPagination);
+router.get('/:offset', ProductController.productSortPagination);
 router.get('/api/product-size', ProductController.getProductSize);
 // Official
 router.get('/:id', ProductController.details);
