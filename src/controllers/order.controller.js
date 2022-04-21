@@ -77,6 +77,7 @@ class OrderController {
      */
 
     addCart(req, res, next){
+        
         console.log("ok");
         const addProId = productModel.findById(req.body.id)[0];
 

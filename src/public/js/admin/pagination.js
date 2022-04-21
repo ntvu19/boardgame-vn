@@ -61,7 +61,7 @@ const getProductList = (o) => {
                 }
             },
             400: function(response) {
-                console.log(response)
+                //console.log(response)
             }
         }
     })

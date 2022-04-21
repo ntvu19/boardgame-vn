@@ -40,23 +40,56 @@ class ProductController {
 
     }
 
+
+
     /**
-     * @route [GET] product/descending
-     * @desc View  product descending by price
+     * @route [GET] /product/api/product-size
+     * @desc View product descending by price
      * @access public
      */
+    getProductSize(req, res, next) {
+        ProductModel.count()
+            .then(result => res.status(200).send({ productSize: result }))
+            .catch(err => res.status(400).send({ message: err }))
+    }
 
-    descending(req, res, next){
-        ProductModel.find({}).sort({price: "descending"})
+    // [GET] /product/sort
+    productSortPagination(req, res, next) {
+        const maxElement = 8;
+        console.log('resquest: ', req.query, req.params)
+        const offset = Number.parseInt(req.params.offset);
+        const sortProduct = req.query.sortBy;//'None';//req.query.sortBy;//req.params.sortBy;//document.getElementById("sort").value;
+        // const sortProduct = 'None'
+        console.log('resquest2: ', offset, sortProduct)
+        // const offset = 0;
+        function product(){
+            let products;
+            if (sortProduct == ''){
+                products = ProductModel.find({})
+            } else if(sortProduct == 'descending'){
+                products = ProductModel.find({}).sort({ price: "descending" })
+            } else if(sortProduct == 'ascending'){
+                products = ProductModel.find({}).sort({ price: "ascending" })
+            }
+            return products
+        }
+
+
+        product()
             .then(product => {
-                res.render('product', {
-                    layout: 'customer',
-                    products: product.map(mongoose => mongoose.toObject())
-                })
+                const productSize = product.length
+                let productListReturn = []
+                
+                for (let i = offset * maxElement; i < (offset + 1) * maxElement; i++) {
+                    if (i == productSize) {
+                        break
+                    }
+                    productListReturn.push(product[i])
+                }
+                console.log(productListReturn);
+                res.status(200).send(productListReturn)
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => res.status(400).send({ message: err }))
     }
 }
 
