@@ -138,16 +138,17 @@
             <div class="col-10 category__right">
                 <div class="category__right-top">
                     <p>Sắp xếp</p>
-                    <select name="" id="" onchange="this.value">
-                        <option value="">Phổ biến</option>
-                        <option value="">Giá cao đến thấp</option>
-                        <option href="/product/descending"value="/product/descending">Giá thấp đến cao</option>
+                    {{!-- nddat--}}
+                    <select name="" id="" onchange="this.value">  
+                        <option value="">None</option>
+                        <option value="descending">Giá cao đến thấp</option>
+                        <option value="ascending">Giá thấp đến cao</option>
                     </select>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
                         aria-labelledby="v-pills-bgfamily-tab">
-                        <div class="row">
+                        <div class="row" id="product-list">
                             {{#each products}}
                             <div class="col-12 col-md-6 col-lg-3 card-item" hidden>
                                 <div class="card">

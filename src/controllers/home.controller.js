@@ -44,7 +44,7 @@ class HomeController {
                     bcrypt.compare(req.body.password, user.password)
                         .then(success => {
                             let announcement = success ? 'Login successfully' : 'Incorrectly username or password'
-                            console.log(announcement)
+                            // console.log(announcement)
 
                             if (success) {
                                 res.cookie('logged', true)

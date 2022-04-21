@@ -16,7 +16,7 @@ const deleteProduct = (productId) => {
             url: '/admin/product/delete/' + productId,
             type: 'delete',
             success: function(response) {
-                console.log(response)
+                //console.log(response)
                 window.location.href = '/admin/product'
             }
         })
