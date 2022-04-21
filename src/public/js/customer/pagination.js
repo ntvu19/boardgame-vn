@@ -48,7 +48,7 @@ const getProductList = (o) => {
         url: `/product/${o}?sortBy=${sortBy}`,
         statusCode: {
             200: function (response) {
-
+                productTableBody.innerHTML = ''
                 let elementSize = response.length
                 for (let i = 0; i < elementSize; i++) {
                     const element = response[i]
