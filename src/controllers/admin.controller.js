@@ -2,6 +2,7 @@ const AdminModel = require('../models/admin.model')
 const ProductModel = require('../models/product.model')
 const OrderModel = require('../models/order.model')
 const UserModel = require('../models/user.model')
+const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
@@ -9,16 +10,7 @@ class AdminController {
 
     // [GET] /admin
     index(req, res, next) {
-        if (!req.cookies.token) {
-            res.redirect('/admin/login')
-        } else {
-            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
-            AdminModel.findById(decodedToken.userId)
-                .then(admin => {
-                    admin ? res.render('admin/home', { layout: 'admin' }) : res.redirect('/admin/login')
-                })
-                .catch(err => console.log(err))
-        }
+        res.render('admin/home', { layout: 'admin' })
     }
 
     categoryPage(req, res, next) {
@@ -160,6 +152,7 @@ class AdminController {
             .catch(err => res.status(400).send({ message: err }))
     }
 
+    // [POST] /admin/product/add
     addProduct(req, res, next) {
         const newProduct = new ProductModel(req.body)
         newProduct.save()

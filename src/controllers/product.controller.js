@@ -31,6 +31,19 @@ class ProductController {
             })
     }
 
+    // [GET] /product/search
+    searchProduct(req, res, next) {
+        const searchQuery = req.query.search
+        ProductModel.find({
+                "name": {
+                    $regex: searchQuery,
+                    $options: "$i"
+                }
+            })
+            .then(result => res.status(200).send(result))
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
     /**
      * @route [GET] /api/product/view-related/:id
      * @desc View all related product
