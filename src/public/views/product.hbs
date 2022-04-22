@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-2 category__left">
-                <h4><i class="fa fa-list"></i>DANH MỤC</h4>
+                <h4><a href="#" id="category-list"><i class="fa fa-list"></i>DANH MỤC</a></h4>
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="v-pills-bgfamily-tab" data-toggle="pill" href="#v-pills-bgfamily"
                         role="tab" aria-controls="v-pills-bgfamily" aria-selected="true">Board game gia đình</a>
@@ -18,18 +18,18 @@
             <div class="col-10 category__right">
                 <div class="category__right-top">
                     <p>Sắp xếp</p>
-                    <select name="" id="">
-                        <option value="">Phổ biến</option>
-                        <option value="">Giá cao đến thấp</option>
-                        <option value="">Giá thấp đến cao</option>
+                    <select name="" id="sort" onchange=getProductList(0)>
+                        <option value="" id="">None</option>
+                        <option value="descending" id="des">Giá cao đến thấp</option>
+                        <option value="ascending" id="asc">Giá thấp đến cao</option>
                     </select>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
                         aria-labelledby="v-pills-bgfamily-tab">
-                        <div class="row">
-                            {{#each products}}
-                                <div class="col-3 card-item" hidden>
+                        <div id="product-list" class="row"></div>
+                            {{!-- {{#each products}}
+                                <div class="col-12 col-md-6 col-lg-3 card-item">
                                     <div class="card">
                                         <img src="{{this.photo.[0]}}" class="card-img-top" alt="">
                                         <div class="card-body">
@@ -50,16 +50,16 @@
                                     </div>
                                 </div>
                             {{/each}}
-                        </div>
+                        </div> --}}
                         <div class="category__right-bottom">
-                            <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <ul id="pagination-btn" class="pagination pagination-lg" style="margin-left: 500px"></ul>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgchild" role="tabpanel"
                         aria-labelledby="v-pills-bgchild-tab">
-                        <div class="row">
-                            {{#each products}}
-                                <div class="col-3 card-item" hidden>
+                        <div id="product-list" class="row"></div>
+                            {{!-- {{#each products}}
+                                <div class="col-3 card-item">
                                     <div class="card">
                                         <img src="{{this.photo.[0]}}" class="card-img-top" alt="">
                                         <div class="card-body">
@@ -80,16 +80,16 @@
                                     </div>
                                 </div>
                             {{/each}}
-                        </div>
+                        </div> --}}
                         <div class="category__right-bottom">
-                            <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <ul id="pagination-btn" class="pagination pagination-lg" style="margin-left: 500px"></ul>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgvietnam" role="tabpanel"
                         aria-labelledby="v-pills-bgvietnam-tab">
-                        <div class="row">
-                            {{#each products}}
-                                <div class="col-3 card-item" hidden>
+                        <div id="product-list" class="row"></div>
+                            {{!-- {{#each products}}
+                                <div class="col-12 col-md-6 col-lg-3 card-item">
                                     <div class="card">
                                         <img src="{{this.photo.[0]}}" class="card-img-top" alt="">
                                         <div class="card-body">
@@ -110,14 +110,18 @@
                                     </div>
                                 </div>
                             {{/each}}
-                        </div>
+                        </div> --}}
                         <div class="category__right-bottom">
-                            <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <ul id="pagination-btn" class="pagination pagination-lg" style="margin-left: 500px"></ul>
                         </div>
+                        {{!-- <div class="category__right-bottom">
+                            <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                        </div> --}}
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgUS" role="tabpanel"
                         aria-labelledby="v-pills-bgUS-tab">
-                        <div class="row">
+                        <div id="product-list" class="row"></div>
+                        {{!-- <div class="row">
                             {{#each products}}
                                 <div class="col-3 card-item" hidden>
                                     <div class="card">
@@ -140,9 +144,12 @@
                                     </div>
                                 </div>
                             {{/each}}
-                        </div>
+                        </div> --}}
+                        {{!-- <nav aria-label="Page navigation example ">
+                            <ul id="pagination-btn" class="pagination justify-content-end"></ul>
+                        </nav> --}}
                         <div class="category__right-bottom">
-                            <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <ul id="pagination-btn" class="pagination pagination-lg" style="margin-left: 500px"></ul>
                         </div>
                     </div>
                 </div>

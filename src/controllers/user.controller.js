@@ -62,6 +62,11 @@ class UserController {
         }
     }
 
+    //POST /user/forgot-password
+    forgotPassword(req, res, next) {
+        
+    }
+
 }
 
 module.exports = new UserController()

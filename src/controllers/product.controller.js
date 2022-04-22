@@ -53,6 +53,54 @@ class ProductController {
 
     }
 
+
+
+    /**
+     * @route [GET] /product/api/product-size
+     * @desc View product descending by price
+     * @access public
+     */
+    getProductSize(req, res, next) {
+        ProductModel.count()
+            .then(result => res.status(200).send({ productSize: result }))
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [GET] /product/sort
+    productSortPagination(req, res, next) {
+        const maxElement = 8;
+
+        const offset = Number.parseInt(req.params.offset);
+        const sortProduct = req.query.sortBy;
+        function product(){
+            let products;
+            if (sortProduct == ''){
+                products = ProductModel.find({})
+            } else if(sortProduct == 'descending'){
+                products = ProductModel.find({}).sort({ price: "descending" })
+            } else if(sortProduct == 'ascending'){
+                products = ProductModel.find({}).sort({ price: "ascending" })
+            }
+            return products
+        }
+
+
+        product()
+            .then(product => {
+                const productSize = product.length
+                let productListReturn = []
+                
+                for (let i = offset * maxElement; i < (offset + 1) * maxElement; i++) {
+                    if (i == productSize) {
+                        break
+                    }
+                    productListReturn.push(product[i])
+                }
+                console.log(productListReturn);
+                res.status(200).send(productListReturn)
+            })
+            .catch(err => res.status(400).send({ message: err }))
+    }
 }
 
 module.exports = new ProductController()

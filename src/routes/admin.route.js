@@ -2,6 +2,8 @@ const AdminController = require('../controllers/admin.controller')
 const Auth = require('../middlewares/auth.middleware')
 const express = require('express')
 const router = express.Router()
+const multer = require('../configs/multer')
+const imageUpload = multer.fields([{name : 'image1' , maxCount : 1},{name : 'image2', maxCount : 1},{name : 'image3', maxCount : 1},{name : 'image4', maxCount : 1},{name : 'image5', maxCount : 1}])
 
 // router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser)
 // router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser)
@@ -9,14 +11,20 @@ const router = express.Router()
 
 
 // Official
+router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser)
+router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser)
+router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder)
+router.get('/api/user-size', AdminController.getUserSize)
+router.get('/user/list/:offset', AdminController.userPagination)
+
 // Product
-router.get('/product', Auth.isAdmin, AdminController.productPage)
 router.get('/api/product-size', Auth.isAdmin, AdminController.getProductSize)
-router.get('/product/:offset', Auth.isAdmin, AdminController.productPagination)
 router.get('/product/detail/:id', Auth.isAdmin, AdminController.getProductDetail)
 router.put('/product/update/:id', Auth.isAdmin, AdminController.updateProduct)
 router.delete('/product/delete/:id', Auth.isAdmin, AdminController.deleteProduct)
-router.post('/product/add', Auth.isAdmin, AdminController.addProduct)
+router.post('/product/add',imageUpload, Auth.isAdmin, AdminController.addProduct)
+router.get('/product/:offset', Auth.isAdmin, AdminController.productPagination)
+router.get('/product', Auth.isAdmin, AdminController.productPage)
 
 router.get('/category', Auth.isAdmin, AdminController.categoryPage)
 router.get('/revenue', Auth.isAdmin, AdminController.revenuePage)

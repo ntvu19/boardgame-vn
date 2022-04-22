@@ -14,7 +14,7 @@
     <div class="container">
         <div class="homeProduct__content section">
             <div class="homeProduct__title">
-                <h3><a href="#">Board game trẻ em</a></h3>
+                <h3><a href="#">Bán chạy nhất</a></h3>
             </div>
             <div class="homeProduct__items">
                 <div class="owl-carousel owl-theme myProduct">
@@ -127,8 +127,8 @@
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="v-pills-bgfamily-tab" data-toggle="pill" href="#v-pills-bgfamily"
                         role="tab" aria-controls="v-pills-bgfamily" aria-selected="true">Board game gia đình</a>
-                    <a class="nav-link" id="v-pills-bgchild-tab" data-toggle="pill" href="#v-pills-bgchild"
-                        role="tab" aria-controls="v-pills-bgchild" aria-selected="false">Board game trẻ em</a>
+                    <a class="nav-link" id="v-pills-bgchild-tab" data-toggle="pill" href="#v-pills-bgchild" role="tab"
+                        aria-controls="v-pills-bgchild" aria-selected="false">Board game trẻ em</a>
                     <a class="nav-link" id="v-pills-bgvietnam-tab" data-toggle="pill" href="#v-pills-bgvietnam"
                         role="tab" aria-controls="v-pills-bgvietnam" aria-selected="false">Board game Việt Nam</a>
                     <a class="nav-link" id="v-pills-bgUS-tab" data-toggle="pill" href="#v-pills-bgUS" role="tab"
@@ -138,18 +138,19 @@
             <div class="col-10 category__right">
                 <div class="category__right-top">
                     <p>Sắp xếp</p>
-                    <select name="" id="">
-                        <option value="">Phổ biến</option>
-                        <option value="">Giá cao đến thấp</option>
-                        <option value="">Giá thấp đến cao</option>
+                    {{!-- nddat--}}
+                    <select name="" id="sort" onchange=getProductList(0)>
+                        <option value="" id="">None</option>
+                        <option value="descending" id="des">Giá cao đến thấp</option>
+                        <option value="ascending" id="asc">Giá thấp đến cao</option>
                     </select>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-bgfamily" role="tabpanel"
                         aria-labelledby="v-pills-bgfamily-tab">
-                        <div class="row">
-                            {{#each products}}
-                                <div class="col-3 card-item" hidden>
+                        <div id="product-list" class="row"></div>
+                            {{!-- {{#each products}}
+                                <div class="col-12 col-md-6 col-lg-3 card-item">
                                     <div class="card">
                                         <img src="{{this.photo.[0]}}" class="card-img-top" alt="">
                                         <div class="card-body">
@@ -170,38 +171,38 @@
                                     </div>
                                 </div>
                             {{/each}}
-                        </div>
+                        </div> --}}
                         <div class="category__right-bottom">
-                            <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <ul id="pagination-btn" class="pagination pagination-lg" style="margin-left: 500px"></ul>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgchild" role="tabpanel"
                         aria-labelledby="v-pills-bgchild-tab">
                         <div class="row">
                             {{#each products}}
-                                <div class="col-3 card-item" hidden>
-                                    <div class="card">
-                                        <img src="/img/product1.png" class="card-img-top" alt="">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{this.name}}</h5>
-                                            <p class="card-text">{{this.description}}</p>
-                                            <div class="card-price">
-                                                <p class="card-price-num">{{this.price}}</p><span> VND</span>
-                                            </div>
-                                        </div>
-                                        <div class="card__overlay">
-                                            <a href="/product/{{this._id}}" class="card__overlay-detail">
-                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                            </a>
-                                            <button class="card__overlay-cart">
-                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                            </button>
+                            <div class="col-12 col-md-6 col-lg-3 card-item" hidden>
+                                <div class="card">
+                                    <img src="/img/product1.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{this.name}}</h5>
+                                        <p class="card-text">{{this.description}}</p>
+                                        <div class="card-price">
+                                            <p class="card-price-num">{{this.price}}</p><span> VND</span>
                                         </div>
                                     </div>
+                                    <div class="card__overlay">
+                                        <a href="/product/{{this._id}}" class="card__overlay-detail">
+                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                        </a>
+                                        <button class="card__overlay-cart">
+                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                        </button>
+                                    </div>
                                 </div>
+                            </div>
                             {{/each}}
-                            <div class="category__right-bottom">
-                                <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <div class="category__right-bottom mt-4">
+                                <ul class="pagination justify-content-center"></ul>
                             </div>
                         </div>
                     </div>
@@ -209,58 +210,64 @@
                         aria-labelledby="v-pills-bgvietnam-tab">
                         <div class="row">
                             {{#each products}}
-                                <div class="col-3 card-item" hidden>
-                                    <div class="card">
-                                        <img src="/img/product1.png" class="card-img-top" alt="">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{this.name}}</h5>
-                                            <p class="card-text">{{this.description}}</p>
-                                            <div class="card-price">
-                                                <p class="card-price-num">{{this.price}}</p><span> VND</span>
-                                            </div>
-                                        </div>
-                                        <div class="card__overlay">
-                                            <a href="/product/{{this._id}}" class="card__overlay-detail">
-                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                            </a>
-                                            <button class="card__overlay-cart">
-                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                            </button>
+                            <div class="col-12 col-md-6 col-lg-3 card-item" hidden>
+                                <div class="card">
+                                    <img src="/img/product1.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{this.name}}</h5>
+                                        <p class="card-text">{{this.description}}</p>
+                                        <div class="card-price">
+                                            <p class="card-price-num">{{this.price}}</p><span> VND</span>
                                         </div>
                                     </div>
+                                    <div class="card__overlay">
+                                        <a href="/product/{{this._id}}" class="card__overlay-detail">
+                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                        </a>
+                                        <button class="card__overlay-cart">
+                                            <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                        </button>
+                                    </div>
                                 </div>
+                            </div>
                             {{/each}}
-                            <div class="category__right-bottom">
-                                <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <div class="category__right-bottom mt-4">
+                                <ul class="pagination justify-content-center"></ul>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bgUS" role="tabpanel" aria-labelledby="v-pills-bgUS-tab">
                         <div class="row">
                             {{#each products}}
-                                <div class="col-3 card-item" hidden>
-                                    <div class="card">
-                                        <img src="/img/product1.png" class="card-img-top" alt="">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{this.name}}</h5>
-                                            <p class="card-text">{{this.description}}</p>
-                                            <div class="card-price">
-                                                <p class="card-price-num">{{this.price}}</p><span> VND</span>
-                                            </div>
-                                        </div>
-                                        <div class="card__overlay">
-                                            <a href="/product/{{this._id}}" class="card__overlay-detail">
-                                                <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
-                                            </a>
-                                            <button class="card__overlay-cart">
-                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
-                                            </button>
+                            <div class="col-12 col-md-6 col-lg-3 card-item" hidden>
+                                <div class="card">
+                                    <img src="/img/product1.png" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{this.name}}</h5>
+                                        <p class="card-text">{{this.description}}</p>
+                                        <div class="card-price">
+                                            <p class="card-price-num">{{this.price}}</p><span> VND</span>
                                         </div>
                                     </div>
+                                    <div class="card__overlay">
+                                        <a href="/product/{{this._id}}" class="card__overlay-detail">
+                                            <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                        </a>
+                                        <form action="/order/add-to-cart" method="POST">
+                                            <input type="'hidden" name="id" value="<%=p">
+                                        </form>
+                                        <button class="card__overlay-cart">
+                                            <a href="/order/add-to-card/{{this._id}}" class="card__overlay-detail">
+                                                <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                            </a>
+                                            
+                                        </button>
+                                    </div>
                                 </div>
+                            </div>
                             {{/each}}
-                            <div class="category__right-bottom">
-                                <ul class="pagination pagination-lg" style="margin-left: 500px"></ul>
+                            <div class="category__right-bottom mt-4">
+                                <ul class="pagination justify-content-center"></ul>
                             </div>
                         </div>
                     </div>

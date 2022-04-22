@@ -1,10 +1,12 @@
 const OrderModel = require('../models/order.model')
+const productModel = require('../models/product.model')
+const Cart = require('../models/cart.model')
 
 class OrderController {
 
 
     /**
-     * @route [GET] /api/order/view
+     * @route [GET] /order/view
      * @desc View all order list
      * @access private
      */
@@ -28,7 +30,7 @@ class OrderController {
     }
 
     /**
-     * @route [GET] /api/order/view-detail-order/:id
+     * @route [GET] /order/view-detail-order/:id
      * @desc View detail order
      * @access private
      */
@@ -49,7 +51,7 @@ class OrderController {
     }
 
     /** TS
-     * @route [POST] /api/order/create-order/:id
+     * @route [POST] /order/create-order/:id
      * @desc Create new order
      * @access private
      */
@@ -66,6 +68,23 @@ class OrderController {
                     message: err,
                 })
             })
+    }
+
+    /** TS
+     * @route [Get] /order/add-to-cart/:id
+     * @desc Add new product to cart
+     * @access private
+     */
+
+    addCart(req, res, next){
+        
+        console.log("ok");
+        const addProId = productModel.findById(req.body.id)[0];
+
+        Cart.save(addProId);
+        console.log(Cart.getCart());
+
+        res.end('saved Su');
     }
 
 }
