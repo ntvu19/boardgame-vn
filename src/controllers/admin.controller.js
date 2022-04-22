@@ -165,10 +165,34 @@ class AdminController {
             .catch(err => res.status(400).send({ message: err }))
     }
 
+
+    // [GET] /admin/api/user-size
+    getUserSize(req, res, next) {
+        UserModel.count()
+            .then(result => res.status(200).send({ userSize: result }))
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [GET] /admin/user/:offset
+    userPagination(req, res, next) {
+        const maxElement = 4
+        const offset = Number.parseInt(req.params.offset)
+        console.log("response")
+        UserModel.find({})
+            .then(user => {
+                const userSize = user.length
+                let userListReturn = []
+                for (let i = offset * maxElement; i < (offset + 1) * maxElement; i++) {
+                    if (i == userSize) {
+                        break
+                    }
+                    userListReturn.push(user[i])
+                }
+                res.status(200).send(userListReturn)
+            })
+            .catch(err => res.status(400).send({ message: err }))
+    }
     addProduct(req, res, next) {
-        //console.log("pklss");
-        //console.log("red:", req.body);
-        //console.log("x", req.files);
         if (productServices.checkExist(req.body.name)) {
 
             let pic1 = '';
