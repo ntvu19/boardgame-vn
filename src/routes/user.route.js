@@ -8,5 +8,6 @@ const router = express.Router()
 router.get('/active/:id', UserController.activeUser)
 router.put('/edit/:id', UserController.editUser)
 router.get('/', UserController.userInformation)
+router.post('/forgot-password', UserController.forgotPassword);
 
 module.exports = router

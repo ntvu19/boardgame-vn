@@ -43,7 +43,6 @@ const loadPage = () => {
 
 const getProductList = (o) => {
     const sortBy = document.getElementById("sort").value;
-    console.log(sortBy)
     $.get({
         url: `/product/${o}?sortBy=${sortBy}`,
         statusCode: {
