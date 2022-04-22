@@ -2,6 +2,8 @@ const AdminController = require('../controllers/admin.controller')
 const Auth = require('../middlewares/auth.middleware')
 const express = require('express')
 const router = express.Router()
+const multer = require('../configs/multer')
+const imageUpload = multer.fields([{name : 'image1' , maxCount : 1},{name : 'image2', maxCount : 1},{name : 'image3', maxCount : 1},{name : 'image4', maxCount : 1},{name : 'image5', maxCount : 1}])
 
 router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser)
 router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser)
@@ -15,7 +17,9 @@ router.get('/product/:offset', AdminController.productPagination)
 router.get('/product/detail/:id', AdminController.getProductDetail)
 router.put('/product/update/:id', AdminController.updateProduct) // Auth.isAdmin
 router.delete('/product/delete/:id', AdminController.deleteProduct) // Auth.isAdmin
-router.post('/product/add', AdminController.addProduct) // Auth.isAdmin
+// router.post('/product/add', upload.single('image'), AdminController.addProduct) // Auth.isAdmin
+
+router.post('/product/add',imageUpload, AdminController.addProduct)
 
 router.get('/category', AdminController.categoryPage)
 router.get('/revenue', AdminController.revenuePage)

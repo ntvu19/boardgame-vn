@@ -64,7 +64,7 @@ const getProductList = (o) => {
                                 </div>
                             </div>
                             <div class="card__overlay">
-                                <a href="/product/${element._id}" class="card__overlay-detail">
+                                <a href="/product/detail/${element._id}" class="card__overlay-detail">
                                     <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
                                 </a>
                             <button class="card__overlay-cart">

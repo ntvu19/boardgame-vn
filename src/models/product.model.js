@@ -20,7 +20,7 @@ const ProductSchema = new Schema({
         age: String,
         genres: { type: Array, genre: String },
         mechanisms: { type: Array, mechanism: String }
-    },
+    }, 
     photo: {
         type: Array,
         url: String,
