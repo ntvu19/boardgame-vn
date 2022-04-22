@@ -43,7 +43,7 @@ const getProductList = (o) => {
                     productTableBody.innerHTML += `
                     <tr>
                         <th scope="row">${o * 4 + i + 1}</th>
-                        <td class="table__img"><img src="/img/product2.jpg" alt=""></td>
+                        <td class="table__img"><img src="${element.photo[0]}" alt=""></td>
                         <td>${element.name}</td>
                         <td>${element.description}</td>
                         <td>${element.price} <sup>đ</sup></td>
