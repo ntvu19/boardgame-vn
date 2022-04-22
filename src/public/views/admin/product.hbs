@@ -114,31 +114,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form name="add-product-form" action="/admin/product/add" method="POST">
+                <form name="add-product-form" action="/admin/product/add" method="POST" enctype="multipart/form-data">
                     <label for="">Tên sản phẩm<span style="color: red;">*</span></label> <br>
                     <input type="text" name="name"><br>
                     <label for="">Giá<span style="color: red;">*</span></label> <br>
                     <input type="number" name="price"><br>
                     <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
                     <textarea name="description" id="" rows="6"> </textarea><br>
-                    <div class="form-group">
-                        <label for="">Ảnh<span style="color: red;">*</span></label> <br>
-                        <input type="file" class="form-control" name="image1" id="image1">
-                    </div>
-
-                </form>
-
-                <form action="/admin/product/add" enctype="multipart/form-data" method="POST">
-
+                    <label for="">Ảnh<span style="color: red;">*</span></label> <br>
+                    <input type="file" class="form-control" name="image1" id="image1">
                     <input type="file" class="form-control" name="image2" id="image2">
                     <input type="file" class="form-control" name="image3" id="image3">
                     <input type="file" class="form-control" name="image4" id="image4">
                     <input type="file" class="form-control" name="image5" id="image5">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button id="btn-add-product" type="button" class="btn btn-primary">Thêm</button>
+                    </div>
                 </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button id="btn-add-product" type="button" class="btn btn-primary">Thêm</button>
-                </div>
             </div>
 
         </div>
