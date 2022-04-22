@@ -183,11 +183,29 @@ class AdminController {
             newProduct.name = req.body.name;
             newProduct.price = req.body.price;
             newProduct.description = req.body.description;
+            // req.body
+            // console.log(req.body);
+
+            console.log("file", req.files);
 
             newProduct.save()
                 .then(() => res.redirect('back'))
                 .catch(err => console.log(err))
 
+                // for (let i in req.files) {
+
+                //     if (req.files[i][0].fieldname == 'image1') {
+    
+                //         cloudinary.uploader.upload(req.files.image1[0].path, { folder: fd, public_id: 'p1' })
+                //             .then(pic1 => {
+                //                 newProduct.photo.push(pic1.url);
+                //                 newProduct.updateOne({photo: newProduct.photo})
+                //                     .then(() => res.redirect('back'))
+                //                     .catch(err => console.log(err))
+    
+                //             })
+                //             .catch(err => console.log(err))
+                //     }
             for (let i in req.files) {
 
                 if (req.files[i][0].fieldname == 'image1') {
@@ -207,59 +225,32 @@ class AdminController {
                 //     cloudinary.uploader.upload(req.files.image2[0].path, { folder: fd, public_id: 'p2' })
                 //         .then(pic2 => {
                 //             newProduct.photo.push(pic2.url);
-                //             newProduct.updateOne({photo: newProduct.photo})
-                //                 .then(() => res.redirect('back'))
-                //                 .catch(err => console.log(err))
-
                 //         })
                 //         .catch(err => console.log(err))
-                //     //pic2 = productServices.uploadImage(fd, req.files.image2[0].path, 'p2')
-
                 // }
                 // else if (req.files[i][0].fieldname == 'image3') {
                 //     cloudinary.uploader.upload(req.files.image3[0].path, { folder: fd, public_id: 'p3' })
                 //         .then(pic3 => {
                 //             newProduct.photo.push(pic3.url);
-                            
-                //             newProduct.updateOne({photo: newProduct.photo})
-                //                 .then(() => res.redirect('back'))
-                //                 .catch(err => console.log(err))
                 //         })
                 //         .catch(err => console.log(err))
-                //     // pic3 = productServices.uploadImage(fd, req.files.image3[0].path, 'p3')
-
                 // }
                 // else if (req.files[i][0].fieldname == 'image4') {
                 //     cloudinary.uploader.upload(req.files.image4[0].path, { folder: fd, public_id: 'p4' })
                 //         .then(pic4 => {
                 //             newProduct.photo.push(pic4.url);
-                //             newProduct.updateOne({photo: newProduct.photo})
-                //                 .then(() => res.redirect('back'))
-                //                 .catch(err => console.log(err))
                 //         })
                 //         .catch(err => console.log(err))
-                //     // pic4 = productServices.uploadImage(fd, req.files.image4[0].path, 'p4')
 
                 // }
                 // else if (req.files[i][0].fieldname == 'image5') {
                 //     cloudinary.uploader.upload(req.files.image5[0].path, { folder: fd, public_id: 'p5' })
                 //         .then(pic5 => {
                 //             newProduct.photo.push(pic5.url);
-                //             newProduct.updateOne({photo: newProduct.photo})
-                //                 .then(() => res.redirect('back'))
-                //                 .catch(err => console.log(err))
                 //         })
                 //         .catch(err => console.log(err))
-
-                //     //pic5 = productServices.uploadImage(fd, req.files.image5[0].path, 'p5')
-
                 // }
             }
-
-
-
-            // console.log(p2);
-
 
             /*
             newProduct.discount = req.body.discount;
