@@ -5,8 +5,6 @@ const bgChild = document.querySelector("#v-pills-bgchild")
 const bgVietnam = document.querySelector('#v-pills-bgvietnam')
 const bgUS = document.querySelector('#v-pills-bgUS')
 
-
-
 let productSize = 0
 let offset = 0
 
@@ -47,10 +45,10 @@ const getProductList = (o) => {
     const sortBy = document.getElementById("sort").value;
     console.log(sortBy)
     $.get({
-        url: `/product/sort/${o}?sortBy=${sortBy}`,
+        url: `/product/${o}?sortBy=${sortBy}`,
         statusCode: {
             200: function (response) {
-
+                productTableBody.innerHTML = ''
                 let elementSize = response.length
                 for (let i = 0; i < elementSize; i++) {
                     const element = response[i]
@@ -66,7 +64,7 @@ const getProductList = (o) => {
                                 </div>
                             </div>
                             <div class="card__overlay">
-                                <a href="/product/${element._id}" class="card__overlay-detail">
+                                <a href="/product/detail/${element._id}" class="card__overlay-detail">
                                     <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
                                 </a>
                             <button class="card__overlay-cart">

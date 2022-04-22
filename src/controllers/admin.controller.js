@@ -5,6 +5,11 @@ const UserModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
+const productServices = require('../util/producetServices')
+
+const cloudinary = require('../configs/cloudinary.config')
+
+
 class AdminController {
 
     // [GET] /admin
@@ -161,11 +166,134 @@ class AdminController {
     }
 
     addProduct(req, res, next) {
-        const newProduct = new ProductModel(req.body)
-        newProduct.save()
-            .then(() => res.redirect('back'))
-            .catch(err => console.log(err))
-    }
+        //console.log("pklss");
+        //console.log("red:", req.body);
+        //console.log("x", req.files);
+        if (productServices.checkExist(req.body.name)) {
+
+            let pic1 = '';
+            let pic2 = '';
+            let pic3 = '';
+            let pic4 = '';
+            let pic5 = '';
+
+            const fd = 'product/' + req.body.name;
+            let newProduct = new ProductModel();
+
+            newProduct.name = req.body.name;
+            newProduct.price = req.body.price;
+            newProduct.description = req.body.description;
+
+            newProduct.save()
+                .then(() => res.redirect('back'))
+                .catch(err => console.log(err))
+
+            for (let i in req.files) {
+
+                if (req.files[i][0].fieldname == 'image1') {
+
+                    cloudinary.uploader.upload(req.files.image1[0].path, { folder: fd, public_id: 'p1' })
+                        .then(pic1 => {
+                            newProduct.photo.push(pic1.url);
+                            newProduct.updateOne({photo: newProduct.photo})
+                                .then(() => res.redirect('back'))
+                                .catch(err => console.log(err))
+
+                        })
+                        .catch(err => console.log(err))
+                }
+                // else if (req.files[i][0].fieldname == 'image2') {
+                //     // console.log(req.files[i], "okddi2", i);
+                //     cloudinary.uploader.upload(req.files.image2[0].path, { folder: fd, public_id: 'p2' })
+                //         .then(pic2 => {
+                //             newProduct.photo.push(pic2.url);
+                //             newProduct.updateOne({photo: newProduct.photo})
+                //                 .then(() => res.redirect('back'))
+                //                 .catch(err => console.log(err))
+
+                //         })
+                //         .catch(err => console.log(err))
+                //     //pic2 = productServices.uploadImage(fd, req.files.image2[0].path, 'p2')
+
+                // }
+                // else if (req.files[i][0].fieldname == 'image3') {
+                //     cloudinary.uploader.upload(req.files.image3[0].path, { folder: fd, public_id: 'p3' })
+                //         .then(pic3 => {
+                //             newProduct.photo.push(pic3.url);
+                            
+                //             newProduct.updateOne({photo: newProduct.photo})
+                //                 .then(() => res.redirect('back'))
+                //                 .catch(err => console.log(err))
+                //         })
+                //         .catch(err => console.log(err))
+                //     // pic3 = productServices.uploadImage(fd, req.files.image3[0].path, 'p3')
+
+                // }
+                // else if (req.files[i][0].fieldname == 'image4') {
+                //     cloudinary.uploader.upload(req.files.image4[0].path, { folder: fd, public_id: 'p4' })
+                //         .then(pic4 => {
+                //             newProduct.photo.push(pic4.url);
+                //             newProduct.updateOne({photo: newProduct.photo})
+                //                 .then(() => res.redirect('back'))
+                //                 .catch(err => console.log(err))
+                //         })
+                //         .catch(err => console.log(err))
+                //     // pic4 = productServices.uploadImage(fd, req.files.image4[0].path, 'p4')
+
+                // }
+                // else if (req.files[i][0].fieldname == 'image5') {
+                //     cloudinary.uploader.upload(req.files.image5[0].path, { folder: fd, public_id: 'p5' })
+                //         .then(pic5 => {
+                //             newProduct.photo.push(pic5.url);
+                //             newProduct.updateOne({photo: newProduct.photo})
+                //                 .then(() => res.redirect('back'))
+                //                 .catch(err => console.log(err))
+                //         })
+                //         .catch(err => console.log(err))
+
+                //     //pic5 = productServices.uploadImage(fd, req.files.image5[0].path, 'p5')
+
+                // }
+            }
+
+
+
+            // console.log(p2);
+
+
+            /*
+            newProduct.discount = req.body.discount;
+            newProduct.productType = req.body.type;
+            newProduct.stock = req.body.stock;
+            newProduct.sold = req.body.sold;
+            newProduct.conditions.numberOfPlayer = req.body.numberOfPlayer;
+            newProduct.conditions.idealNumberOfPlayer = req.body.idealNumberOfPlayer;
+            newProduct.conditions.playingTime = req.body.playingTime;
+            newProduct.conditions.age = req.body.age;
+            newProduct.conditions.genres.push(req.body.genres);
+            newProduct.conditions.mechanisms.push(req.body.mechanisms);
+            
+    
+    
+            newProduct.detail.keys.push(req.body.keys);
+            newProduct.detail.values.push(req.body.values);
+    
+    
+            newProduct.detail.rules = req.body.rules;
+             */
+
+
+            newProduct.save()
+                .then(() => res.redirect('back'))
+                .catch(err => console.log(err))
+        } else {
+            // const rp = 'Product name already exists'
+            res.status(400).send("errr")
+        }
+
+
+
+    };
 
     // [DELETE] /admin/product/delete/:id
     deleteProduct(req, res, next) {

@@ -6,6 +6,7 @@ const orderRouter = require('../routes/order.route')
 const productRouter = require('../routes/product.route')
 const commentRouter = require('../routes/comment.route')
 
+
 const route = (app) => {
 
     app.use('/admin', adminRouter)
@@ -26,6 +27,9 @@ const route = (app) => {
     app.use('/product', productRouter)
     app.use('/user', userRouter)
     app.use('/', homeRouter)
+
+   // app.use('/user', require('./routes/user'))
+    
 }
 
 module.exports = route
