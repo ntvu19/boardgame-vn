@@ -72,13 +72,14 @@ class ProductController {
 
         const offset = Number.parseInt(req.params.offset);
         const sortProduct = req.query.sortBy;
-        function product(){
+
+        function product() {
             let products;
-            if (sortProduct == ''){
+            if (sortProduct == '') {
                 products = ProductModel.find({})
-            } else if(sortProduct == 'descending'){
+            } else if (sortProduct == 'descending') {
                 products = ProductModel.find({}).sort({ price: "descending" })
-            } else if(sortProduct == 'ascending'){
+            } else if (sortProduct == 'ascending') {
                 products = ProductModel.find({}).sort({ price: "ascending" })
             }
             return products
@@ -89,14 +90,13 @@ class ProductController {
             .then(product => {
                 const productSize = product.length
                 let productListReturn = []
-                
+
                 for (let i = offset * maxElement; i < (offset + 1) * maxElement; i++) {
                     if (i == productSize) {
                         break
                     }
                     productListReturn.push(product[i])
                 }
-                console.log(productListReturn);
                 res.status(200).send(productListReturn)
             })
             .catch(err => res.status(400).send({ message: err }))
