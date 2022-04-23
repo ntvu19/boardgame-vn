@@ -1,3 +1,12 @@
+// Category
+const categoryFilter = document.querySelector('#category-filter')
+const categoryList = categoryFilter.querySelectorAll('option')
+let currentCategory = categoryList[0]
+
+categoryFilter.addEventListener('change', () => {
+    currentCategory = categoryList[categoryFilter.selectedIndex]
+})
+
 // Add product
 const addProduct = () => {
     const addProductForm = document.forms['add-product-form']
@@ -32,12 +41,21 @@ const updateProduct = (productId) => {
             editProductBody.innerHTML = `
                 <form action="/admin/product/update/${response._id}?_method=PUT" method="POST">
                     <label for="">Tên sản phẩm<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="name" value=${response.name}"><br>
+                    <input type="text" name="name" value="${response.name}"><br>
                     <label for="">Giá<span style="color: red;">*</span></label> <br>
                     <input type="text" name="price" value="${response.price}"><br>
+                    <label for="">Danh mục<span style="color:red;">*</span></label> <br>
+                    <select name="categoryId">${categoryFilter.innerHTML}</select> <br>
                     <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
                     <textarea name="description" rows="6">${response.description}</textarea><br>
                 </form>`
+
+            for (let i = 0; i < categoryList.length; i++) {
+                if (response.categoryId === categoryList[i].value) {
+                    editProductBody.querySelector('select[name=categoryId').selectedIndex = i
+                    break
+                }
+            }
 
             const submitBtn = document.querySelector('#btn-update-product')
             submitBtn.onclick = () => {

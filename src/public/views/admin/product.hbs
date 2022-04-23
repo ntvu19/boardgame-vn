@@ -72,9 +72,10 @@
                 <div class="tab-pane fade show active" id="v-pills-sanpham" role="tabpanel"
                     aria-labelledby="v-pills-sanpham-tab">
                     <h1>Sản phẩm</h1>
-                    <select name="" id="">
-                        <option value="">Boardgame gia đình</option>
-                        <option value="">Boardgame trẻ em</option>
+                    <select name="category_name" id="category-filter">
+                        {{#each categories}}
+                            <option value="{{this._id}}">{{this.category_name}}</option>
+                        {{/each}}
                     </select>
                     <table class="table table-bordered">
                         <thead>
@@ -119,6 +120,12 @@
                     <input type="text" name="name"><br>
                     <label for="">Giá<span style="color: red;">*</span></label> <br>
                     <input type="number" name="price"><br>
+                    <label for="">Danh mục<span style="color:red;">*</span></label> <br>
+                    <select name="categoryId" id="category-filter">
+                        {{#each categories}}
+                            <option value="{{this._id}}">{{this.category_name}}</option>
+                        {{/each}}
+                    </select> <br>
                     <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
                     <textarea name="description" id="" rows="6"> </textarea><br>
                     <label for="">Ảnh<span style="color: red;">*</span></label> <br>

@@ -15,26 +15,20 @@ const loadPage = () => {
             userSize = response.userSize
             const paginationBtn = document.querySelector('#pagination-btn')
             const pageNumber = Math.ceil(userSize / 4)
-            if(pageNumber <= 1){
-                getuserList(0);
+
+            for (let i = 0; i < pageNumber; i++) {
+                const li = document.createElement('li')
+                const button = document.createElement('button')
+                li.className = 'page-item'
+                button.className = 'page-link'
+                button.innerText = i + 1
+                button.addEventListener('click', (e) => {
+                    userTableBody.innerHTML = ''
+                    getUserList(i)
+                })
+                li.appendChild(button)
+                paginationBtn.appendChild(li)
             }
-            else {
-                
-                for (let i = 0; i < pageNumber; i++) {
-                    const li = document.createElement('li')
-                    const button = document.createElement('button')
-                    li.className = 'page-item'
-                    button.className = 'page-link'
-                    button.innerText = i + 1
-                    button.addEventListener('click', (e) => {
-                        userTableBody.innerHTML = ''
-                        getUserList(i)
-                    })
-                    li.appendChild(button)
-                    paginationBtn.appendChild(li)
-                }
-            }
-            
         }
     })
 }
@@ -46,7 +40,7 @@ const getuserList = (o) => {
             200: function(response) {
                 console.log(response)
                 let elementSize = response.length
-                userTableBody.innerHTML +=''
+                userTableBody.innerHTML += ''
                 for (let i = 0; i < elementSize; i++) {
                     const element = response[i]
                     userTableBody.innerHTML += `
