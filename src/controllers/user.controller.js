@@ -7,13 +7,13 @@ class UserController {
     // [GET] /user
     userInformation(req, res, next) {
         if (!req.cookies.token) {
-            res.redirect('/')
+            res.redirect('/login')
         } else {
             const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
             UserModel.findById(decodedToken.userId)
                 .then(user => {
                     if (!user) {
-                        res.redirect('/')
+                        res.redirect('/login')
                     } else {
                         res.render('info', {
                             layout: 'customer',
@@ -21,7 +21,7 @@ class UserController {
                         })
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => res.status(400).send({ message: err }))
         }
     }
 
@@ -41,7 +41,7 @@ class UserController {
                     const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
                     UserModel.findByIdAndUpdate(decodedToken.userId, req.body)
                         .then(() => res.redirect('/user'))
-                        .catch(err => console.log(err))
+                        .catch(err => res.status(400).send({ message: err }))
                 }
             })
         })
@@ -57,7 +57,7 @@ class UserController {
                 const active = { active: true }
                 UserModel.findByIdAndUpdate(req.params.id, active)
                     .then(() => res.redirect('/'))
-                    .catch(err => console.log(err))
+                    .catch(err => res.status(400).send({ message: err }))
             }
         }
     }

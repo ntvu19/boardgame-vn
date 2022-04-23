@@ -16,9 +16,33 @@ themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('darkMode');
     themeBtn.querySelector('span:first-child').classList.toggle('active');
     themeBtn.querySelector('span:last-child').classList.toggle('active');
+
+    let state = themeBtn.querySelector('.active');
+    if (state.innerText === 'light_mode') {
+        localStorage.setItem('darkMode', 'light_mode');
+    } else {
+        localStorage.setItem('darkMode', 'dark_mode');
+    }
 })
 
+// Load dark mode state
+const loadDarkModeState = () => {
+    let darkModeState = localStorage.getItem('darkMode');
+    if (darkModeState === null || darkModeState === 'light_mode') {
+        document.body.classList.remove('darkMode');
+        themeBtn.querySelector('span:first-child').classList.add('active');
+        themeBtn.querySelector('span:last-child').classList.remove('active');
+    } else {
+        document.body.classList.add('darkMode');
+        themeBtn.querySelector('span:first-child').classList.remove('active');
+        themeBtn.querySelector('span:last-child').classList.add('active');
+    }
+}
+
 window.onload = () => {
+    // Dark mode
+    loadDarkModeState()
+
     let logInState, fullName
     const cookieSet = document.cookie.split('; ')
     for (let i = 0; i < cookieSet.length; i++) {

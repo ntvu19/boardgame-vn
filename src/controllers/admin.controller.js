@@ -1,4 +1,5 @@
 const AdminModel = require('../models/admin.model')
+const CategoryModel = require('../models/category.model')
 const ProductModel = require('../models/product.model')
 const OrderModel = require('../models/order.model')
 const UserModel = require('../models/user.model')
@@ -8,26 +9,14 @@ const bcrypt = require('bcryptjs')
 const productServices = require('../util/producetServices')
 
 const cloudinary = require('../configs/cloudinary.config')
+const { send } = require('express/lib/response')
 
 
 class AdminController {
 
     // [GET] /admin
     index(req, res, next) {
-        if (!req.cookies.token) {
-            res.redirect('/admin/login')
-        } else {
-            const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
-            AdminModel.findById(decodedToken.userId)
-                .then(admin => {
-                    admin ? res.render('admin/home', { layout: 'admin' }) : res.redirect('/admin/login')
-                })
-                .catch(err => console.log(err))
-        }
-    }
-
-    categoryPage(req, res, next) {
-        res.render('admin/category', { layout: 'admin' })
+        res.render('admin/home', { layout: 'admin' })
     }
 
     revenuePage(req, res, next) {
@@ -53,7 +42,7 @@ class AdminController {
             const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
             AdminModel.findById(decodedToken.userId)
                 .then(admin => { admin ? res.redirect('/admin') : res.render('admin/login') })
-                .catch(err => console.log(err))
+                .catch(err => res.status(403).send({ message: err }))
         }
     }
 
@@ -81,7 +70,7 @@ class AdminController {
                         })
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => res.status(403).send({ message: err }))
     }
 
     // [POST] /admin/register
@@ -165,6 +154,13 @@ class AdminController {
             .catch(err => res.status(400).send({ message: err }))
     }
 
+    // [POST] /admin/product/add
+    addProduct(req, res, next) {
+        const newProduct = new ProductModel(req.body)
+        newProduct.save()
+            .then(() => res.redirect('back'))
+            .catch(err => res.status(400).send({ message: err }))
+    }
 
     // [GET] /admin/api/user-size
     getUserSize(req, res, next) {
@@ -177,7 +173,7 @@ class AdminController {
     userPagination(req, res, next) {
         const maxElement = 4
         const offset = Number.parseInt(req.params.offset)
-        console.log("response")
+
         UserModel.find({})
             .then(user => {
                 const userSize = user.length
@@ -215,33 +211,29 @@ class AdminController {
 
                     pic1 = cloudinary.uploader.upload(req.files.image1[0].path, { folder: fd, public_id: 'p1' })
                         .then(pic1 => {
-                           
+
                             return pic1.url;
                         })
-                }
-                else if (req.files[i][0].fieldname == 'image2') {
+                } else if (req.files[i][0].fieldname == 'image2') {
                     pic2 = cloudinary.uploader.upload(req.files.image2[0].path, { folder: fd, public_id: 'p2' })
                         .then(pic2 => {
                             return pic2.url;
                         })
                         .catch(err => console.log(err))
-                }
-                else if (req.files[i][0].fieldname == 'image3') {
+                } else if (req.files[i][0].fieldname == 'image3') {
                     pic3 = cloudinary.uploader.upload(req.files.image3[0].path, { folder: fd, public_id: 'p3' })
                         .then(pic3 => {
                             return pic3.url;
                         })
                         .catch(err => console.log(err))
-                }
-                else if (req.files[i][0].fieldname == 'image4') {
+                } else if (req.files[i][0].fieldname == 'image4') {
                     pic4 = cloudinary.uploader.upload(req.files.image4[0].path, { folder: fd, public_id: 'p4' })
                         .then(pic4 => {
                             return pic4.url;
                         })
                         .catch(err => console.log(err))
 
-                }
-                else if (req.files[i][0].fieldname == 'image5') {
+                } else if (req.files[i][0].fieldname == 'image5') {
                     pic5 = cloudinary.uploader.upload(req.files.image5[0].path, { folder: fd, public_id: 'p5' })
                         .then(pic5 => {
                             return pic5.url;
@@ -249,19 +241,19 @@ class AdminController {
                         .catch(err => console.log(err))
                 }
             }
-            Promise.all([pic1, pic2, pic3, pic4, pic5]).then(function(values){
+            Promise.all([pic1, pic2, pic3, pic4, pic5]).then(function(values) {
                 newProduct.photo = values;
                 newProduct.save()
-                .then(() => {                  
-                    res.redirect('back')
-                })
-                .catch(err => console.log(err))
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(err => console.log(err))
             })
-            
 
-            
 
-            
+
+
+
             /*
             newProduct.discount = req.body.discount;
             newProduct.productType = req.body.type;
@@ -285,8 +277,7 @@ class AdminController {
 
 
         } else {
-            // const rp = 'Product name already exists'
-            res.status(400).send("errr")
+            res.status(400).send({ message: "Product name already exists" })
         }
 
 
@@ -315,6 +306,53 @@ class AdminController {
     }
 
     /**
+     * Category
+     */
+    // [GET] /admin/category
+    categoryPage(req, res, next) {
+        CategoryModel.find({})
+            .then(category => {
+                res.render('admin/category', {
+                    layout: 'admin',
+                    categories: category.map(mongoose => mongoose.toObject())
+                })
+            })
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [GET] /admin/category/detail/:id
+    categoryDetail(req, res, next) {
+        CategoryModel.findById(req.params.id)
+            .then(category => res.status(200).send(category))
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [POST] /admin/category/add
+    addCategory(req, res, next) {
+        const newCategory = new CategoryModel(req.body)
+        newCategory.save()
+            .then(() => res.redirect('back'))
+            .catch(err => res.status(400) > send({ message: err }))
+    }
+
+    // [PUT] /admin/category/update/:id
+    updateCategory(req, res, next) {
+        CategoryModel.findByIdAndUpdate(req.params.id, req.body)
+            .then(() => res.redirect('back'))
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [DELETE] /admin/category/delete/:id
+    deleteCategory(req, res, next) {
+        const categoryId = req.params.id
+        CategoryModel.findByIdAndDelete(categoryId)
+            .then(() => res.status(200).send({ message: 'Success' }))
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // 
+
+    /**
      * Customer
      */
     customerPage(req, res, next) {
@@ -332,7 +370,7 @@ class AdminController {
                     admins: admin.map(mongoose => mongoose.toObject())
                 })
             })
-            .catch(err => console.log(err))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
     addAdmin(req, res, next) {
@@ -352,7 +390,7 @@ class AdminController {
                 newAdmin.password = hashed
                 newAdmin.save()
                     .then(() => { res.redirect('back') })
-                    .catch(err => console.log(err))
+                    .catch(err => res.status(400).send({ message: err }))
             })
         })
     }
@@ -360,52 +398,14 @@ class AdminController {
     deleteAdmin(req, res, next) {
         AdminModel.findByIdAndDelete(req.params.id)
             .then(() => res.redirect('back'))
-            .catch(err => console.log(err))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
     updateAdmin(req, res, next) {
         AdminModel.findByIdAndUpdate(req.params.id, req.body)
             .then(() => res.redirect('back'))
-            .catch(err => console.log(err))
+            .catch(err => res.status(400).send({ message: err }))
     }
-
-
-    // /**
-    //  * @route [POST] /api/admin/login
-    //  * @desc Login as administrator role
-    //  * @access public
-    //  */
-    // loginAsAdmin(req, res, next) {
-    //     AdminModel.findOne({
-    //             username: req.body.username,
-    //         })
-    //         .then(admin => {
-    //             if (!admin) {
-    //                 return res.status(401).json({
-    //                     message: 'Incorrectly username or password',
-    //                 })
-    //             }
-    //             bcrypt.compare(req.body.password, admin.password)
-    //                 .then(success => {
-    //                     if (!success) {
-    //                         return res.status(401).json({
-    //                             message: 'Incorrectly username or password',
-    //                         })
-    //                     }
-    //                     return res.status(200).json({
-    //                         userId: admin._id,
-    //                         username: admin.username,
-    //                         role: 'admin',
-    //                         token: admin.token,
-    //                     })
-    //                 })
-    //         })
-    //         .catch(err => {
-    //             return res.status(500).json({
-    //                 message: err,
-    //             })
-    //         })
-    // }
 
     /**
      * @route [GET] /api/admin/view-all-user

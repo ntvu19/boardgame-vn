@@ -81,39 +81,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Boardgame gia đình</td>
-                                <td>
-                                    <div class="table__btn row">
-                                        <div class="col-6 table__btn-left">
-                                            <button>Sửa</button>
+                            {{#each categories}}
+                                <tr>
+                                    <th scope="row">{{sum @index 1}}</th>
+                                    <td>{{this.category_name}}</td>
+                                    <td>
+                                        <div class="table__btn row">
+                                            <div class="col-6 table__btn-left">
+                                                <button type="button" onclick="updateCategory('{{this._id}}')" data-toggle="modal" data-target="#update-category">Sửa</button>
+                                            </div>
+                                            <div class="col-6 table__btn-right">
+                                                <button type="button" onclick="deleteCategory('{{this._id}}')" data-toggle="modal" data-target="#delete-category">Xoá</button>
+                                            </div>
                                         </div>
-                                        <div class="col-6 table__btn-right">
-                                            <button>Xoá</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Boardgame trẻ em</td>
-                                <td>
-                                    <div class="table__btn row">
-                                        <div class="col-6 table__btn-left">
-                                            <button>Sửa</button>
-                                        </div>
-                                        <div class="col-6 table__btn-right">
-                                            <button>Xoá</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                     <div class="tab-pane-btn">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#modalDanhMuc">
+                            data-target="#add-category">
                             Thêm
                         </button>
                     </div>
@@ -123,28 +111,71 @@
     </div>
 </section>
 
-<!-- Modal danh mục -->
-<div class="modal fade" id="modalDanhMuc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal thêm danh mục -->
+<div class="modal fade" id="add-category" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Thêm danh mục</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <h3 class="modal-title">Thêm danh mục</h3>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="/admin/category/add" method="post">
                     <label for="">Tên danh mục<span style="color: red;">*</span></label> <br>
-                    <input type="text" name="product_name"> <br>
+                    <input type="text" name="category_name"> <br>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Cập nhật</button>
+                <button type="button" id="add-category-submit" class="btn btn-primary">Cập nhật</button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/js/admin/pagination.js"></script>
+{{!-- Modal sửa danh mục --}}
+<div class="modal fade" id="update-category" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Thêm danh mục</h3>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="update-category-submit" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Modal xoá danh mục --}}
+<div id="delete-category" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xoá sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn xoá danh mục này?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="delete-category-submit" class="btn btn-danger">Xoá bỏ</button>
+                <button class="btn btn-default" data-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{!-- <script src="/js/admin/pagination.js"></script> --}}
+<script src="/js/admin/category.js"></script>
