@@ -125,7 +125,14 @@ class AdminController {
      */
     // [GET] /admin/product
     productPage(req, res, next) {
-        res.render('admin/product', { layout: 'admin' })
+        CategoryModel.find({})
+            .then(category => {
+                res.render('admin/product', {
+                    layout: 'admin',
+                    categories: category.map(mongoose => mongoose.toObject())
+                })
+            })
+            .catch(err => res.status(400).send({ message: err }))
     }
 
     // [GET] /admin/api/product-size
@@ -197,8 +204,9 @@ class AdminController {
             let pic4 = '';
             let pic5 = '';
 
+            // console.log(mongoose.Types.ObjectId(req.body.categoryId))
             const fd = 'product/' + req.body.name;
-            let newProduct = new ProductModel();
+            let newProduct = new ProductModel(req.body);
 
             newProduct.name = req.body.name;
             newProduct.price = req.body.price;
@@ -293,6 +301,7 @@ class AdminController {
 
     // [PUT] /admin/product/update/:id
     updateProduct(req, res, next) {
+        console.log(req.body)
         ProductModel.findByIdAndUpdate(req.params.id, req.body)
             .then(() => res.redirect('back'))
             .catch(err => console.log(err))
