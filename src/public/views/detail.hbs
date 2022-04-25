@@ -74,7 +74,7 @@
             </div>
         </div>
     </div>
-    </div>
+
 </section>
 
 <!-- HOME PRODUCT -->
@@ -85,9 +85,42 @@
                 <h3><a href="#">Nhận xét sản phẩm</a></h3>
             </div>
         </div>
-        <div style="width: 60%; margin: 20px auto;">
-            <form id="comment-form" method="post" action="#">
-                <input type="hidden" name="product.id" value="{{this._id}}" id="product-id">
+
+        <div id="reviews" class="tab-pane" role="tabpanel">
+            <div class="product-reviews">
+                <div class="product-details-comment-block">
+                    {{!-- data --}}
+                    <div id="data-container"></div>
+                    {{!-- review --}}
+                    <div id="pagination"></div>
+                    </br>
+
+
+                    <div style="width: 60%; margin: 20px auto;">
+                        <form id="comment-form" method="post" action="./comment">
+                            <input type="hidden" name="productId" value={{product._id}} id="product_id">
+                            <input type="hidden" name="userId" value={{user._id}} id="user_id">
+
+                            <input name="author_id" value="{{user}}" id="product-id" type="hidden">
+                            <textarea class="p-2" style="width: 100%" name="content" id="comment-content"
+                                rows="5"></textarea>
+                            <div style="text-align: right">
+                                <button type="submit" id="review-submit" href="#reviews-area">
+                                    Comment
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- Quick View | Modal Area End Here -->
+                </div>
+            </div>
+        </div>
+        {{!-- <div style="width: 60%; margin: 20px auto;">
+            <form id="comment-form" method="post" action="/comment/add-comment">
+                <input name="product_id" value="{{product._id}}" id="product-id" type="hidden">
+                <input name="author_id" value="{{user}}" id="product-id" type="hidden">
+
                 <textarea class="p-2" style="width: 100%" name="content" id="comment-content" rows="5"></textarea>
                 <div style="text-align: right">
                     <button type="submit">
@@ -96,7 +129,7 @@
                 </div>
             </form>
 
-        </div>
+        </div> --}}
         <div class="homeProduct__content">
             <div class="homeProduct__title">
                 <h3><a href="#">Sản phẩm liên quan</a></h3>

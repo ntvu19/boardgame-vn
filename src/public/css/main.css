@@ -60,7 +60,7 @@ header .myNavbar {
     padding: 15px 16px;
 }
 
-header .myNavbar .navbar-nav{
+header .myNavbar .navbar-nav {
     -ms-flex-pack: distribute;
     justify-content: space-between;
     -webkit-box-align: center;
@@ -68,12 +68,12 @@ header .myNavbar .navbar-nav{
     align-items: center;
 }
 
-header .myNavbar .navbar-nav .nav-link{
+header .myNavbar .navbar-nav .nav-link {
     color: #fff;
     font-weight: 500;
 }
 
-header .myNavbar .navbar-nav .nav-link:hover{
+header .myNavbar .navbar-nav .nav-link:hover {
     color: #3fa1fa;
 }
 
@@ -138,7 +138,7 @@ header .myNavbar .navbar-toggler i {
     color: white;
 }
 
-header .myNavbar .navbar-nav .nav-item{
+header .myNavbar .navbar-nav .nav-item {
     margin-left: 50px;
     align-items: center;
     text-align: center;
@@ -384,6 +384,7 @@ footer .footer__item li a {
 .category .category__right .tab-content .card-item .card .card-body .card-price p {
     display: inline;
 }
+
 .category__right-bottom {
     width: 100%;
 }
@@ -401,15 +402,17 @@ footer .footer__item li a {
     padding: 8% 0 0;
     margin: auto;
 }
-.login .login-page .nav-item .nav-link{
+
+.login .login-page .nav-item .nav-link {
     color: #fb5332;
     font-weight: bold;
 }
 
-.login .login-page .nav-item .nav-link.active{
+.login .login-page .nav-item .nav-link.active {
     color: white;
     background-color: #fb5332;
 }
+
 .login .login-page form {
     position: relative;
     z-index: 1;
@@ -470,6 +473,7 @@ footer .footer__item li a {
 .login .login-page form .register-form {
     display: none;
 }
+
 .login .login-page form .forgot-form {
     display: none;
 }
@@ -1246,5 +1250,47 @@ footer .footer__item li a {
     background-color: #ccc;
 }
 
+.comment-author-infos span {
+    color: #333;
+    font-weight: 600;
+}
+
+.product-details-comment-block .comment-review .rating {
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.comment-author-infos em {
+    display: block;
+    color: #adadad;
+}
+
+
+ul,
+li {
+    list-style: none;
+}
+
+#wrapper {
+    width: 900px;
+    margin: 20px auto;
+}
+
+#pagination-data-container {
+    margin-top: 5px;
+}
+
+#pagination-data-container ul {
+    padding: 0;
+    margin: 0;
+}
+
+#pagination-data-container li {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background: #eee;
+    color: #666;
+}
 
 /*# sourceMappingURL=main.css.map */

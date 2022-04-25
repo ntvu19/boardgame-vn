@@ -24,6 +24,7 @@ const route = (app) => {
 
     app.use('/product', productRouter)
     app.use('/user', userRouter)
+    app.use('/comment', commentRouter)
     app.use('/', homeRouter)
 
     // app.use('/user', require('./routes/user'))
