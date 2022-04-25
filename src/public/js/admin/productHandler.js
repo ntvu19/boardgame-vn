@@ -65,18 +65,41 @@ const updateProduct = (productId) => {
                     <label for="">Ảnh<span style="color: red;">*</span></label> <br>
                     <div class="row">
                         <div class="col-sm-9 ml-auto">
-                            <img src="${response.photo[0]}"> <br>
-                            <img src="${response.photo[1]}"> <br>
-                            <img src="${response.photo[2]}"> <br>
-                            <img src="${response.photo[3]}"> <br>
-                            <img src="${response.photo[4]}"> <br>
+                            <img src="${response.photo[0]}"> <br>                            
                         </div>
                         <div class="col-sm-3 ml-auto"> 
-                            <input type="file" class="form-control" name="image1" id="image1">
-                            <input type="file" class="form-control" name="image2" id="image2">
+                            <input type="file" class="form-control" name="image1" id="image1">                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[1]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
+                            <input type="file" class="form-control" name="image2" id="image2">                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[2]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
                             <input type="file" class="form-control" name="image3" id="image3">
+                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[3]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
                             <input type="file" class="form-control" name="image4" id="image4">
+                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[4]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
                             <input type="file" class="form-control" name="image5" id="image5">
+                            
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -49,10 +49,8 @@ const getUserList = (o) => {
                         <td style="text-align: center;">${element.username}</td>
                         <td>${element.email}</td>
                         <td>${element.address}</td>
-                        <td >
-                            <div class="table__btn row" style="text-align: center;">
-                                <button class="status-user" onclick="">Active</button>
-                            </div>
+                        <td>
+                            <a href ="/block-user/{{_id}}?block=true" class="pd-setting">Active</a>
                         </td>
                     </tr>`
                 }

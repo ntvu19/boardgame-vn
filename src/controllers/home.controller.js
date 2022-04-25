@@ -28,7 +28,9 @@ class HomeController {
         } else {
             const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
             UserModel.findById(decodedToken.userId)
-                .then(user => { user ? res.redirect('/') : res.render('login') })
+                .then(user => { user ? res.redirect('/') : res.render('login') 
+                    
+                })
                 .catch(err => console.log(err))
         }
     }
@@ -37,11 +39,17 @@ class HomeController {
     userLogIn(req, res, next) {
         UserModel.findOne({ username: req.body.username })
             .then(user => {
+                
                 if (!user) {
                     res.redirect('back')
                     console.log('Incorrectly username or password')
                 } else {
-                    bcrypt.compare(req.body.password, user.password)
+                    if(user.blocked == true){
+                        res.redirect('back')
+                        console.log('User BLOCK')
+                    }
+                    else{
+                        bcrypt.compare(req.body.password, user.password)
                         .then(success => {
                             let announcement = success ? 'Login successfully' : 'Incorrectly username or password'
                             // console.log(announcement)
@@ -55,6 +63,7 @@ class HomeController {
                                 res.redirect('back')
                             }
                         })
+                    }
                 }
             })
             .catch(err => console.log(err))
