@@ -8,6 +8,8 @@ const bcrypt = require('bcryptjs')
 
 const cloudinary = require('../configs/cloudinary.config')
 const { send } = require('express/lib/response')
+const { pagination } = require('../configs/pagination')
+const { default: mongoose } = require('mongoose')
 
 
 class AdminController {
@@ -159,7 +161,6 @@ class AdminController {
             .catch(err => res.status(400).send({ message: err }))
     }
 
-
     userSearch(req, res, next) {
         const searchField = req.query.term;
 
@@ -169,13 +170,14 @@ class AdminController {
         })
             .then(user => {
                 // res.json(user);
+                // res.render('admin/customer', { layout: 'admin' })/
                 res.render('admin/customer', {
-                    layout: 'customer',
+                    layout: 'admin',
                     users: user.map(mongoose => mongoose.toObject())
                 })
                 // res.render('admin/customer', {user});
             })
-            .catch(err =>res.status(400).send({ message: err }))
+            .catch(err => res.status(400).send({ message: err }))
     }
     // [GET] /admin/api/user-size
     getUserSize(req, res, next) {
@@ -366,7 +368,28 @@ class AdminController {
      * Customer
      */
     customerPage(req, res, next) {
-        res.render('admin/customer', { layout: 'admin' })
+        const page = Number(req.params.page) || 1;
+        const ItemPerPage = 4;
+
+        UserModel.find()
+            .skip((ItemPerPage * page) - ItemPerPage)
+            .limit(ItemPerPage)
+            .then(user => {
+                return user;
+            })
+            .then((user) => {
+                UserModel.count()
+                    .then(size => {
+                        const NumberOfUser = size;
+                        const pageCount = Math.ceil(NumberOfUser / ItemPerPage)
+                        const pageArray = pagination(page, pageCount)
+                        res.render('admin/customer', {
+                            layout: 'admin',
+                            pageArray,
+                            Users: user.map(mongoose => mongoose.toObject())
+                        })
+                    })
+            })
     }
 
     /**
@@ -453,7 +476,7 @@ class AdminController {
     }
 
     /**
-     * @route [PUT] /api/admin/block-user/:id?block={true, false}
+     * @route [GET] /api/admin/block-user/:id?block={true, false}
      * @desc Blocking or Unblocking an user
      * @access private
      */
@@ -463,9 +486,7 @@ class AdminController {
         if (['true', 'false'].includes(blockQuery)) {
             UserModel.findByIdAndUpdate(userId, { blocked: blockQuery })
                 .then(() => {
-                    return res.status(200).json({
-                        message: 'Blocking / Unblocking Successfully',
-                    })
+                    return res.redirect('back');
                 })
                 .catch(err => {
                     return res.status(500).json({

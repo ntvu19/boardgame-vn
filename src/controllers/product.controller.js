@@ -54,7 +54,19 @@ class ProductController {
      * @access public
      */
     viewRelated(req, res, next) {
-
+        ProductModel.findById(req.params.id)
+            .then(product => {
+                console.log(product.categoryId);
+                ProductModel.find({
+                    categoryId:  product.categoryId 
+                }).limit(5)
+                    .then(result => {
+                        res.render('detail', {
+                            layout: 'customer',
+                            relatedProducts:  result.map(mongoose => mongoose.toObject())
+                        })
+                    })
+            })
     }
 
 

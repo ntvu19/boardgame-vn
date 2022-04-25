@@ -5,9 +5,9 @@ const router = express.Router()
 const multer = require('../configs/multer')
 const imageUpload = multer.fields([{ name: 'image1', maxCount: 1 }, { name: 'image2', maxCount: 1 }, { name: 'image3', maxCount: 1 }, { name: 'image4', maxCount: 1 }, { name: 'image5', maxCount: 1 }])
 
-// router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser)
-// router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser)
-// router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder)
+router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser)
+router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser)
+router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder)
 
 //User
 router.get('/api/user-size',Auth.isAdmin, AdminController.getUserSize)
@@ -18,7 +18,7 @@ router.get('/user/search', AdminController.userSearch);
 
 // Official
 router.get('/view-all-user', Auth.isAdmin, AdminController.viewAllUser)
-router.put('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser)
+router.get('/block-user/:id', Auth.isAdmin, AdminController.blockOrUnblockUser) 
 router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder)
 
 
@@ -41,7 +41,7 @@ router.get('/category', Auth.isAdmin, AdminController.categoryPage)
 // Other
 router.get('/revenue', Auth.isAdmin, AdminController.revenuePage)
 router.get('/order', Auth.isAdmin, AdminController.orderPage)
-router.get('/customer', Auth.isAdmin, AdminController.customerPage)
+router.get('/customer/:page', Auth.isAdmin, AdminController.customerPage)
 router.get('/feedback', Auth.isAdmin, AdminController.feedbackPage)
 
 // Admin
