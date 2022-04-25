@@ -74,7 +74,7 @@
                     <h1>Danh sách khách hàng</h1>
                     <div class="search-customers">
                         <input type="text" placeholder="Tìm khách hàng">
-                        <button class="btn btn-primary">Tìm</button>
+                        <button class="btn btn-primary" type="submit" action="/admin/user/search">Tìm</button>
                     </div>
                     <table class="table table-bordered">
                         <thead>
@@ -88,6 +88,10 @@
                         </thead>
                         <tbody id="user-list"></tbody>
                     </table>
+
+                    <nav aria-label="Page navigation example ">
+                        <ul id="pagination-btn" class="pagination justify-content-end"></ul>
+                    </nav>
                 </div>
             </div>
         </div>
