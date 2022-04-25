@@ -64,15 +64,18 @@ function cookieParse() {
 
 function headerState() {
     let [logInState, fullName] = cookieParse()
+    const cartBtn = document.querySelector('.nav-item.myNavBar__cart')
     const infoUser = document.querySelector('.nav-item.myNavBar__user')
     const logInBtn = document.querySelector('.nav-item.myNavBar__buttons')
     const logOutBtn = document.querySelector('.nav-item.myNavBar__logout')
 
     if (logInState) {
+        cartBtn.removeAttribute('hidden')
         infoUser.removeAttribute('hidden')
         logOutBtn.removeAttribute('hidden')
         infoUser.querySelector('a').innerHTML += `${fullName}`
     } else {
+        cartBtn.setAttribute('hidden', true)
         logInBtn.removeAttribute('hidden')
     }
 }
