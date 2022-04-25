@@ -12,7 +12,7 @@ const imageUpload = multer.fields([{ name: 'image1', maxCount: 1 }, { name: 'ima
 //User
 router.get('/api/user-size',Auth.isAdmin, AdminController.getUserSize)
 router.get('/user/list/:offset',Auth.isAdmin,  AdminController.userPagination)
-router.get('/user/search',Auth.isAdmin, AdminController.userSearch);
+router.get('/user/search', AdminController.userSearch);
 
 // router.get('/customer', Auth.isAdmin, AdminController.userIndex);
 
