@@ -17,11 +17,30 @@
                 <h3><a href="#">Bán chạy nhất</a></h3>
             </div>
             <div class="homeProduct__items">
-                <div class="owl-carousel owl-theme myProduct" id="topProduct">
-                    {{#each topProducts}}
+                <div class="owl-carousel owl-theme myProduct">
+                    {{!-- {{#each products}}
                     <div class="item card-item">
                         <div class="card" style="width: 16rem;">
                             <img src="{{this.photo.[0]}}" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">{{this.name}}</h5>
+                                <p class="card-text">{{this.description}}</p>
+                                <p class="card-price">{{this.price}}</p>
+                            </div>
+                            <div class="card__overlay">
+                                <a href="#" class="card__overlay-detail">
+                                    <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
+                                </a>
+                                <button class="card__overlay-cart">
+                                    <i class="fa fa-shopping-cart"></i>Cho vào giỏ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}} --}}
+                    {{!-- <div class="item card-item">
+                        <div class="card" style="width: 16rem;">
+                            <img src="/img/product1.png" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">{{this.name}}</h5>
                                 <div class="card-price">
@@ -37,8 +56,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    {{/each}}
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -203,5 +221,6 @@
     </div>
 </section>
 
+<script src="/js/customer/cartHandler.js"></script>
 <script src="/js/customer/pagination.js"></script>
 {{!-- <script src="/js/customer/topProduct.js"></script> --}}
