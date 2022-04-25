@@ -401,15 +401,16 @@ footer .footer__item li a {
     padding: 8% 0 0;
     margin: auto;
 }
-
-.login .login-page .login-logo {
-    text-align: center;
-    padding: 10px 0;
-    border-radius: 20px 20px 0 0;
-    background-color: #fb5332;
+.login .login-page .nav-item .nav-link{
+    color: #fb5332;
+    font-weight: bold;
 }
 
-.login .login-page .form {
+.login .login-page .nav-item .nav-link.active{
+    color: white;
+    background-color: #fb5332;
+}
+.login .login-page form {
     position: relative;
     z-index: 1;
     background: #ffffff;
@@ -417,12 +418,13 @@ footer .footer__item li a {
     margin: 0 auto 100px;
     padding: 35px 45px;
     text-align: center;
-    border-radius: 0px 0px 20px 20px;
+    /* border-radius: 0px 0px 20px 20px; */
+    border-radius: 20px;
     -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.login .login-page .form input {
+.login .login-page .tab-content .tab-pane form input {
     outline: 0;
     background: #f2f2f2;
     width: 100%;
@@ -434,7 +436,7 @@ footer .footer__item li a {
     font-size: 14px;
 }
 
-.login .login-page .form button {
+.login .login-page .tab-content form button {
     text-transform: uppercase;
     outline: 0;
     background: #fb5332;
@@ -448,26 +450,30 @@ footer .footer__item li a {
     cursor: pointer;
 }
 
-.login .login-page .form button:hover,
-.login .login-page .form button:focus,
-.login .login-page .form button:active {
+.login .login-page .tab-content form button:hover,
+.login .login-page .tab-content form button:focus,
+.login .login-page .tab-content form button:active {
     background: #fb5332;
 }
 
-.login .login-page .form .message {
+.login .login-page form .message {
     margin: 15px 0 0;
     color: #b3b3b3;
     font-size: 12px;
 }
 
-.login .login-page .form .message a {
+.login .login-page form .message a {
     color: #fb5332;
     text-decoration: none;
 }
 
-.login .login-page .form .register-form {
+.login .login-page form .register-form {
     display: none;
 }
+.login .login-page form .forgot-form {
+    display: none;
+}
+
 
 .product .product__content .product__img {
     width: 100%;
@@ -1199,11 +1205,11 @@ footer .footer__item li a {
 }
 
 .card-item .card:hover .card__overlay .card__overlay-detail {
-    top: 37%;
+    top: 35%;
 }
 
 .card-item .card:hover .card__overlay .card__overlay-cart {
-    bottom: 37%;
+    bottom: 35%;
 }
 
 .backToTop {

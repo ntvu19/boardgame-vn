@@ -1,5 +1,6 @@
 const searchForm = document.querySelector('.myNavbar__form-search')
 
+
 searchForm.onsubmit = () => {
     const searchData = searchForm.querySelector('input').value
     $.get({
