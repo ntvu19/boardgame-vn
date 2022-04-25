@@ -160,6 +160,19 @@ class AdminController {
     }
 
 
+    userSearch(req, res, next) {
+        console.log(req.body);
+        console.log("k", req.params.key)
+        const searchField = req.params.key;
+        // console.log(searchField);
+        UserModel.find({
+            //  username: {$regex: searchField, $options: '$i'}
+            $or: [{ fullName: { $regex: searchField, $options: '$i' } }, { email: { $regex: searchField, $options: '$i' } }]
+        })
+            .then(user => {
+                res.json(user);
+            })
+    }
     // [GET] /admin/api/user-size
     getUserSize(req, res, next) {
         UserModel.count()

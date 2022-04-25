@@ -5,7 +5,7 @@ const userTableBody = document.querySelector('#user-list')
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPage()
-    getuserList(offset)
+    getUserList(offset)
 })
 
 const loadPage = () => {
@@ -33,7 +33,7 @@ const loadPage = () => {
     })
 }
 
-const getuserList = (o) => {
+const getUserList = (o) => {
     $.get({
         url: '/admin/user/list/' + o,
         statusCode: {
