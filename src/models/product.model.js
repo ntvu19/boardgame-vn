@@ -13,10 +13,9 @@ const ProductSchema = new Schema({
     stock: { type: Number, required: false, default: 0 },
     sold: { type: Number, required: false, default: 0 },
     conditions: {
-        numberOfPlayer: { Number, default: 0 },
-        idealNumberOfPlayer: { Number, default: 0 },
-        playingTime: { Number, default: 0 },
-        age: { Number, default: 0 },
+        numberOfPlayer: { type:String, default: '' },
+        playingTime: { type:String, default: '' },
+        age: { type:String, default: '' },
         genres: { type: Array, genre: String, default: [] },
         mechanisms: { type: Array, mechanism: String, default: [] }
     },
@@ -30,7 +29,8 @@ const ProductSchema = new Schema({
         values: { type: Array, value: String, trim: true, default: '' }
     },
     description: String,
-    rules: String
+    rules: String,
+    traffic: {type: Number, default: 0}
 })
 
 module.exports = mongoose.model('products', ProductSchema)

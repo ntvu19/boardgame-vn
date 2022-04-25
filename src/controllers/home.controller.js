@@ -9,11 +9,11 @@ class HomeController {
     // [GET] /
     index(req, res, next) {
         // Login status
-        ProductModel.find({})
+        ProductModel.find().sort({ sold: "descending" }).limit(5)
             .then(product => {
                 res.render('home', {
                     layout: 'customer',
-                    products: product.map(mongoose => mongoose.toObject())
+                    topProducts: product.map(mongoose => mongoose.toObject())
                 })
             })
             .catch(err => {
@@ -52,7 +52,7 @@ class HomeController {
                                 res.cookie('token', user.token, { httpOnly: true })
                                 res.redirect('/')
                             } else {
-                                redirect('back')
+                                res.redirect('back')
                             }
                         })
                 }
@@ -80,7 +80,8 @@ class HomeController {
                     // Hashing password
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newUser.password, salt, (err, hashed) => {
-                            newUser.password = hashed
+                            newUser.password = hashed;
+                            
                             newUser.save()
                                 .then(() => {
                                     res.cookie('logged', true)

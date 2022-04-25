@@ -46,7 +46,7 @@ const getProductList = (o) => {
                         <td class="table__img"><img src="${element.photo[0]}" alt=""></td>
                         <td>${element.name}</td>
                         <td>${element.description}</td>
-                        <td>${element.price} <sup>đ</sup></td>
+                        <td>${element.price}<sup>đ</sup></td>
                         <td>
                             <div class="table__btn row">
                                 <div class="col-6 table__btn-left">
@@ -66,3 +66,4 @@ const getProductList = (o) => {
         }
     })
 }
+
