@@ -19,6 +19,7 @@
                         <p>Thời gian chơi: <span>15 phút</span></p>
                         <p>Độ tuổi: <span>14 +</span></p>
                         <p>Thể loại: <span>Action / Dexterity</span></p>
+                        <p>Mô tả: <span>{{description}}</span></p>
                     </div>
                     <hr>
                     <div class="product__text-price">
@@ -78,14 +79,23 @@
 <!-- HOME PRODUCT -->
 <section class="homeProduct section">
     <div class="container">
-        <form id="comment-form" method="post" action="#">
-            <input type="hidden" name="product.id" value="{{this._id}}" id="product-id">
-            <input type="text" id="comment-content" name="content" style="height: 45px; width: 110%"
-                placeholder="Place your comment here">
-            <div style="height: 5px; width:40%; margin-top: 2%; margin-left: 70%">
-                <input type="submit" class="btn" value="Comment">
+        <div class="homeProduct__content">
+            <div class="homeProduct__title">
+                <h3><a href="#">Nhận xét sản phẩm</a></h3>
             </div>
-        </form>
+        </div>
+        <div style="width: 60%; margin: 20px auto;">
+            <form id="comment-form" method="post" action="#">
+                <input type="hidden" name="product.id" value="{{this._id}}" id="product-id">
+                <textarea class="p-2" style="width: 100%" name="content" id="comment-content" rows="5"></textarea>
+                <div style="text-align: right">
+                    <button type="submit">
+                        Comment
+                    </button>
+                </div>
+            </form>
+
+        </div>
         <div class="homeProduct__content">
             <div class="homeProduct__title">
                 <h3><a href="#">Sản phẩm liên quan</a></h3>
@@ -97,8 +107,6 @@
                             <img src="/img/product1.png" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">Lớp học mật ngữ</h5>
-                                <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                    hoàng đạo lớp học mật ngữ</p>
                                 <p class="card-price">440.000 VND</p>
                             </div>
                             <div class="card__overlay">
@@ -116,8 +124,6 @@
                             <img src="/img/product1.png" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">Lớp học mật ngữ</h5>
-                                <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                    hoàng đạo lớp học mật ngữ</p>
                                 <p class="card-price">440.000 VND</p>
                             </div>
                             <div class="card__overlay">
@@ -135,8 +141,6 @@
                             <img src="/img/product1.png" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">Lớp học mật ngữ</h5>
-                                <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                    hoàng đạo lớp học mật ngữ</p>
                                 <p class="card-price">440.000 VND</p>
                             </div>
                             <div class="card__overlay">
@@ -154,8 +158,6 @@
                             <img src="/img/product1.png" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">Lớp học mật ngữ</h5>
-                                <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                    hoàng đạo lớp học mật ngữ</p>
                                 <p class="card-price">440.000 VND</p>
                             </div>
                             <div class="card__overlay">
@@ -173,8 +175,6 @@
                             <img src="/img/product1.png" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">Lớp học mật ngữ</h5>
-                                <p class="card-text">Một chuyến phiêu lưu mới đầy bất ngờ và hấp dẫn, cùng 12 cùng
-                                    hoàng đạo lớp học mật ngữ</p>
                                 <p class="card-price">440.000 VND</p>
                             </div>
                             <div class="card__overlay">
