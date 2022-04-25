@@ -6,8 +6,6 @@ const UserModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
-const productServices = require('../util/producetServices')
-
 const cloudinary = require('../configs/cloudinary.config')
 const { send } = require('express/lib/response')
 
@@ -161,13 +159,6 @@ class AdminController {
             .catch(err => res.status(400).send({ message: err }))
     }
 
-    // [POST] /admin/product/add
-    addProduct(req, res, next) {
-        const newProduct = new ProductModel(req.body)
-        newProduct.save()
-            .then(() => res.redirect('back'))
-            .catch(err => res.status(400).send({ message: err }))
-    }
 
     // [GET] /admin/api/user-size
     getUserSize(req, res, next) {
@@ -196,100 +187,92 @@ class AdminController {
             .catch(err => res.status(400).send({ message: err }))
     }
     addProduct(req, res, next) {
-        if (productServices.checkExist(req.body.name)) {
+        //check Exist chưa done check exist với name :V
+        ProductModel.findOne({ name: req.body.name }).lean()
+            .then(product => {
+                if (!product) {
+                    let pic1 = '';
+                    let pic2 = '';
+                    let pic3 = '';
+                    let pic4 = '';
+                    let pic5 = '';
 
-            let pic1 = '';
-            let pic2 = '';
-            let pic3 = '';
-            let pic4 = '';
-            let pic5 = '';
+                    const fd = 'product/' + req.body.name;
+                    let newProduct = new ProductModel(req.body);
 
-            // console.log(mongoose.Types.ObjectId(req.body.categoryId))
-            const fd = 'product/' + req.body.name;
-            let newProduct = new ProductModel(req.body);
-
-            newProduct.name = req.body.name;
-            newProduct.price = req.body.price;
-            newProduct.description = req.body.description;
-
-
-            for (let i in req.files) {
-
-                if (req.files[i][0].fieldname == 'image1') {
-
-                    pic1 = cloudinary.uploader.upload(req.files.image1[0].path, { folder: fd, public_id: 'p1' })
-                        .then(pic1 => {
-
-                            return pic1.url;
-                        })
-                } else if (req.files[i][0].fieldname == 'image2') {
-                    pic2 = cloudinary.uploader.upload(req.files.image2[0].path, { folder: fd, public_id: 'p2' })
-                        .then(pic2 => {
-                            return pic2.url;
-                        })
-                        .catch(err => console.log(err))
-                } else if (req.files[i][0].fieldname == 'image3') {
-                    pic3 = cloudinary.uploader.upload(req.files.image3[0].path, { folder: fd, public_id: 'p3' })
-                        .then(pic3 => {
-                            return pic3.url;
-                        })
-                        .catch(err => console.log(err))
-                } else if (req.files[i][0].fieldname == 'image4') {
-                    pic4 = cloudinary.uploader.upload(req.files.image4[0].path, { folder: fd, public_id: 'p4' })
-                        .then(pic4 => {
-                            return pic4.url;
-                        })
-                        .catch(err => console.log(err))
-
-                } else if (req.files[i][0].fieldname == 'image5') {
-                    pic5 = cloudinary.uploader.upload(req.files.image5[0].path, { folder: fd, public_id: 'p5' })
-                        .then(pic5 => {
-                            return pic5.url;
-                        })
-                        .catch(err => console.log(err))
-                }
-            }
-            Promise.all([pic1, pic2, pic3, pic4, pic5]).then(function(values) {
-                newProduct.photo = values;
-                newProduct.save()
-                    .then(() => {
-                        res.redirect('back')
-                    })
-                    .catch(err => console.log(err))
-            })
-
-
-
-
-
-            /*
-            newProduct.discount = req.body.discount;
-            newProduct.productType = req.body.type;
-            newProduct.stock = req.body.stock;
-            newProduct.sold = req.body.sold;
-            newProduct.conditions.numberOfPlayer = req.body.numberOfPlayer;
-            newProduct.conditions.idealNumberOfPlayer = req.body.idealNumberOfPlayer;
-            newProduct.conditions.playingTime = req.body.playingTime;
-            newProduct.conditions.age = req.body.age;
-            newProduct.conditions.genres.push(req.body.genres);
-            newProduct.conditions.mechanisms.push(req.body.mechanisms);
+                    newProduct.name = req.body.name;
+                    newProduct.price = req.body.price;
+                    newProduct.description = req.body.description;
+                    newProduct.categoryId = req.body.categoryId;
+                    newProduct.stock = req.body.stock;
+                    newProduct.conditions.numberOfPlayer = req.body.numberOfPlayer;
+                    newProduct.conditions.playingTime = req.body.playingTime;
+                    newProduct.conditions.age = req.body.age;
+                    newProduct.conditions.genres.push(req.body.genres);
+                    /*         
+                    newProduct.conditions.mechanisms.push(req.body.mechanisms);
+                    
             
-    
-    
-            newProduct.detail.keys.push(req.body.keys);
-            newProduct.detail.values.push(req.body.values);
-    
-    
-            newProduct.detail.rules = req.body.rules;
-             */
+            
+                    newProduct.detail.keys.push(req.body.keys);
+                    newProduct.detail.values.push(req.body.values);
+            
+            
+                    newProduct.detail.rules = req.body.rules;
+                     */
 
 
-        } else {
-            res.status(400).send({ message: "Product name already exists" })
-        }
+                    for (let i in req.files) {
 
+                        if (req.files[i][0].fieldname == 'image1') {
 
+                            pic1 = cloudinary.uploader.upload(req.files.image1[0].path, { folder: fd, public_id: 'p1' })
+                                .then(pic1 => {
 
+                                    return pic1.url;
+                                })
+                        } else if (req.files[i][0].fieldname == 'image2') {
+                            pic2 = cloudinary.uploader.upload(req.files.image2[0].path, { folder: fd, public_id: 'p2' })
+                                .then(pic2 => {
+                                    return pic2.url;
+                                })
+                                .catch(err => console.log(err))
+                        } else if (req.files[i][0].fieldname == 'image3') {
+                            pic3 = cloudinary.uploader.upload(req.files.image3[0].path, { folder: fd, public_id: 'p3' })
+                                .then(pic3 => {
+                                    return pic3.url;
+                                })
+                                .catch(err => console.log(err))
+                        } else if (req.files[i][0].fieldname == 'image4') {
+                            pic4 = cloudinary.uploader.upload(req.files.image4[0].path, { folder: fd, public_id: 'p4' })
+                                .then(pic4 => {
+                                    return pic4.url;
+                                })
+                                .catch(err => console.log(err))
+
+                        } else if (req.files[i][0].fieldname == 'image5') {
+                            pic5 = cloudinary.uploader.upload(req.files.image5[0].path, { folder: fd, public_id: 'p5' })
+                                .then(pic5 => {
+                                    return pic5.url;
+                                })
+                                .catch(err => console.log(err))
+                        }
+                    }
+                    Promise.all([pic1, pic2, pic3, pic4, pic5]).then(function (values) {
+                        newProduct.photo = values;
+                        newProduct.save()
+                            .then(() => {
+                                res.redirect('back')
+                            })
+                            .catch(err => console.log(err))
+                    })
+                }
+                else {
+                    // alert("Product name already exists");
+                    res.status(400).send({ message: "Product name already exists" })
+                    res.redirect('back')
+                }
+            })
     };
 
     // [DELETE] /admin/product/delete/:id
@@ -302,6 +285,7 @@ class AdminController {
     // [PUT] /admin/product/update/:id
     updateProduct(req, res, next) {
         console.log(req.body)
+        console.log(req.files);
         ProductModel.findByIdAndUpdate(req.params.id, req.body)
             .then(() => res.redirect('back'))
             .catch(err => console.log(err))

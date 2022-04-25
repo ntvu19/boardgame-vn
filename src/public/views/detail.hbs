@@ -8,6 +8,7 @@
                     <img src="{{photo.[0]}}" alt="">
                 </div>
             </div>
+
             <div class="col-4">
                 <div class="product__text">
                     <h3>{{name}}</h3>
@@ -77,6 +78,14 @@
 <!-- HOME PRODUCT -->
 <section class="homeProduct section">
     <div class="container">
+        <form id="comment-form" method="post" action="#">
+            <input type="hidden" name="product.id" value="{{this._id}}" id="product-id">
+            <input type="text" id="comment-content" name="content" style="height: 45px; width: 110%"
+                placeholder="Place your comment here">
+            <div style="height: 5px; width:40%; margin-top: 2%; margin-left: 70%">
+                <input type="submit" class="btn" value="Comment">
+            </div>
+        </form>
         <div class="homeProduct__content">
             <div class="homeProduct__title">
                 <h3><a href="#">Sản phẩm liên quan</a></h3>

@@ -34,13 +34,17 @@ class ProductController {
     // [GET] /product/search
     searchProduct(req, res, next) {
         const searchQuery = req.query.search
+
         ProductModel.find({
-                "name": {
-                    $regex: searchQuery,
-                    $options: "$i"
-                }
+            "name": {
+                $regex: searchQuery,
+                $options: "$i"
+            }
+        })
+            .then(result => {
+                console.log(result);
+                res.status(200).send(result)
             })
-            .then(result => res.status(200).send(result))
             .catch(err => res.status(400).send({ message: err }))
     }
 
@@ -54,6 +58,19 @@ class ProductController {
     }
 
 
+    // getTopProduct(req, res, next) {
+    //     const p = ProductModel.find().sort({ sold: "descending" }).limit(5)
+    //     console.log(p);
+    //     ProductModel.find().sort({ sold: "descending" }).limit(5)
+    //         .then(product => {
+    //             res.render('/', {
+    //                 layout: 'customer',
+    //                 topProducts: product.map(mongoose => mongoose.toObject())
+    //             })
+    //         })
+    //         .catch(err => res.status(400).send({ message: err }))
+    // }
+
 
     /**
      * @route [GET] /product/api/product-size
@@ -65,6 +82,8 @@ class ProductController {
             .then(result => res.status(200).send({ productSize: result }))
             .catch(err => res.status(400).send({ message: err }))
     }
+
+
 
     // [GET] /product/sort
     productSortPagination(req, res, next) {
@@ -101,6 +120,8 @@ class ProductController {
             })
             .catch(err => res.status(400).send({ message: err }))
     }
+
+
 }
 
 module.exports = new ProductController()

@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-order-tab" data-toggle="pill" href="#v-pills-order"
-                    role="tab" aria-controls="v-pills-home" aria-selected="true">Đơn hàng</a>
+                <a class="nav-link active" id="v-pills-order-tab" data-toggle="pill" href="#v-pills-order" role="tab"
+                    aria-controls="v-pills-home" aria-selected="true">Đơn hàng</a>
                 <a class="nav-link" id="v-pills-account-tab" data-toggle="pill" href="#v-pills-account" role="tab"
                     aria-controls="v-pills-account" aria-selected="false">Tài khoản</a>
             </div>
@@ -41,7 +41,22 @@
                 <div class="tab-pane fade tab-address" id="v-pills-account" role="tabpanel"
                     aria-labelledby="v-pills-account-tab">
                     {{#with user}}
-                        <form action="/user/edit/{{_id}}?_method=PUT" method="POST">
+                    {{!-- <form action="/user/edit/{{_id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <h5>Tên khách hàng</h5>
+                        <input type="text" name="fullName" value="{{fullName}}" required>
+                        <h5>Địa chỉ</h5>
+                        <input type="text" name="address" value="{{address}}" required>
+                        <h5>Mật khẩu cũ</h5>
+                        <input type="password" name="password" required>
+                        <h5>Mật khẩu mới</h5>
+                        <input type="password" name="newPassword" required>
+                        <h5>Nhập lại mật khẩu mới</h5>
+                        <input type="password" name="confirmNewPassword" required>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    </form> --}}
+
+                    <form method="POST" action="/user/edit/{{_id}}?_method=PUT" enctype="multipart/form-data">
+                        <div>
                             <h5>Tên khách hàng</h5>
                             <input type="text" name="fullName" value="{{fullName}}" required>
                             <h5>Địa chỉ</h5>
@@ -49,14 +64,30 @@
                             <h5>Mật khẩu cũ</h5>
                             <input type="password" name="password" required>
                             <h5>Mật khẩu mới</h5>
-                            <input type="password" name="newPassword" required>
+                            <input type="password" name="newPassword" id="newPassword">
                             <h5>Nhập lại mật khẩu mới</h5>
-                            <input type="password" name="confirmNewPassword" required>
-                            <button type="submit" class="btn btn-primary">Cập nhật</button>
-                        </form>
+                            <input type="password" name="confirmNewPassword" id="confirm_password">
+                            <span id='message'></span>
+                            <label>Upload profile picture</label>
+                            <input type="file" name="avatar" />
+                        </div>
+                        <img src="{{avatar}}"></img>
+                        <div>
+                            <input type="submit" value="Upload" class="btn btn-primary" />
+                        </div>
+                    </form>
                     {{/with}}
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+    $('#newPassword, #confirm_password').on('keyup', function () {
+        if ($('#newPassword').val() == $('#confirm_password').val()) {
+            $('#message').html('Password is matching').css('color', 'green');
+        } else
+            $('#message').html('Password is not Matching').css('color', 'red');
+    });
+
+</script>
