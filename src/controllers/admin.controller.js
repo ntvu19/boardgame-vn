@@ -161,17 +161,21 @@ class AdminController {
 
 
     userSearch(req, res, next) {
-        console.log(req.body);
-        console.log("k", req.params.key)
-        const searchField = req.params.key;
-        // console.log(searchField);
+        const searchField = req.query.term;
+
         UserModel.find({
-            //  username: {$regex: searchField, $options: '$i'}
+
             $or: [{ fullName: { $regex: searchField, $options: '$i' } }, { email: { $regex: searchField, $options: '$i' } }]
         })
             .then(user => {
-                res.json(user);
+                // res.json(user);
+                res.render('admin/customer', {
+                    layout: 'customer',
+                    users: user.map(mongoose => mongoose.toObject())
+                })
+                // res.render('admin/customer', {user});
             })
+            .catch(err =>res.status(400).send({ message: err }))
     }
     // [GET] /admin/api/user-size
     getUserSize(req, res, next) {
