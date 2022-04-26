@@ -18,31 +18,33 @@
             <div class="paymentPage__delivery">
                 <p>Phương thức giao hàng</p>
                 <div class="paymentPage__delivery-item">
-                    <input type="radio">
+                    <input type="radio" name="delivery-method" value="Chuyển phát nhanh">
                     <label for="">Giao hàng chuyển phát nhanh</label>
                 </div>
             </div>
             <div class="paymentPage__payment">
                 <p>Phương thức thanh toán</p>
                 <div class="paymentPage__payment-item">
-                    <input type="radio">
+                    <input type="radio" name="payment-method" value="Ship COD">
                     <label for="">Thanh toán bằng tiền mặt</label>
                 </div>
                 <div class="paymentPage__payment-item">
-                    <input type="radio">
+                    <input type="radio" name="payment-method" value="MOMO">
                     <label for="">Thanh toán bằng ví MOMO</label>
                 </div>
                 <div class="paymentPage__payment-item">
-                    <input type="radio">
+                    <input type="radio" name="payment-method" value="VISA">
                     <label for="">Thanh toán bằng thẻ VISA, MASTERCARD</label>
                 </div>
                 <div class="paymentPage__button">
-                    <a href="">
+                    <a href="/delivery">
                         <span>&#8810;</span> Quay lại trang trước
                     </a>
-                    <button>HOÀN TẤT ĐẶT HÀNG</button>
+                    <button onclick="paymentSubmit();">HOÀN TẤT ĐẶT HÀNG</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script src="/js/customer/paymentHandler.js"></script>

@@ -1,90 +1,59 @@
 const OrderModel = require('../models/order.model')
-const productModel = require('../models/product.model')
-const Cart = require('../models/cart.model')
+const ProductModel = require('../models/product.model')
+const CartModel = require('../models/cart.model')
+const jwt = require('jsonwebtoken')
 
 class OrderController {
 
+    // [POST] /delivery
+    index(req, res, next) {
+        res.render('delivery', { layout: 'customer' })
+    }
 
-    /**
-     * @route [GET] /order/view
-     * @desc View all order list
-     * @access private
-     */
-    viewAll(req, res, next) {
-        OrderModel.find({})
-            .then(data => {
-                if (!data) {
-                    return res.status(404).json({
-                        message: 'Order Not Found',
-                    })
+    // [POST] /delivery/api/new-order
+    createNewOrder(req, res, next) {
+        const userId = jwt.verify(req.cookies.token, process.env.SECRET_KEY).userId
+        OrderModel.findOne({ userId: userId })
+            .then(order => {
+                if (order && order.status === "Chờ thanh toán") {
+                    return res.status(200).send({ message: 'Success' })
+                } else {
+                    CartModel.findOne({ userId: userId })
+                        .then(cart => {
+                            const orderData = {}
+                            orderData.userId = userId
+                            orderData.products = cart.products
+                            orderData.name = req.body.name
+                            orderData.phone = req.body.phone
+                            orderData.address = req.body.address
+                            const newOrder = new OrderModel(orderData)
+                            newOrder.save()
+                            return res.status(200).send({ message: 'Success' })
+                        })
                 }
-                return res.status(200).json({
-                    data
-                })
             })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
+            .catch(err => res.status(400).send({ message: err }))
     }
 
-    /**
-     * @route [GET] /order/view-detail-order/:id
-     * @desc View detail order
-     * @access private
-     */
-    viewDetailOrder(req, res, next) {
-        OrderModel.findById(req.params.id)
-            .then(() => {
-                return res.status(200).json({
-                    message: 'Viewing Detail Order Successfully',
-                })
+    // [PUT] /delivery/api/update-method
+    updateMethod(req, res, next) {
+        const userId = jwt.verify(req.cookies.token, process.env.SECRET_KEY).userId
+        OrderModel.findOneAndUpdate({ userId: userId, status: "Chờ thanh toán" }, {
+                deliveryMethod: req.body.deliveryMethod,
+                paymentMethod: req.body.paymentMethod,
+                status: req.body.status
             })
-            .catch(err => {
-                console.log(err)
-                return res.status(500).json({
-
-                    message: err,
-                })
-            })
+            .then(() => res.status(200).send({ message: 'Success' }))
+            .catch(err => res.status(400).send({ message: err }))
     }
 
-    /** TS
-     * @route [POST] /order/create-order/:id
-     * @desc Create new order
-     * @access private
-     */
-    createOrder(req, res, next) {
-        const newOrder = new OrderModel(req.body)
-        newOrder.save()
-            .then(() => {
-                return res.status(200).json({
-                    message: 'Add Order successfully',
-                })
-            })
-            .catch(err => {
-                return res.status(500).json({
-                    message: err,
-                })
-            })
-    }
-
-    /** TS
-     * @route [Get] /order/add-to-cart/:id
-     * @desc Add new product to cart
-     * @access private
-     */
-
-    addCart(req, res, next){
-        
-        console.log("ok");
-        const addProId = productModel.findById(req.body.id)[0];
-
-        Cart.save(addProId);
-        console.log(Cart.getCart());
-
-        res.end('saved Su');
+    // [GET] /delivery/api/get-order
+    getOrderList(req, res, next) {
+        const userId = jwt.verify(req.cookies.token, process.env.SECRET_KEY).userId
+        OrderModel.find({ userId: userId })
+            .then(order => {
+                res.status(200).send(order)
+            }).catch(err => res.status(400).send({ message: err }))
     }
 
 }
