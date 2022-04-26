@@ -49,9 +49,9 @@ const getUserList = (o) => {
                     userTableBody.innerHTML += `
                     <tr>
                         <td>${element.fullName}</td>
-                        <td style="text-align: center;">${element.username}</td>
+                        <td style="text-align: center;">${element.username}</td> 
                         <td>${element.email}</td>
-                        <td>${element.address}</td>
+                        <td>${element.address || ''}</td>
                         <td>
                             <a href="/admin/block-user/${element._id}?block=${ element.blocked ? false:true}" class="${element.blocked ?  'btn btn-secondary': 'btn btn-primary'}">${ element.blocked ? "Disable":"Active"}</a>
                         </td>
