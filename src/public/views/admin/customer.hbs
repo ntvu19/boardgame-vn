@@ -80,11 +80,14 @@
 
                     <div class="category__right-top">
                         <p>Sắp xếp</p>
-                        <select name="" id="sort" onchange=getUserList(0)>
-                            <option value="" id="">None</option>
+                        <select name="" id="field" onchange=getUserList(0)>
                             <option value="name" id="name">Tên</option>
                             <option value="email" id="email">Email</option>
-                            <option value="registration" id="registration">Registration tim</option>
+                            <option value="registration" id="registration">Registration time</option>
+                        </select>
+                        <select name="" id="sort" onchange=getUserList(0)>
+                            <option value="descending" id="des">Giảm dần</option>
+                            <option value="ascending" id="asc">Tăng dần</option>
                         </select>
                     </div>
 
