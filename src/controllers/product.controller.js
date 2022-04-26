@@ -1,4 +1,5 @@
 const ProductModel = require('../models/product.model')
+const { pagination } = require('../configs/pagination')
 
 class ProductController {
 
@@ -39,7 +40,7 @@ class ProductController {
 
     // [GET] /product/search
     searchProduct(req, res, next) {
-        const searchQuery = req.query.search
+        const searchQuery = req.query.keyword || req.query.search
         console.log("r", req.query);
         console.log("body", req.body);
 
@@ -47,52 +48,44 @@ class ProductController {
 
         const ItemPerPage = 8;
         ProductModel.find({
-            "name": {
-                $regex: searchQuery,
-                $options: "$i"
-            }
+            name: { $regex: searchQuery, $options: "$i" }
         })
             .skip((ItemPerPage * page) - ItemPerPage)
             .limit(ItemPerPage)
             .then(product => {
+
                 return product;
             })
             .then((product) => {
                 ProductModel.find({
-                    "name": {
+                    name: {
                         $regex: searchQuery,
                         $options: "$i"
                     }
                 })
                     .then(t2 => {
                         const NumberOfUser = t2.length;
+
                         const pageCount = Math.ceil(NumberOfUser / ItemPerPage)
+                        console.log(pageCount);
                         if (pageCount == 1) {
-                            res.render('admin/searchResult', {
-                                layout: 'admin',
-                                Users: product.map(mongoose => mongoose.toObject())
+                            res.render('partials/customer/searchProductResult', {
+                                layout: 'customer',
+                                Products: product.map(mongoose => mongoose.toObject())
                             })
                         }
                         else {
                             const pageArray = pagination(page, pageCount)
-                            res.render('customer/searchResult', {
+                            res.render('partials/customer/searchProductResult', {
                                 layout: 'customer',
                                 pageArray,
                                 keyword: searchQuery,
-                                Users: product.map(mongoose => mongoose.toObject())
+                                Products: product.map(mongoose => mongoose.toObject())
                             })
                         }
 
                     })
 
-            })
-            .catch(err => res.status(400).send({ message: err }))
-
-
-
-            .then(result => {
-                // console.log(result);
-                res.status(200).send(result)
             })
             .catch(err => res.status(400).send({ message: err }))
     }
