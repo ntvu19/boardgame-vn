@@ -12,7 +12,7 @@ router.put('/update-status-order/:id', Auth.isAdmin, AdminController.updateOrder
 //User
 router.get('/api/user-size',Auth.isAdmin, AdminController.getUserSize)
 router.get('/user/list/:offset',Auth.isAdmin,  AdminController.userPagination)
-router.get('/user/search', AdminController.userSearch);
+router.get('/user/search/:page', AdminController.userSearch); 
 
 // router.get('/customer', Auth.isAdmin, AdminController.userIndex);
 

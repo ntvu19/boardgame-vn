@@ -110,7 +110,7 @@ const updateProduct = (productId) => {
 
             for (let i = 0; i < categoryList.length; i++) {
                 if (response.categoryId === categoryList[i].value) {
-                    editProductBody.querySelector('select[name=categoryId').selectedIndex = i
+                    editProductBody.querySelector('select[name=categoryId]').selectedIndex = i
                     break
                 }
             }

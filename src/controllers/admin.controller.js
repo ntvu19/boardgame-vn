@@ -163,21 +163,48 @@ class AdminController {
 
     userSearch(req, res, next) {
         const searchField = req.query.term;
+        console.log("r", req.query);
+        console.log("body", req.body);
 
+        const page = Number(req.params.page) || 1;
+
+        const ItemPerPage = 4;
         UserModel.find({
-
             $or: [{ fullName: { $regex: searchField, $options: '$i' } }, { email: { $regex: searchField, $options: '$i' } }]
         })
+            .skip((ItemPerPage * page) - ItemPerPage)
+            .limit(ItemPerPage)
             .then(user => {
-                // res.json(user);
-                // res.render('admin/customer', { layout: 'admin' })/
-                res.render('admin/customer', {
-                    layout: 'admin',
-                    users: user.map(mongoose => mongoose.toObject())
+                return user;
+            })
+            .then((user) => {
+                UserModel.find({
+                    $or: [{ fullName: { $regex: searchField, $options: '$i' } }, { email: { $regex: searchField, $options: '$i' } }]
                 })
-                // res.render('admin/customer', {user});
+                    .then(t2 => {
+                        const NumberOfUser = t2.length;
+                        const pageCount = Math.ceil(NumberOfUser / ItemPerPage)
+                        if (pageCount == 1) {
+                            res.render('admin/searchResult', {
+                                layout: 'admin',
+                                Users: user.map(mongoose => mongoose.toObject())
+                            })
+                        }
+                        else {
+                            const pageArray = pagination(page, pageCount)
+                            res.render('admin/searchResult', {
+                                layout: 'admin',
+                                pageArray,
+                                keyword: searchField,
+                                Users: user.map(mongoose => mongoose.toObject())
+                            })
+                        }
+
+                    })
+
             })
             .catch(err => res.status(400).send({ message: err }))
+
     }
     // [GET] /admin/api/user-size
     getUserSize(req, res, next) {

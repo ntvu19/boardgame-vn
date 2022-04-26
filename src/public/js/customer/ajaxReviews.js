@@ -41,7 +41,7 @@ $("#review-submit").on("click", function (event) {
 
                 container.pagination({
                     dataSource: data,
-                    pageSize: 3,
+                    pageSize: 4,
                     callback: function (data, pagination) {
                         var dataHtml = '';
 
@@ -54,14 +54,16 @@ $("#review-submit").on("click", function (event) {
                     }
                 })
             })
-
+            $("#comment-content").empty();
             $("#review-area").empty();
+            window.location.reload();
             $("html, body").animate(
                 {
                     scrollTop: $("#reviews").offset().top - 100,
                 },
                 500
             );
+
         }
     )
         .fail(function (data) {
