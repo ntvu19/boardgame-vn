@@ -40,7 +40,6 @@ const getUserList = (o) => {
         url: `/admin/user/list/${o}?sortBy=${sortBy}&field=${field}`,
         statusCode: {
             200: function(response) {
-                console.log(response)
                 userTableBody.innerHTML = '';
                 let elementSize = response.length
                 // userTableBody.innerHTML += ''

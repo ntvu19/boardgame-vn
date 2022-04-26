@@ -33,12 +33,16 @@ const loadPage = () => {
 }
 
 const getProductList = (o) => {
+    const sortBy = document.getElementById("sort").value;
+    const field = document.getElementById("field").value;
     $.get({
-        url: '/admin/product/' + o,
+        url: `/admin/product/${o}?sortBy=${sortBy}&field=${field}`,
         statusCode: {
             200: function(response) {
+                productTableBody.innerHTML =''
                 let elementSize = response.length
                 for (let i = 0; i < elementSize; i++) {
+                    
                     const element = response[i]
                     productTableBody.innerHTML += `
                     <tr>
@@ -61,7 +65,7 @@ const getProductList = (o) => {
                 }
             },
             400: function(response) {
-                //console.log(response)
+                console.log(response)
             }
         }
     })
