@@ -18,43 +18,17 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Ngày đặt</th>
-                                <th scope="col">Sản phẩm</th>
-                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Phương thức giao hàng</th>
+                                <th scope="col">Phương thức thanh toán</th>
+                                <th scope="col">Trạng thái đơn hàng</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>03/04/2022</td>
-                                <td>Otto</td>
-                                <td>123456 <span style="float: right;">VND</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>03/04/2022</td>
-                                <td>Thornton</td>
-                                <td>123456 <span style="float: right;">VND</span></td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade tab-address" id="v-pills-account" role="tabpanel"
                     aria-labelledby="v-pills-account-tab">
                     {{#with user}}
-                    {{!-- <form action="/user/edit/{{_id}}?_method=PUT" method="POST" enctype="multipart/form-data">
-                        <h5>Tên khách hàng</h5>
-                        <input type="text" name="fullName" value="{{fullName}}" required>
-                        <h5>Địa chỉ</h5>
-                        <input type="text" name="address" value="{{address}}" required>
-                        <h5>Mật khẩu cũ</h5>
-                        <input type="password" name="password" required>
-                        <h5>Mật khẩu mới</h5>
-                        <input type="password" name="newPassword" required>
-                        <h5>Nhập lại mật khẩu mới</h5>
-                        <input type="password" name="confirmNewPassword" required>
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    </form> --}}
-
                     <form method="POST" action="/user/edit/{{_id}}?_method=PUT" enctype="multipart/form-data">
                         <div>
                             <h5>Tên khách hàng</h5>
@@ -91,3 +65,5 @@
     });
 
 </script>
+
+<script src="/js/customer/userHandler.js"></script>

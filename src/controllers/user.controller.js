@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const cloudinary = require('../configs/cloudinary.config')
-const { send } = require('express/lib/response')
+const mailer = require('../configs/nodemailer.config')
 
 class UserController {
 
@@ -63,8 +63,7 @@ class UserController {
                                                 .catch(err => console.log(err))
 
                                         })
-                                }
-                                else {
+                                } else {
                                     const update = {
                                         fullName: req.body.fullName,
                                         address: req.body.address,
@@ -111,8 +110,7 @@ class UserController {
                                                             .catch(err => console.log(err))
 
                                                     })
-                                            }
-                                            else {
+                                            } else {
                                                 const update = {
                                                     fullName: req.body.fullName,
                                                     password: req.body.password,
@@ -156,6 +154,24 @@ class UserController {
 
     //POST /user/forgot-password
     forgotPassword(req, res, next) {
+        var max = 16
+        var min = 8
+        var passwordChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        var randPwLen = Math.floor(Math.random() * (max - min + 1)) + min
+        var randPassword = Array(randPwLen).fill(passwordChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('')
+
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(randPassword, salt, (err, hashed) => {
+                UserModel.findOne({ email: req.body.email })
+                    .then(user => {
+                        user.password = hashed
+                        user.save()
+                        mailer.forgotPassword(user.fullName, user.email, randPassword)
+                        res.redirect('back')
+                    })
+                    .catch(err => res.status(400).send({ message: err }))
+            })
+        })
 
     }
 
