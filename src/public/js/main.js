@@ -1,18 +1,18 @@
 window.addEventListener("load", function() {
-    truncateCardText();
-    truncateCardPrice();
     truncateCardTitle();
+    // truncateCardText();
+    truncateCardPrice();
     headerState();
 });
 
-function truncateCardText() {
-    var cardList = document.getElementsByClassName("card-text");
-    for (var i = 0; i < cardList.length; i++) {
-        var text = cardList[i].innerHTML;
-        var newText = truncateString(text, 40);
-        cardList[i].innerHTML = newText;
-    }
-}
+// function truncateCardText() {
+//     var cardList = document.getElementsByClassName("card-text");
+//     for (var i = 0; i < cardList.length; i++) {
+//         var text = cardList[i].innerHTML;
+//         var newText = truncateString(text, 40);
+//         cardList[i].innerHTML = newText;
+//     }
+// }
 
 function truncateString(str, num) {
     if (str.length > num) {
@@ -64,15 +64,18 @@ function cookieParse() {
 
 function headerState() {
     let [logInState, fullName] = cookieParse()
+    const cartBtn = document.querySelector('.nav-item.myNavBar__cart')
     const infoUser = document.querySelector('.nav-item.myNavBar__user')
     const logInBtn = document.querySelector('.nav-item.myNavBar__buttons')
     const logOutBtn = document.querySelector('.nav-item.myNavBar__logout')
 
     if (logInState) {
+        cartBtn.removeAttribute('hidden')
         infoUser.removeAttribute('hidden')
         logOutBtn.removeAttribute('hidden')
         infoUser.querySelector('a').innerHTML += `${fullName}`
     } else {
+        cartBtn.setAttribute('hidden', true)
         logInBtn.removeAttribute('hidden')
     }
 }

@@ -10,8 +10,8 @@ let offset = 0
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadPage()
-    getProductList(offset)
+    loadPage();
+    getProductList(offset);
 })
 
 const productTableBody = document.querySelector('#product-list');
@@ -56,7 +56,9 @@ const getProductList = (o) => {
                         <div class="card">
                             <img src="${element.photo[0]}" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title">${element.name}</h5>
+                                <div class="card-title-content">
+                                    <h5 class="card-title">${element.name}</h5>
+                                </div>
                                 <div class="card-price">
                                     <p class="card-price-num">${element.price}</p><span> VND</span>
                                 </div>
@@ -65,7 +67,7 @@ const getProductList = (o) => {
                                 <a href="/product/detail/${element._id}" class="card__overlay-detail">
                                     <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
                                 </a>
-                            <button class="card__overlay-cart">
+                            <button class="card__overlay-cart" onclick="addToCart('${element._id}')">
                                 <i class="fa fa-shopping-cart"></i>Cho vào giỏ
                             </button>
                         </div>
@@ -78,61 +80,3 @@ const getProductList = (o) => {
         }
     })
 }
-
-{/* <p class="card-text">${element.description}</p> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let arrCategory = [bgFamily, bgChild, bgVietnam, bgUS]
-// arrCategory.forEach(category => {
-//     let listProduct = category.querySelectorAll('.row .card-item')
-//     let ulPagination = category.querySelector('.category__right-bottom ul')
-
-//     const loadProduct = () => {
-//         for (let i = 0; i < maxElement; i++) {
-//             // If the length is less than max element
-//             if (i == ulPagination.length - 1) {
-//                 break
-//             }
-//             listProduct[i].removeAttribute('hidden')
-//         }
-//     }
-//     loadProduct()
-
-//     let categoryPageNumber = Math.ceil(listProduct.length / maxElement)
-//     for (let i = 0; i < categoryPageNumber; i++) {
-//         const li = document.createElement('li')
-//         const button = document.createElement('button')
-//         li.className = 'page-name'
-//         button.className = 'page-link'
-//         button.innerText = i + 1
-//         button.addEventListener('click', (e) => {
-//             listProduct.forEach(el => {
-//                 el.setAttribute('hidden', true)
-//             })
-
-//             let pageIdx = parseInt(e.target.innerText) - 1
-//             for (let j = pageIdx * maxElement; j < (pageIdx + 1) * maxElement; j++) {
-//                 if (j == listProduct.length) {
-//                     break
-//                 }
-//                 listProduct[j].removeAttribute('hidden')
-//             }
-//         })
-//         li.appendChild(button)
-//         ulPagination.appendChild(li)
-//     }
-// })
-
-

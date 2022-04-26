@@ -17,46 +17,31 @@
         <div class="cart__content row">
             <div class="cart__content-left">
                 <table>
-                    <tr>
+                    <thead>
                         <th>Sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Số lượng</th>
                         <th>Thành tiền</th>
                         <th>Xoá</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="/img/product2.jpg" alt="">
-                        </td>
-                        <td><p>Jishaku (US)</p></td>
-                        <td><input type="number" value="1" min="1"></td>
-                        <td><p>123456 <sup>đ</sup></p></td>
-                        <td><span>x</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="/img/product2.jpg" alt="">
-                        </td>
-                        <td><p>Jishaku (US)</p></td>
-                        <td><input type="number" value="1" min="1"></td>
-                        <td><p>123456 <sup>đ</sup></p></td>
-                        <td><span>x</span></td>
-                    </tr>
+                    </thead>
+                    <tbody></tbody>
                 </table>
             </div>
             <div class="cart__content-right">
                 <table>
-                    <tr>
+                    <thead>
                         <th colspan="2">TỔNG TIỀN GIỎ HÀNG</th>
-                    </tr>
-                    <tr>
-                        <td>TỔNG SẢN PHẨM</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>TỔNG TIỀN HÀNG</td>
-                        <td><p>123456 <sup>đ</sup></p></td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TỔNG SẢN PHẨM</td>
+                            <td id="sumOfProduct"></td>
+                        </tr>
+                        <tr>
+                            <td>TỔNG TIỀN HÀNG</td>
+                            <td><p id="sumOfPrice"></p></td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="cart__content-right-button">
                     <button>TIẾP TỤC MUA SẮM</button>
@@ -66,3 +51,5 @@
         </div>
     </div>
 </section>
+
+<script src="/js/customer/cartHandler.js"></script>

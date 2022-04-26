@@ -93,6 +93,19 @@ header .myNavbar .navbar-nav .myNavBar__cart .nav-link {
 header .myNavbar .navbar-nav .myNavBar__cart:hover {
     background-color: rgba(20, 23, 28, 0.05);
 }
+header .myNavbar .navbar-nav .myNavBar__logout .nav-link{
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    transition: all .5s;
+}
+
+header .myNavbar .navbar-nav .myNavBar__logout .nav-link:hover{
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: white;
+    color: #fb5332;
+}
 
 header .myNavbar .navbar-nav .myNavBar__buttons .button {
     color: #fb5332;
@@ -1122,12 +1135,15 @@ footer .footer__item li a {
 
 .card-item .card {
     margin: 0 auto;
+    /* height: 320px; */
 }
 
 .card-item .card .card-body {
     padding: 10px;
 }
-
+.card-item .card .card-body .card-title-content{
+    height: 40px;
+}
 .card-item .card .card-body .card-title {
     font-size: 20px;
     font-weight: 700;
@@ -1147,6 +1163,7 @@ footer .footer__item li a {
     font-weight: 700;
     color: #fb5332;
     margin: 0;
+    margin-top: 20px;
 }
 
 .card-item .card .card__overlay {
@@ -1264,33 +1281,33 @@ footer .footer__item li a {
 .comment-author-infos em {
     display: block;
     color: #adadad;
+    border-bottom: 1px dashed rgb(189, 187, 187);
 }
 
-
-ul,
-li {
-    list-style: none;
+#data-container{
+    padding: 10px 20px;
 }
-
 #wrapper {
     width: 900px;
     margin: 20px auto;
 }
 
-#pagination-data-container {
+#pagination {
     margin-top: 5px;
 }
 
-#pagination-data-container ul {
-    padding: 0;
-    margin: 0;
+#pagination ul {
 }
-
-#pagination-data-container li {
+.paginationjs{
+    margin: 0 auto;
+}
+#pagination ul li {
     margin-bottom: 5px;
     padding: 5px 10px;
     background: #eee;
     color: #666;
+    display: inline-block;
+    list-style: none;
 }
 
 /*# sourceMappingURL=main.css.map */
