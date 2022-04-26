@@ -144,9 +144,39 @@ class AdminController {
 
     // [GET] /admin/product/:offset
     productPagination(req, res, next) {
-        const maxElement = 4
-        const offset = Number.parseInt(req.params.offset)
-        ProductModel.find({})
+        const maxElement = 4;
+
+        const offset = Number.parseInt(req.params.offset);
+        const fieldProduct = req.query.field;
+        const sortBy = req.query.sortBy;
+
+        function findUser() {
+            let products;
+            if (sortBy == 'ascending') {
+                if (fieldProduct == 'name') {
+                    products = ProductModel.find({}).sort({ name: "ascending" })
+                } else if (fieldProduct == 'sold') {
+                    products = ProductModel.find({}).sort({ sold: "ascending" })
+                }
+                else if (fieldProduct == 'price') {
+                    products = ProductModel.find({}).sort({ price: "ascending" })
+                }
+            } else if (sortBy == 'descending') {
+                if (fieldProduct == 'name') {
+                    products = ProductModel.find({}).sort({ name: "descending" })
+                } else if (fieldProduct == 'sold') {
+                    products = ProductModel.find({}).sort({ sold: "descending" })
+                }
+                else if (fieldProduct == 'price') {
+                    products = ProductModel.find({}).sort({ price: "descending" })
+                }
+            }
+
+            return products
+        }
+
+
+        findUser()
             .then(product => {
                 const productSize = product.length
                 let productListReturn = []
@@ -159,6 +189,9 @@ class AdminController {
                 res.status(200).send(productListReturn)
             })
             .catch(err => res.status(400).send({ message: err }))
+
+        
+
     }
 
     userSearch(req, res, next) {
@@ -223,8 +256,8 @@ class AdminController {
 
         function findUser() {
             let users;
-            if(sortBy == 'ascending'){
-               if (fieldUser == 'name') {
+            if (sortBy == 'ascending') {
+                if (fieldUser == 'name') {
                     users = UserModel.find({}).sort({ fullName: "ascending" })
                 } else if (fieldUser == 'email') {
                     users = UserModel.find({}).sort({ email: "ascending" })
@@ -232,7 +265,7 @@ class AdminController {
                 else if (fieldUser == 'registration') {
                     users = UserModel.find({}).sort({ createAt: "ascending" })
                 }
-            } else if(sortBy  == 'descending'){
+            } else if (sortBy == 'descending') {
                 if (fieldUser == 'name') {
                     users = UserModel.find({}).sort({ fullName: "descending" })
                 } else if (fieldUser == 'email') {
@@ -242,7 +275,7 @@ class AdminController {
                     users = UserModel.find({}).sort({ createAt: "descending" })
                 }
             }
-           
+
             return users
         }
 
