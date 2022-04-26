@@ -35,14 +35,15 @@ const loadPage = () => {
 
 const getUserList = (o) => {
     const sortBy = document.getElementById("sort").value;
-    // const fieldSort = document.getElementById("field").value;
+    const field = document.getElementById("field").value;
     $.get({
-        url: '/admin/user/list/' + o,
+        url: `/admin/user/list/${o}?sortBy=${sortBy}&field=${field}`,
         statusCode: {
             200: function(response) {
                 console.log(response)
+                userTableBody.innerHTML = '';
                 let elementSize = response.length
-                userTableBody.innerHTML += ''
+                // userTableBody.innerHTML += ''
                 for (let i = 0; i < elementSize; i++) {
                     const element = response[i]
                     userTableBody.innerHTML += `

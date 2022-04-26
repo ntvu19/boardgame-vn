@@ -215,10 +215,39 @@ class AdminController {
 
     // [GET] /admin/user/:offset
     userPagination(req, res, next) {
-        const maxElement = 4
-        const offset = Number.parseInt(req.params.offset)
+        const maxElement = 4;
 
-        UserModel.find({})
+        const offset = Number.parseInt(req.params.offset);
+        const fieldUser = req.query.field;
+        const sortBy = req.query.sortBy;
+
+        function findUser() {
+            let users;
+            if(sortBy == 'ascending'){
+               if (fieldUser == 'name') {
+                    users = UserModel.find({}).sort({ fullName: "ascending" })
+                } else if (fieldUser == 'email') {
+                    users = UserModel.find({}).sort({ email: "ascending" })
+                }
+                else if (fieldUser == 'registration') {
+                    users = UserModel.find({}).sort({ createAt: "ascending" })
+                }
+            } else if(sortBy  == 'descending'){
+                if (fieldUser == 'name') {
+                    users = UserModel.find({}).sort({ fullName: "descending" })
+                } else if (fieldUser == 'email') {
+                    users = UserModel.find({}).sort({ email: "descending" })
+                }
+                else if (fieldUser == 'registration') {
+                    users = UserModel.find({}).sort({ createAt: "descending" })
+                }
+            }
+           
+            return users
+        }
+
+
+        findUser()
             .then(user => {
                 const userSize = user.length
                 let userListReturn = []
