@@ -77,7 +77,12 @@
                         <input type="search" name="term" placeholder="Tìm khách hàng">
                         <input type="submit" value="" hidden>
                     </form>
-
+                    
+                    {{!-- <form class="search-customers">
+                        <input type="text" placeholder="Tìm khách hàng">
+                        <input type="submit" value="Search">
+                        <button class="btn btn-primary" type="submit" action="/admin/user/search">Tìm</button>
+                    </form> --}}
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -114,10 +119,8 @@
                     <nav aria-label="Page navigation example ">
                         <ul id="pagination-btn" class="pagination justify-content-end">
                             {{#each pageArray}}
-                            <li class="page-item"><a class="page-link" href="/admin/customer/{{this}}?term={{../keyword}}">{{this}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/admin/user/search/{{this}}{{document.location.search}}">{{this}}</a></li>
                             {{/each}}
-
-                            
                         </ul>
                     </nav>
                 </div>
