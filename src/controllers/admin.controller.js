@@ -163,6 +163,8 @@ class AdminController {
 
     userSearch(req, res, next) {
         const searchField = req.query.term;
+        console.log("r", req.query);
+        console.log("body", req.body);
 
         const page = Number(req.params.page) || 1;
 
