@@ -69,6 +69,7 @@ class CartController {
                     ProductModel.findById(productArr[i].productId)
                         .then(product => {
                             const productEl = {}
+                            productEl.productId = product._id
                             productEl.photo = product.photo[0]
                             productEl.name = product.name
                             productEl.price = product.price
@@ -77,6 +78,42 @@ class CartController {
                         })
                 }
                 setTimeout(() => res.status(200).send({ products }), 500)
+            })
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [PUT] /cart/api/cart-edit
+    editCartData(req, res, next) {
+        const userId = jwt.verify(req.cookies.token, process.env.SECRET_KEY).userId
+        CartModel.findOne({ userId: userId })
+            .then(cart => {
+                const productArr = cart.products
+                for (let i = 0; i < productArr.length; i++) {
+                    if (productArr[i].productId == req.body.productId) {
+                        cart.products[i].quantity = req.body.quantity
+                        break
+                    }
+                }
+                cart.save()
+                return res.status(200).send({ message: 'Success' })
+            })
+            .catch(err => res.status(400).send({ message: err }))
+    }
+
+    // [DELETE] /cart/api/remove-product
+    removeProductFromCart(req, res, next) {
+        // console.log(req.body.productId)
+        const userId = jwt.verify(req.cookies.token, process.env.SECRET_KEY).userId
+        CartModel.findOne({ userId: userId })
+            .then(cart => {
+                const productArr = cart.products
+                for (let i = 0; i < productArr.length; i++) {
+                    if (productArr[i].productId == req.body.productId) {
+                        cart.products.splice(i, 1)
+                    }
+                }
+                cart.save()
+                return res.status(200).send({ message: 'Success' })
             })
             .catch(err => res.status(400).send({ message: err }))
     }
