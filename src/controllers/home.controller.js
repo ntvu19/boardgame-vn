@@ -29,7 +29,6 @@ class HomeController {
             const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
             UserModel.findById(decodedToken.userId)
                 .then(user => { user ? res.redirect('/') : res.render('login') 
-                    
                 })
                 .catch(err => console.log(err))
         }
