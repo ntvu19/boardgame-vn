@@ -1,18 +1,18 @@
 window.addEventListener("load", function() {
-    truncateCardText();
-    truncateCardPrice();
     truncateCardTitle();
+    // truncateCardText();
+    truncateCardPrice();
     headerState();
 });
 
-function truncateCardText() {
-    var cardList = document.getElementsByClassName("card-text");
-    for (var i = 0; i < cardList.length; i++) {
-        var text = cardList[i].innerHTML;
-        var newText = truncateString(text, 40);
-        cardList[i].innerHTML = newText;
-    }
-}
+// function truncateCardText() {
+//     var cardList = document.getElementsByClassName("card-text");
+//     for (var i = 0; i < cardList.length; i++) {
+//         var text = cardList[i].innerHTML;
+//         var newText = truncateString(text, 40);
+//         cardList[i].innerHTML = newText;
+//     }
+// }
 
 function truncateString(str, num) {
     if (str.length > num) {

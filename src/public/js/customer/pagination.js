@@ -10,8 +10,8 @@ let offset = 0
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadPage()
-    getProductList(offset)
+    loadPage();
+    getProductList(offset);
 })
 
 const productTableBody = document.querySelector('#product-list');
@@ -19,7 +19,7 @@ const productTableBody = document.querySelector('#product-list');
 const loadPage = () => {
     $.get({
         url: '/product/api/product-size',
-        success: function(response) {
+        success: function (response) {
             productSize = response.productSize
 
             const paginationBtn = document.querySelector('#pagination-btn')
@@ -46,7 +46,7 @@ const getProductList = (o) => {
     $.get({
         url: `/product/${o}?sortBy=${sortBy}`,
         statusCode: {
-            200: function(response) {
+            200: function (response) {
                 productTableBody.innerHTML = ''
                 let elementSize = response.length
                 for (let i = 0; i < elementSize; i++) {
@@ -56,7 +56,9 @@ const getProductList = (o) => {
                         <div class="card">
                             <img src="${element.photo[0]}" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title">${element.name}</h5>
+                                <div class="card-title-content">
+                                    <h5 class="card-title">${element.name}</h5>
+                                </div>
                                 <div class="card-price">
                                     <p class="card-price-num">${element.price}</p><span> VND</span>
                                 </div>
@@ -72,7 +74,7 @@ const getProductList = (o) => {
                     </div>`
                 }
             },
-            400: function(response) {
+            400: function (response) {
                 console.log(response)
             }
         }
