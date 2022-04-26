@@ -40,7 +40,6 @@ class CommentController {
 
         UserModel.findById(decodedToken.userId)
             .then(author => {
-
                 if (author) {
                     newComment.author = author.fullName;
                     newComment.save()
