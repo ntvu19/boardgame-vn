@@ -219,10 +219,6 @@ class AdminController {
         const fieldUser = req.query.field;
         const sortBy = req.query.sortBy;
 
-        console.log("sor", sortBy);
-        console.log("field", fieldUser);
-
-
         function findUser() {
             let users;
             if(sortBy == 'ascending'){
