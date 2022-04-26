@@ -26,3 +26,15 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
                 </div>`
     }).catch(err => console.log(err))
 }
+
+module.exports.forgotPassword = (name, email, randomPassword) => {
+    transport.sendMail({
+        from: user,
+        to: email,
+        subject: 'Lấy lại mật khẩu',
+        html: `<div>
+            <h1>Xin chào ${name}</h1>
+            <p>Mật khẩu mới của bạn là: ${randomPassword}</p>
+        </div>`
+    }).catch(err => console.log(err))
+}

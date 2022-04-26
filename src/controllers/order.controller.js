@@ -43,7 +43,10 @@ class OrderController {
                 paymentMethod: req.body.paymentMethod,
                 status: req.body.status
             })
-            .then(() => res.status(200).send({ message: 'Success' }))
+            .then(order => {
+                CartModel.findOneAndDelete({ userId: userId })
+                    .then(() => res.status(200).send({ message: 'Success' }))
+            })
             .catch(err => res.status(400).send({ message: err }))
     }
 

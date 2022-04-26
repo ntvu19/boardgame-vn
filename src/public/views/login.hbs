@@ -1,23 +1,5 @@
 <div class="login">
     <div class="login-page">
-        {{!-- <div class="form">
-            <form action="#" method="POST" class="register-form">
-                <input type="text" placeholder="Họ và tên" name="fullName" required>
-                <input type="text" placeholder="Địa chỉ email" name="email" required>
-                <input type="text" placeholder="Tên đăng nhập" name="username" required>
-                <input type="password" placeholder="Mật khẩu" name="password" required>
-                <input type="password" placeholder="Nhập lại mật khẩu" required>
-                <button id="register-btn" type="button">Đăng ký</button>
-                <p class="message" id="mesLogin">Đã có tài khoản <a href="#">Đăng nhập</a></p>
-            </form>
-            <form action="/login" method="POST" class="login-form">
-                <input type="text" placeholder="Tên đăng nhập" name="username" required>
-                <input type="password" placeholder="Mật khẩu" name="password" required>
-                <button id="login-btn" type="submit">Đăng nhập</button>
-                <p class="message" id="mesReg">Chưa có tài khoản <a href="#">Tạo tài khoản</a></p>
-                <p class="message" id="mesForgot">Quên mật khẩu? <a href="#">Lấy lại mật khẩu</a></p>
-            </form>
-        </div> --}}
         <ul class="nav nav-pills mb-3 justify-content-around" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab"
@@ -51,7 +33,7 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="pills-reset" role="tabpanel" aria-labelledby="pills-reset-tab">
-                <form action="/login" method="POST" class="login-form">
+                <form action="/user/forgot-password" method="POST" class="login-form">
                     <input type="text" placeholder="Địa chỉ email" name="email" required>
                     <button id="login-btn" type="submit">Reset</button>
                 </form>

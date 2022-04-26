@@ -10,7 +10,7 @@ const imageUpload = multer.single('avatar')
 
 router.get('/active/:id', UserController.activeUser)
 router.put('/edit/:id', imageUpload, UserController.editUser)
-router.get('/', UserController.userInformation)
 router.post('/forgot-password', UserController.forgotPassword);
+router.get('/', UserController.userInformation)
 
 module.exports = router
