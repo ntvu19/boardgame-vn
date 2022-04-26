@@ -78,6 +78,15 @@
                         <input type="submit" value="" hidden>
                     </form>
 
+                    <div class="category__right-top">
+                        <p>Sắp xếp</p>
+                        <select name="" id="sort" onchange=getUserList(0)>
+                            <option value="" id="">None</option>
+                            <option value="name" id="name">Tên</option>
+                            <option value="email" id="email">Email</option>
+                            <option value="registration" id="registration">Registration tim</option>
+                        </select>
+                    </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -89,7 +98,7 @@
                             </tr>
                         </thead>
                         <tbody id="user-list">
-                            {{#each Users}}
+                            {{!-- {{#each Users}}
                             <tr>
 
                                 <td style="text-align: center;">{{fullName}}</td>
@@ -98,7 +107,8 @@
                                 <td>{{address}}</td>
                                 {{#if blocked}}
                                 <td>
-                                    <a href="/admin/block-user/{{_id}}?block=false" class="btn btn-secondary">Disable</a>
+                                    <a href="/admin/block-user/{{_id}}?block=false"
+                                        class="btn btn-secondary">Disable</a>
                                 </td>
                                 {{else}}
                                 <td>
@@ -107,17 +117,16 @@
                                 {{/if}}
 
                             </tr>
-                            {{/each}}
+                            {{/each}} --}}
                         </tbody>
                     </table>
 
                     <nav aria-label="Page navigation example ">
                         <ul id="pagination-btn" class="pagination justify-content-end">
-                            {{#each pageArray}}
-                            <li class="page-item"><a class="page-link" href="/admin/customer/{{this}}?term={{../keyword}}">{{this}}</a></li>
-                            {{/each}}
 
-                            
+                            {{!-- {{#each pageArray}}
+                            <li class="page-item"><a class="page-link" href="/admin/customer/{{this}}">{{this}}</a></li>
+                            {{/each}} --}}
                         </ul>
                     </nav>
                 </div>
@@ -126,5 +135,5 @@
     </div>
 </section>
 
-{{!--
-<script src="/js/admin/userPagination.js"></script> --}}
+
+<script src="/js/admin/userPagination.js"></script>

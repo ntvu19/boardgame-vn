@@ -21,10 +21,16 @@ class ProductController {
         let productId = req.params.id
         ProductModel.findById(productId)
             .then(product => {
-                res.render('detail', {
-                    layout: 'customer',
-                    product: product ? product.toObject() : product
-                })
+                ProductModel.find({
+                    categoryId:  product.categoryId 
+                }).limit(5)
+                    .then(result => {
+                        res.render('detail', {
+                            layout: 'customer',
+                            relatedProducts:  result.map(mongoose => mongoose.toObject()),
+                            product: product ? product.toObject() : product
+                        })
+                    })
             })
             .catch(err => {
                 console.log(err)
@@ -54,34 +60,27 @@ class ProductController {
      * @access public
      */
     viewRelated(req, res, next) {
+        console.log("hea2r");
         ProductModel.findById(req.params.id)
             .then(product => {
                 console.log(product.categoryId);
-                ProductModel.find({
-                    categoryId:  product.categoryId 
-                }).limit(5)
-                    .then(result => {
-                        res.render('detail', {
-                            layout: 'customer',
-                            relatedProducts:  result.map(mongoose => mongoose.toObject())
-                        })
-                    })
+                
             })
     }
 
 
-    // getTopProduct(req, res, next) {
-    //     const p = ProductModel.find().sort({ sold: "descending" }).limit(5)
-    //     console.log(p);
-    //     ProductModel.find().sort({ sold: "descending" }).limit(5)
-    //         .then(product => {
-    //             res.render('/', {
-    //                 layout: 'customer',
-    //                 topProducts: product.map(mongoose => mongoose.toObject())
-    //             })
-    //         })
-    //         .catch(err => res.status(400).send({ message: err }))
-    // }
+    getTopProduct(req, res, next) {
+        const p = ProductModel.find().sort({ sold: "descending" }).limit(5)
+
+        ProductModel.find().sort({ sold: "descending" }).limit(5)
+            .then(product => {
+                res.render('/', {
+                    layout: 'customer',
+                    topProducts: product.map(mongoose => mongoose.toObject())
+                })
+            })
+            .catch(err => res.status(400).send({ message: err }))
+    }
 
 
     /**

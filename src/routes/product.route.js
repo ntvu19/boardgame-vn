@@ -15,6 +15,6 @@ router.get('/detail/:id', ProductController.details);
 router.get('/', ProductController.index);
 
 
-// router.get('/', ProductController.getTopProduct);
+router.get('/', ProductController.getTopProduct);
 
 module.exports = router
