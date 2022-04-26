@@ -18,26 +18,29 @@
             </div>
             <div class="homeProduct__items">
                 <div class="owl-carousel owl-theme myProduct">
-                    {{!-- {{#each products}}
+                    {{#each topProducts}}
                     <div class="item card-item">
                         <div class="card" style="width: 16rem;">
                             <img src="{{this.photo.[0]}}" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title">{{this.name}}</h5>
-                                <p class="card-text">{{this.description}}</p>
-                                <p class="card-price">{{this.price}}</p>
+                                <div class="card-title-content">
+                                    <h5 class="card-title">{{this.name}}</h5>
+                                </div>
+                                <div class="card-price">
+                                    <p class="card-price-num">{{this.price}}</p><p> VND</p>
+                                </div>
                             </div>
                             <div class="card__overlay">
-                                <a href="#" class="card__overlay-detail">
+                                <a href="/product/detail/{{_id}}" class="card__overlay-detail">
                                     <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
                                 </a>
-                                <button class="card__overlay-cart">
+                                <button class="card__overlay-cart" onclick="addToCart({{_id}}')">
                                     <i class="fa fa-shopping-cart"></i>Cho vào giỏ
                                 </button>
                             </div>
                         </div>
                     </div>
-                    {{/each}} --}}
+                    {{/each}}
                     {{!-- <div class="item card-item">
                         <div class="card" style="width: 16rem;">
                             <img src="/img/product1.png" class="card-img-top" alt="">
@@ -222,4 +225,5 @@
 
 <script src="/js/customer/pagination.js"></script>
 
-{{!-- <script src="/js/customer/topProduct.js"></script> --}}
+{{!--
+<script src="/js/customer/topProduct.js"></script> --}}

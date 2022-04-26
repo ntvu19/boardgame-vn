@@ -1,5 +1,5 @@
 
-window.onload = () => {if ($('#pagination').length) {
+if ($('#pagination').length) {
     $.get(`/comment/get-all-comment/${$("#product_id").val()}`, function (data) {
         $(function () {
             let container = $('#pagination');
@@ -23,7 +23,7 @@ window.onload = () => {if ($('#pagination').length) {
             })
         })
     })
-}}
+}
 
 $("#review-submit").on("click", function (event) {
     event.preventDefault();
@@ -72,3 +72,5 @@ $("#review-submit").on("click", function (event) {
             }
         });
 });
+
+
