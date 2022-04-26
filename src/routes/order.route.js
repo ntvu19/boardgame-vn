@@ -2,15 +2,10 @@ const OrderController = require('../controllers/order.controller')
 const express = require('express')
 const router = express.Router()
 
-router.get('/view', OrderController.viewAll)
-router.get('/view-detail-order/:id', OrderController.viewDetailOrder)
-router.post('/create-order', OrderController.createOrder)
-router.post('/add-to-cart/:id', OrderController.addCart)
+router.get('/api/get-order', OrderController.getOrderList)
+router.put('/api/update-method', OrderController.updateMethod)
+router.post('/api/new-order', OrderController.createNewOrder)
+router.get('/', OrderController.index)
 
-/**
- * 1. Lấy danh sách đơn hàng #
- * 2. Chi tiết đơn hàng #
- * 3. Tạo đơn hàng  #TS
- */
 
 module.exports = router

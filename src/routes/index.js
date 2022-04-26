@@ -13,10 +13,7 @@ const route = (app) => {
     app.use('/admin', adminRouter)
     app.use('/login', loginRouter)
     app.use('/cart', cartRouter)
-
-    app.use('/delivery', (req, res, next) => {
-        res.render('delivery', { layout: 'customer' })
-    })
+    app.use('/delivery', orderRouter)
 
     app.use('/payment', (req, res, next) => {
         res.render('payment', { layout: 'customer' })

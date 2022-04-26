@@ -16,69 +16,48 @@
         </div>
         <div class="deliveryPage__content row">
             <div class="deliveryPage__left col-8">
-                <p>Vui lòng chọn địa chỉ giao hàng</p>
-                <div class="deliveryPage__left-login">
-                    <i class="fas fa-sign-in-alt"></i>
-                    <p>Đăng nhập (Nếu bạn đã có tài khoản)</p>
-                </div>
-                <div class="deliveryPage__left-wig">
-                    <input checked="checked" name="loaikhach" type="radio">
-                    <p><span style="font-weight: bold;">Khách lẻ</span> (Nếu bạn không muốn lưu lại thông tin)</p>
-                </div>
-                <div class="deliveryPage__left-reg">
-                    <input type="radio" name="loaikhach" value="dangky">
-                    <p><span style="font-weight: bold;">Đăng ký</span> (Tạo mới tài khoản với thông tin bên dưới)
-                    </p>
-                </div>
+                <h3 class="d-flex justify-content-center text-dark mb-4">Vui lòng chọn địa chỉ giao hàng</h3>
                 <div class="deliveryPage__left-input-top row">
                     <div class="deliveryPage__left-input-top-item col-6">
                         <label for="">Họ tên <span style="color: red;">*</span></label>
-                        <input type="text">
+                        <input name="name" type="text">
                     </div>
                     <div class="deliveryPage__left-input-top-item col-6">
                         <label for="">Điện thoại <span style="color: red;">*</span></label>
-                        <input type="text">
-                    </div>
-                    <div class="deliveryPage__left-input-top-item col-6">
-                        <label for="">Tỉnh/TP <span style="color: red;">*</span></label>
-                        <input type="text">
-                    </div>
-                    <div class="deliveryPage__left-input-top-item col-6">
-                        <label for="">Quận/Huyện <span style="color: red;">*</span></label>
-                        <input type="text">
+                        <input name="phone" type="text">
                     </div>
                 </div>
                 <div class="deliveryPage__left-input-buttom">
                     <label for="">Địa chỉ <span style="color: red;">*</span></label>
-                    <input type="text">
+                    <input name="address" type="text">
                 </div>
                 <div class="deliveryPage__left-button">
-                    <a href=""><span>&#8810;</span>
+                    <a href="/cart"><span>&#8810;</span>
                         <p>Quay lại giỏ hàng</p>
                     </a>
-                    <button>
+                    <button onclick="deliveryInfoSubmit();">
                         <p style="font-weight: bold;">THANH TOÁN VÀ GIAO HÀNG</p>
                     </button>
                 </div>
             </div>
             <div class="deliveryPage__right col-4">
                 <table>
-                    <tr>
+                    <thead>
                         <th>Tên sản phẩm</th>
                         <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                    </tr>
-                    <tr>
-                        <td>MA SÓI</td>
-                        <td>1</td>
-                        <td>123456<sup>đ</sup></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;" colspan="2">Tổng tiền hàng</td>
-                        <td style="font-weight: bold;"><p>123456<sup>đ</sup></p></td>                          
-                    </tr>
+                        <th>Đơn giá</th>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td style="font-weight: bold;" colspan="2">Tổng tiền hàng</td>
+                            <td style="font-weight: bold;"><p id="sumOfPrice"></p></td>                          
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
 </section>
+
+<script src="/js/customer/deliveryHandler.js"></script>
