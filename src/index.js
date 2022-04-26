@@ -8,6 +8,7 @@ const handlebars = require('express-handlebars')
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const bodyparser = require('body-parser');
 
 // Local file
 const route = require('./routes')
@@ -24,6 +25,12 @@ db.connectToDatabase()
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Body parser
+
+app.use(bodyparser.urlencoded({
+    extended :true
+}));
+app.use(bodyparser.json());
+
 app.use(express.urlencoded({ limit: '2mb', extended: true }))
 app.use(express.json({ limit: '2mb' }))
 

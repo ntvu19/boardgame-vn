@@ -37,6 +37,7 @@ const updateProduct = (productId) => {
     const editProductBody = document.querySelector('#update-product-modal .modal-body')
     $.get({
         url: '/admin/product/detail/' + productId,
+        contentType: 'multipart/form-data',
         success: function(response) {
             editProductBody.innerHTML = `
                 <form action="/admin/product/update/${response._id}?_method=PUT" method="POST">
@@ -46,8 +47,65 @@ const updateProduct = (productId) => {
                     <input type="text" name="price" value="${response.price}"><br>
                     <label for="">Danh mục<span style="color:red;">*</span></label> <br>
                     <select name="categoryId">${categoryFilter.innerHTML}</select> <br>
+
+                    <label for="">Số lượng hàng<span style="color: red;">*</span></label> <br>
+                    <input type="number" name="stock" value="${response.stock}"><br>
+                    <label for="">Số người chơi<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="numberOfPlayer" value="${response.conditions.numberOfPlayer}"><br>
+                    <label for="">Thời gian chơi<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="playingTime" value="${response.conditions.playingTime}"><br>
+                    <label for="">Độ tuổi<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="age" value="${response.conditions.age}"><br>
+                    <label for="">Thể loại<span style="color: red;">*</span></label> <br>
+                    <input type="text" name="genres" value="${response.conditions.genres}"><br>
+
                     <label for="">Mô tả sản phẩm<span style="color: red;">*</span></label> <br>
                     <textarea name="description" rows="6">${response.description}</textarea><br>
+
+                    <label for="">Ảnh<span style="color: red;">*</span></label> <br>
+                    <div class="row">
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[0]}"> <br>                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
+                            <input type="file" class="form-control" name="image1" id="image1">                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[1]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
+                            <input type="file" class="form-control" name="image2" id="image2">                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[2]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
+                            <input type="file" class="form-control" name="image3" id="image3">
+                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[3]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
+                            <input type="file" class="form-control" name="image4" id="image4">
+                            
+                        </div>
+                        <div class="col-sm-9 ml-auto">
+                            <img src="${response.photo[4]}"> <br>
+                            
+                        </div>
+                        <div class="col-sm-3 ml-auto"> 
+                            <input type="file" class="form-control" name="image5" id="image5">
+                            
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button id="btn-update-product" class="btn btn-primary">Cập nhật</button>
+                    </div>
                 </form>`
 
             for (let i = 0; i < categoryList.length; i++) {
@@ -57,10 +115,7 @@ const updateProduct = (productId) => {
                 }
             }
 
-            const submitBtn = document.querySelector('#btn-update-product')
-            submitBtn.onclick = () => {
-                editProductBody.querySelector('form').submit()
-            }
         }
     })
 }
+

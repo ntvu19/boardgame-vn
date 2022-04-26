@@ -5,7 +5,7 @@ const userTableBody = document.querySelector('#user-list')
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPage()
-    getuserList(offset)
+    getUserList(offset)
 })
 
 const loadPage = () => {
@@ -33,7 +33,7 @@ const loadPage = () => {
     })
 }
 
-const getuserList = (o) => {
+const getUserList = (o) => {
     $.get({
         url: '/admin/user/list/' + o,
         statusCode: {
@@ -49,10 +49,8 @@ const getuserList = (o) => {
                         <td style="text-align: center;">${element.username}</td>
                         <td>${element.email}</td>
                         <td>${element.address}</td>
-                        <td >
-                            <div class="table__btn row" style="text-align: center;">
-                                <button class="status-user" onclick="">Active</button>
-                            </div>
+                        <td>
+                            <a href ="/block-user/{{_id}}?block=true" class="pd-setting">Active</a>
                         </td>
                     </tr>`
                 }

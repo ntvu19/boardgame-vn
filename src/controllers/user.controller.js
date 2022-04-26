@@ -2,6 +2,9 @@ const UserModel = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
+const cloudinary = require('../configs/cloudinary.config')
+const { send } = require('express/lib/response')
+
 class UserController {
 
     // [GET] /user
@@ -27,24 +30,77 @@ class UserController {
 
     // [PUT] /user/edit/:id
     editUser(req, res, next) {
-        const newPassword = req.body.newPassword
-        delete req.body.newPassword
-        delete req.body.confirmNewPassword
+        const oldPassword = req.body.password;
 
-        // Hashing password
         bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(newPassword, salt, (err, hashed) => {
-                req.body.password = hashed
-                if (!req.cookies.token) {
-                    res.redirect('/')
-                } else {
-                    const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
-                    UserModel.findByIdAndUpdate(decodedToken.userId, req.body)
-                        .then(() => res.redirect('/user'))
-                        .catch(err => res.status(400).send({ message: err }))
-                }
+            bcrypt.hash(oldPassword, salt, (err, hashed) => {
+                
+                UserModel.findById(req.params.id)
+                    .then(check => {
+
+                        if (check.password.trim != hashed.trim) {
+                            res.render('Old password is wrong');
+                        } else {
+                            const newPassword = req.body.newPassword
+                            delete req.body.newPassword
+                            delete req.body.confirmNewPassword
+
+                            // Hashing password
+                            bcrypt.genSalt(10, (err, salt) => {
+                                bcrypt.hash(newPassword, salt, (err, hashed) => {
+                                    req.body.password = hashed
+                                    if (!req.cookies.token) {
+                                        res.redirect('/')
+                                    } else {
+                                        const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
+
+                                        const fd = 'user/' + req.params.id;
+                                        if (req.file != undefined) {
+                                            cloudinary.uploader.upload(req.file.path, { folder: fd, public_id: 'ava' })
+                                                .then(ava => {
+
+                                                    const update = {
+                                                        fullName: req.body.fullName,
+                                                        password: req.body.password,
+                                                        address: req.body.address,
+                                                        avatar: ava.url
+                                                    }
+
+                                                    UserModel.findByIdAndUpdate(decodedToken.userId, update)
+                                                        .then(() => {
+
+
+                                                            res.redirect('/user');
+
+                                                        })
+                                                        .catch(err => console.log(err))
+
+                                                })
+                                        }
+                                        else {
+                                            const update = {
+                                                fullName: req.body.fullName,
+                                                password: req.body.password,
+                                                address: req.body.address,
+
+                                            }
+                                            UserModel.findByIdAndUpdate(decodedToken.userId, update)
+                                                .then(() => {
+                                                    res.redirect('/user');
+
+                                                })
+                                                .catch(err => console.log(err))
+                                        }
+                                    }
+                                })
+                            })
+                        }
+
+                    })
+                    .catch(err => console.log(err))
             })
         })
+
     }
 
     // [PUT] /user/active/:id
@@ -64,7 +120,7 @@ class UserController {
 
     //POST /user/forgot-password
     forgotPassword(req, res, next) {
-        
+
     }
 
 }

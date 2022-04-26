@@ -57,7 +57,6 @@ const getProductList = (o) => {
                             <img src="${element.photo[0]}" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">${element.name}</h5>
-                                <p class="card-text">${element.description}</p>
                                 <div class="card-price">
                                     <p class="card-price-num">${element.price}</p><span> VND</span>
                                 </div>

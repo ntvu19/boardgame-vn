@@ -9,11 +9,11 @@ class HomeController {
     // [GET] /
     index(req, res, next) {
         // Login status
-        ProductModel.find({})
+        ProductModel.find().sort({ sold: "descending" }).limit(5)
             .then(product => {
                 res.render('home', {
                     layout: 'customer',
-                    products: product.map(mongoose => mongoose.toObject())
+                    topProducts: product.map(mongoose => mongoose.toObject())
                 })
             })
             .catch(err => {
@@ -28,7 +28,9 @@ class HomeController {
         } else {
             const decodedToken = jwt.verify(req.cookies.token, process.env.SECRET_KEY)
             UserModel.findById(decodedToken.userId)
-                .then(user => { user ? res.redirect('/') : res.render('login') })
+                .then(user => { user ? res.redirect('/') : res.render('login') 
+                    
+                })
                 .catch(err => console.log(err))
         }
     }
@@ -37,11 +39,17 @@ class HomeController {
     userLogIn(req, res, next) {
         UserModel.findOne({ username: req.body.username })
             .then(user => {
+                
                 if (!user) {
                     res.redirect('back')
                     console.log('Incorrectly username or password')
                 } else {
-                    bcrypt.compare(req.body.password, user.password)
+                    if(user.blocked == true){
+                        res.redirect('back')
+                        console.log('User BLOCK')
+                    }
+                    else{
+                        bcrypt.compare(req.body.password, user.password)
                         .then(success => {
                             let announcement = success ? 'Login successfully' : 'Incorrectly username or password'
                             // console.log(announcement)
@@ -52,9 +60,10 @@ class HomeController {
                                 res.cookie('token', user.token, { httpOnly: true })
                                 res.redirect('/')
                             } else {
-                                redirect('back')
+                                res.redirect('back')
                             }
                         })
+                    }
                 }
             })
             .catch(err => console.log(err))
@@ -80,7 +89,8 @@ class HomeController {
                     // Hashing password
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newUser.password, salt, (err, hashed) => {
-                            newUser.password = hashed
+                            newUser.password = hashed;
+                            
                             newUser.save()
                                 .then(() => {
                                     res.cookie('logged', true)
