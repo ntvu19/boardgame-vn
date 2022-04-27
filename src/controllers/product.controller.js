@@ -41,8 +41,8 @@ class ProductController {
     // [GET] /product/search
     searchProduct(req, res, next) {
         const searchQuery = req.query.keyword || req.query.search
-        console.log("r", req.query);
-        console.log("body", req.body);
+        // console.log("query", req.query);
+        // console.log("body", req.body);
 
         const page = Number(req.params.page) || 1;
 

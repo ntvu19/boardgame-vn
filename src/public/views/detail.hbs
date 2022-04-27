@@ -138,7 +138,7 @@
                                 <a href="/product/detail/{{this._id}}" class="card__overlay-detail">
                                     <i class="fa fa-arrow-circle-right"></i>Xem chi tiết
                                 </a>
-                                <button class="card__overlay-cart">
+                                <button class="card__overlay-cart" onclick="addToCart('{{_id}}')">
                                     <i class="fa fa-shopping-cart"></i>Cho vào giỏ
                                 </button>
                             </div>
@@ -150,3 +150,5 @@
         </div>
     </div>
 </section>
+
+<script src="/js/customer/cartHandler.js"></script>
